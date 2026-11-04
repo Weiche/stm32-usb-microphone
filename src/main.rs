@@ -2,6 +2,8 @@
 #![no_main]
 
 mod board;
+#[cfg(feature = "pdm-capture")]
+mod pdm;
 mod stats;
 
 use core::sync::atomic::Ordering::Relaxed;
@@ -22,6 +24,8 @@ type UsbDriver = usb::Driver<'static, peripherals::USB_OTG_FS>;
 
 bind_interrupts!(struct Irqs {
     OTG_FS => usb::InterruptHandler<peripherals::USB_OTG_FS>;
+    #[cfg(feature = "pdm-capture")]
+    DMA1_STREAM3 => pdm::MicDmaIrq, embassy_stm32::dma::InterruptHandler<peripherals::DMA1_CH3>;
 });
 
 #[embassy_executor::task]
@@ -70,7 +74,7 @@ async fn diagnostics_task(mut led: Output<'static>, vbus: Input<'static>) {
         embassy_time::Timer::after_secs(1).await;
         led.toggle();
         defmt::info!(
-            "stats vbus={} cfg={} suspend={} stream={} packets={} usb_errors={} disabled={} discarded_samples={} pending={} high={} dma_active=false",
+            "stats vbus={} cfg={} suspend={} stream={} packets={} usb_errors={} disabled={} discarded_samples={} pending={} high={} dma_active={}",
             vbus.is_high(),
             stats::CONFIGURED.load(Relaxed),
             stats::SUSPENDED.load(Relaxed),
@@ -81,15 +85,27 @@ async fn diagnostics_task(mut led: Output<'static>, vbus: Input<'static>) {
             stats::DROPPED_SAMPLES.load(Relaxed),
             stats::WATER_SAMPLES.load(Relaxed),
             stats::WATER_HIGH.load(Relaxed),
+            cfg!(feature = "pdm-capture"),
         );
+        #[cfg(feature = "pdm-capture")]
+        pdm::log_stats();
     }
 }
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
-    defmt::info!("stage1 boot: MB997B STM32F407VG UAC1 16000Hz s16le mono sine=1000Hz");
+    defmt::info!(
+        "usb-mic boot: MB997B STM32F407VG UAC1 16000Hz s16le mono sine=1000Hz pdm_capture={}",
+        cfg!(feature = "pdm-capture")
+    );
     let p = embassy_stm32::init(board::config());
     defmt::info!("clocks ready: SYSCLK=168MHz USB=48MHz HSE=8MHz crystal");
+    #[cfg(feature = "pdm-capture")]
+    {
+        let microphone = pdm::new(p.SPI2, p.PC3, p.PB12, p.PB10, p.DMA1_CH3, Irqs);
+        spawner.spawn(pdm::capture_task(microphone).unwrap());
+        spawner.spawn(pdm::snapshot_task().unwrap());
+    }
 
     // MB997 B-02 sheet 5: U6 STMPS2141 has active-low EN on PC0.
     // HIGH disables the host VBUS power switch in USB device mode.

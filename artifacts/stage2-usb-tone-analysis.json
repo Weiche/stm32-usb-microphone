@@ -1,0 +1,16 @@
+{
+  "file": "captures\\stage2-usb-tone.wav",
+  "duration_seconds": 3.0,
+  "frequency_hz_1hz_resolution": 1000,
+  "dc_lsb": -0.0005625,
+  "peak_lsb": 8193,
+  "rms_lsb": 5792.593145059231,
+  "peak_dbfs": -12.040139602006443,
+  "rms_dbfs": -15.051538179483657,
+  "thd_ratio_harmonics_2_to_7": 4.8580373625125154e-05,
+  "clipped_samples": 0,
+  "period16_mismatches_after_startup": 12076,
+  "silent_ms_after_startup": 0,
+  "stage1_tone_check_pass": true,
+  "limits": "Windows may resample/process audio. Tone checks cannot prove USB delivery or long-term stability."
+}

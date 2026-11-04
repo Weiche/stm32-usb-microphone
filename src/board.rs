@@ -22,5 +22,17 @@ pub fn config() -> embassy_stm32::Config {
     config.rcc.apb1_pre = APBPrescaler::Div4; // 42 MHz
     config.rcc.apb2_pre = APBPrescaler::Div2; // 84 MHz
     config.rcc.mux.clk48sel = mux::Clk48sel::Pll1Q;
+    #[cfg(feature = "pdm-capture")]
+    {
+        // Shared PLLM=8. 8/8*256/5 = 51.2 MHz I2S kernel.
+        // I2SDIV=25, ODD=0: bit clock = 51.2 MHz/50 = 1.024 MHz.
+        config.rcc.plli2s = Some(Pll {
+            prediv: PllPreDiv::Div8,
+            mul: PllMul::Mul256,
+            divp: None,
+            divq: None,
+            divr: Some(PllRDiv::Div5),
+        });
+    }
     config
 }
