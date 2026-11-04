@@ -1,0 +1,11 @@
+{
+  "taps": 191,
+  "input_rate_hz": 64000,
+  "output_rate_hz": 16000,
+  "cutoff_hz": 7000,
+  "passband_0_6000_db_min": -0.000886212118264614,
+  "passband_0_6000_db_max": 0.0004230464770932685,
+  "stopband_8000_32000_db_max": -80.68041503293378,
+  "fir_group_delay_seconds": 0.001484375,
+  "note": "FIR-only response. CIC droop, DC blocker and quantization are tested separately."
+}

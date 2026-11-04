@@ -1,0 +1,13 @@
+{
+  "samples": 1024,
+  "rate_hz": 16000,
+  "duration_seconds": 0.064,
+  "peak_lsb": 49,
+  "rms_ac_lsb": 20.422197778627428,
+  "dc_lsb": -2.078125,
+  "spectral_peak_hz": 1000.0,
+  "fft_bin_spacing_hz": 15.625,
+  "tone_1000_amplitude_lsb": 14.896915738895673,
+  "clipped_samples": 0,
+  "note": "64 ms diagnostic snapshot; acoustic gain and absolute frequency are uncalibrated."
+}

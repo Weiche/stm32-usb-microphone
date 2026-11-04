@@ -1,5 +1,8 @@
 #![no_std]
 
+pub mod decoder;
+mod fir_coeffs;
+
 pub const SAMPLE_RATE_HZ: u32 = 16_000;
 pub const SAMPLES_PER_PACKET: usize = 16;
 pub const PACKET_BYTES: usize = SAMPLES_PER_PACKET * 2;

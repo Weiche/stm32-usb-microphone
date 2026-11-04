@@ -1,0 +1,15 @@
+
+running 9 tests
+test tests::tone_energy_is_in_one_khz_dft_bin ... ok
+test tests::tone_has_zero_dc_correct_peak_and_continuous_wrap ... ok
+test tests::usb_frame_has_exactly_one_ms_of_mono_pcm_little_endian ... ok
+test decoder::tests::reset_after_gap_matches_a_fresh_decoder ... ok
+test decoder::tests::fir_has_unity_gain_and_70db_stopband ... ok
+test decoder::tests::decimation_is_exact_and_independent_of_call_grouping ... ok
+synthetic 1kHz: amplitude_lsb=8205.170 dc_lsb=-0.004 SNR_db=43.793
+test decoder::tests::tone_1khz_amplitude_dc_and_noise ... ok
+test decoder::tests::zero_density_offset_and_integrator_wrap_do_not_create_dc ... ok
+synthetic 6kHz: amplitude_lsb=7641.356; 10kHz input alias_at_6kHz_lsb=2.626
+test decoder::tests::upper_voice_band_survives_and_aliasing_tone_is_rejected ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s

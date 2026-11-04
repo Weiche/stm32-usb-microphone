@@ -1,0 +1,21 @@
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.62s
+   Compiling stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.24s
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.54s
+     Running unittests src\lib.rs (target\x86_64-pc-windows-msvc\debug\deps\stm32f4_usb_mic-29fae033b20f1540.exe)
+
+running 9 tests
+test tests::tone_energy_is_in_one_khz_dft_bin ... ok
+test tests::tone_has_zero_dc_correct_peak_and_continuous_wrap ... ok
+test tests::usb_frame_has_exactly_one_ms_of_mono_pcm_little_endian ... ok
+test decoder::tests::reset_after_gap_matches_a_fresh_decoder ... ok
+test decoder::tests::fir_has_unity_gain_and_70db_stopband ... ok
+test decoder::tests::decimation_is_exact_and_independent_of_call_grouping ... ok
+test decoder::tests::tone_1khz_amplitude_dc_and_noise ... ok
+test decoder::tests::zero_density_offset_and_integrator_wrap_do_not_create_dc ... ok
+test decoder::tests::upper_voice_band_survives_and_aliasing_tone_is_rejected ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+   Compiling stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 0.88s

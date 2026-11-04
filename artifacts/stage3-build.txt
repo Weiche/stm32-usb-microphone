@@ -1,0 +1,2 @@
+   Compiling stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
+    Finished `release` profile [optimized + debuginfo] target(s) in 5.22s

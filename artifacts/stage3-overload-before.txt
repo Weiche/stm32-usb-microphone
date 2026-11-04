@@ -1,0 +1,476 @@
+[INFO ] usb-mic boot: MB997B STM32F407VG UAC1 16000Hz s16le mono sine=1000Hz pdm_capture=true
+[INFO ] clocks ready: SYSCLK=168MHz USB=48MHz HSE=8MHz crystal
+[INFO ] pdm DMA buffer=20003b10 words=1024 SRAM=true
+[INFO ] pdm configured: kernel=51200000 bitclock=1024000 I2SPR=19 I2SCFGR=b28
+[INFO ] descriptors ready: config_bytes=119 packet=32 endpoint_max=34
+[INFO ] usb enabled=true
+[INFO ] usb suspended=true
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16736 sum=61796 sumsq=1527733534 peak=5657 decode_max_us=1939
+[INFO ] pdm words=66944 ones=540995 bits=1071104 pending_words=1024 low=512 high=1152 ring_overruns=1 dma_errors=0 spi_sr=86
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=29568 sum=129394 sumsq=38502656 peak=772 decode_max_us=1941
+[INFO ] pdm words=185216 ones=961593 bits=1892352 pending_words=1024 low=508 high=1152 ring_overruns=3 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] usb configured=true
+[INFO ] usb interface=1 alt=0
+[INFO ] usb interface=1 alt=0
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=29856 sum=134750 sumsq=46325270 peak=662 decode_max_us=1941
+[INFO ] pdm words=304640 ones=971065 bits=1910784 pending_words=1024 low=504 high=1152 ring_overruns=5 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17088 sum=73179 sumsq=22311337 peak=574 decode_max_us=1941
+[INFO ] pdm words=372992 ones=555834 bits=1093632 pending_words=1024 low=502 high=1152 ring_overruns=6 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=25536 sum=72708 sumsq=29162542 peak=766 decode_max_us=1941
+[INFO ] pdm words=475136 ones=830467 bits=1634304 pending_words=1024 low=244 high=1152 ring_overruns=7 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16736 sum=55334 sumsq=23754326 peak=665 decode_max_us=1941
+[INFO ] pdm words=542080 ones=543854 bits=1071104 pending_words=1024 low=244 high=1152 ring_overruns=8 dma_errors=0 spi_sr=82
+[INFO ] pdm_snapshot begin words=4096 encoding=u16le rate_bits=1024000
+[INFO ] pcm_snapshot begin samples=1024 rate_hz=16000
+[INFO ] pdm_raw index=0 data=[10964, 44372, 54580, 58981, 21866, 26972, 27302, 45770, 29869, 19666, 55635, 14697, 20131, 43673, 39540, 39722, 29997, 11595, 14669, 21909, 26198, 38554, 39594, 27434, 51922, 51939, 19795, 36245, 21911, 5526, 43462, 39623, 12971, 13610, 54605, 21722, 13654, 39509, 27797, 51805, 10026, 45898, 46389, 19285, 21848, 58777, 39146, 42650, 43687, 19053, 19754, 46421, 19685, 21865, 19882, 41841, 43674, 51826, 51917, 11091, 13653, 21349, 22165, 42346]
+[INFO ] pcm_raw index=0 data=[0, -6, -10, -8, -8, -1, 4, 8, 13, 18, 21, 19, 18, 15, 8, 3]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=64 data=[39338, 42705, 43826, 51924, 54571, 26003, 22101, 43350, 43433, 43435, 18867, 11437, 21323, 37710, 22104, 55958, 26971, 10663, 10925, 6994, 44373, 13029, 21846, 22117, 39318, 50857, 43721, 44340, 29869, 21717, 13715, 22118, 37738, 39338, 42412, 43818, 45749, 19253, 13155, 22869, 25942, 43354, 26405, 46172, 43730, 43860, 43880, 45786, 25305, 42214, 39529, 27305, 29862, 53938, 46253, 35668, 46681, 19802, 22947, 43622, 42667, 10922, 51896, 45773]
+[INFO ] pcm_raw index=16 data=[-1, -6, -13, -12, -9, -8, -1, 3, 6, 14, 15, 12, 11, 3, 0, -5]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=34560 sum=128854 sumsq=38976044 peak=556 decode_max_us=1941
+[INFO ] pdm words=680320 ones=1122662 bits=2211840 pending_words=1024 low=244 high=1152 ring_overruns=10 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=128 data=[21837, 21338, 38105, 29033, 38602, 23722, 45740, 52397, 21803, 37722, 13657, 39257, 42662, 42789, 53916, 52434, 30029, 21333, 21845, 27029, 42394, 27306, 27756, 45739, 21292, 52621, 14669, 23125, 26277, 23207, 6578, 43690, 54059, 11604, 53974, 21845, 22885, 27286, 26034, 43434, 45850, 54091, 11577, 11157, 22867, 26985, 22170, 42661, 51882, 45863, 19245, 19789, 11861, 21849, 38457, 43621, 42667, 6828, 29365, 10067, 14515, 25933, 26019, 22937]
+[INFO ] pcm_raw index=32 data=[-12, -16, -19, -18, -14, -12, -8, -4, -2, 3, 3, 0, 0, -2, -8, -13]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=192 data=[43370, 42666, 40233, 52050, 52403, 25781, 37721, 22870, 39270, 43430, 45482, 45770, 44426, 46389, 21813, 41814, 38249, 43369, 50843, 11049, 46261, 11092, 46421, 20057, 14934, 38502, 50793, 43722, 43826, 45869, 21205, 21718, 13913, 23126, 38566, 43626, 39754, 43827, 11475, 21205, 21848, 54870, 22185, 22309, 43690, 27850, 43826, 54092, 52563, 25934, 22073, 43349, 50794, 43378, 50861, 11051, 21173, 21389, 11926, 13910, 42341, 45466, 39602, 43698]
+[INFO ] pcm_raw index=48 data=[-18, -22, -26, -28, -26, -21, -18, -15, -9, -6, -4, -3, -4, -10, -17, -18]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=34816 sum=105454 sumsq=33950694 peak=733 decode_max_us=1941
+[INFO ] pdm words=819584 ones=1130086 bits=2228224 pending_words=1024 low=244 high=1152 ring_overruns=12 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=256 data=[46282, 46669, 13141, 38230, 21929, 23130, 43674, 43719, 11051, 21300, 46294, 21333, 26966, 36506, 39530, 27308, 43693, 18893, 25268, 54629, 21846, 22934, 27734, 27818, 40051, 12971, 21803, 21844, 47509, 36453, 26993, 38570, 42674, 29867, 11467, 21330, 58258, 58787, 26198, 27049, 23242, 42611, 10932, 51893, 21197, 22093, 13974, 13990, 22170, 40038, 44202, 29491, 11443, 21332, 54613, 21909, 38490, 23209, 27052, 42794, 46278, 54571, 25397, 21859]
+[INFO ] pcm_raw index=64 data=[-22, -26, -28, -30, -28, -28, -21, -15, -15, -10, -5, -3, -4, -4, -11, -17]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=320 data=[23125, 26985, 43610, 39627, 10698, 52427, 21684, 58212, 54630, 25498, 26026, 27306, 27338, 53931, 21204, 54093, 39126, 20118, 23190, 39532, 39371, 12908, 46291, 13525, 13545, 21338, 26009, 39574, 27818, 42676, 43826, 52067, 11605, 21817, 26197, 23206, 26034, 39369, 53930, 30092, 29901, 20051, 25445, 37786, 39146, 39593, 39750, 50898, 52402, 54604, 52821, 25429, 39571, 27242, 39345, 29382, 51915, 11476, 54069, 13717, 22838, 38310, 42346, 27814]
+[INFO ] pcm_raw index=80 data=[-21, -28, -29, -30, -29, -26, -22, -11, -7, -4, 0, 0, 1, 0, -5, -15]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=35072 sum=115873 sumsq=33075893 peak=651 decode_max_us=1941
+[INFO ] pdm words=959872 ones=1136405 bits=2244608 pending_words=1024 low=244 high=1152 ring_overruns=14 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=384 data=[51627, 34516, 43876, 44388, 54629, 38233, 27286, 39532, 27307, 11435, 19251, 21301, 38219, 42581, 23642, 22956, 39532, 43700, 45742, 13014, 11609, 13909, 39258, 27237, 29787, 10951, 11051, 21683, 21333, 21817, 38233, 27278, 42666, 38603, 10923, 12981, 19277, 13901, 21849, 38297, 23190, 43671, 10919, 19143, 19661, 13523, 19865, 11689, 21873, 23131, 9644, 27420, 51829, 13491, 11860, 52882, 59029, 22890, 39273, 51818, 51635, 11562, 52536, 46424]
+[INFO ] pcm_raw index=96 data=[-23, -24, -29, -29, -26, -23, -15, -8, -4, 0, 2, 1, 1, -3, -10, -13]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=448 data=[52629, 38486, 23209, 23209, 51882, 44211, 11064, 52051, 26806, 14741, 42554, 42601, 51818, 51883, 19128, 44365, 21717, 21924, 58730, 26025, 27802, 44183, 19754, 54061, 13667, 19860, 55897, 23145, 39334, 44186, 45740, 45868, 46414, 11109, 36185, 21866, 39146, 39532, 29286, 54443, 11084, 46420, 54101, 25941, 23189, 27237, 43676, 42611, 11431, 21682, 54101, 13160, 54618, 20074, 21958, 39538, 39601, 52519, 13517, 13619, 14925, 38245, 22293, 43370]
+[INFO ] pcm_raw index=112 data=[-15, -20, -22, -21, -21, -18, -12, -6, -1, 3, 9, 7, 3, 0, -3, -9]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=35328 sum=99413 sumsq=21870015 peak=473 decode_max_us=1941
+[INFO ] pdm words=1101184 ones=1143358 bits=2260992 pending_words=1024 low=244 high=1152 ring_overruns=16 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=512 data=[42612, 27434, 44359, 13643, 21806, 21846, 22101, 43621, 27306, 42697, 46378, 30005, 13133, 22741, 22117, 22938, 27285, 43820, 39533, 35499, 21805, 21718, 13673, 21913, 39333, 46169, 45739, 10933, 12980, 54115, 21843, 38502, 21914, 26282, 39369, 46250, 44362, 52114, 54163, 22099, 38501, 26985, 43610, 29466, 43819, 11445, 13012, 46677, 14553, 38246, 22185, 39345, 39722, 27954, 43829, 12982, 21805, 22888, 54641, 22940, 26263, 19098, 52396, 44364]
+[INFO ] pcm_raw index=128 data=[-15, -15, -19, -18, -19, -17, -8, -4, 0, 4, 5, 4, 1, -2, -6, -11]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=576 data=[44437, 13142, 21902, 38501, 39590, 38706, 23847, 19243, 13525, 11666, 55641, 25497, 27031, 6806, 52315, 20914, 52405, 19757, 38116, 55656, 58794, 15017, 43634, 40233, 46388, 43860, 54626, 54629, 38485, 42661, 39533, 5914, 53937, 54060, 54604, 54613, 22841, 25962, 38294, 51818, 39597, 7346, 52043, 21685, 21813, 25997, 42341, 27302, 26281, 43826, 43467, 19660, 52525, 42163, 38548, 55717, 39337, 39591, 6865, 43730, 52020, 52565, 11619, 26197]
+[INFO ] pcm_raw index=144 data=[-16, -23, -28, -24, -25, -20, -11, -9, -4, 2, 7, 6, 5, 3, -2, -8]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=35584 sum=71921 sumsq=21491957 peak=552 decode_max_us=1941
+[INFO ] pdm words=1243520 ones=1149280 bits=2277376 pending_words=1024 low=244 high=1152 ring_overruns=18 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=640 data=[36517, 38570, 39346, 27314, 45778, 44365, 19669, 21848, 58773, 39573, 42652, 43435, 7371, 7506, 44434, 54617, 13669, 26969, 39575, 6748, 44311, 12979, 11602, 47413, 19816, 54885, 26217, 38570, 39601, 51636, 44332, 44386, 54581, 14905, 25450, 22934, 42665, 45481, 53959, 11474, 54453, 11673, 11174, 36186, 23190, 26405, 51819, 10930, 46259, 11603, 13530, 19797, 21929, 26969, 43622, 43698, 39604, 45741, 19762, 55509, 21845, 38234, 39146, 27301]
+[INFO ] pcm_raw index=160 data=[-15, -19, -22, -25, -23, -19, -13, -9, -3, 2, 4, 3, 1, 1, -4, -12]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=704 data=[43722, 29357, 11052, 55469, 21720, 55637, 38309, 26281, 27079, 6938, 52508, 44341, 13517, 21849, 14678, 38298, 38314, 43671, 12970, 45905, 54062, 19289, 20024, 59029, 23146, 26204, 45468, 43722, 52019, 21197, 21395, 21846, 38245, 26278, 23655, 9898, 51015, 19118, 19251, 20052, 54838, 36441, 26204, 26026, 43373, 10922, 51923, 19251, 14645, 20053, 22102, 25958, 43606, 43690, 27819, 12915, 19284, 45881, 21718, 36182, 39254, 43429, 43690, 39634]
+[INFO ] pcm_raw index=176 data=[-17, -25, -30, -28, -27, -23, -18, -14, -4, 1, 1, 0, -1, -2, -8, -17]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=35840 sum=61471 sumsq=15849421 peak=468 decode_max_us=1941
+[INFO ] pdm words=1386880 ones=1157991 bits=2293760 pending_words=1024 low=244 high=1152 ring_overruns=20 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=768 data=[29811, 21173, 13613, 39094, 21866, 20070, 27414, 27306, 43722, 52013, 11565, 36150, 13657, 21925, 39274, 26281, 50889, 44330, 52405, 19157, 20024, 58598, 22106, 38311, 5804, 27314, 27474, 53716, 53974, 19685, 22869, 27033, 26026, 43612, 42669, 18861, 19245, 21208, 46731, 23125, 25961, 27241, 39705, 45490, 51995, 19277, 11597, 21813, 22761, 21873, 22181, 43634, 23366, 51637, 11435, 36051, 21349, 19798, 42297, 27301, 42410, 50967, 19116, 44362]
+[INFO ] pcm_raw index=192 data=[-19, -25, -27, -25, -29, -27, -23, -15, -7, -6, -1, 0, -5, -13, -15, -21]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=832 data=[54603, 21333, 39125, 38298, 38250, 39594, 39708, 44204, 52427, 21716, 54837, 38233, 22953, 26218, 40090, 45491, 19114, 58196, 46294, 19813, 25957, 27046, 39338, 29130, 43818, 47282, 52441, 19286, 19862, 21866, 26010, 27243, 10668, 43469, 13484, 54072, 54584, 58709, 27193, 27049, 39532, 42442, 45897, 44245, 20921, 13654, 11875, 39258, 26009, 43674, 42698, 43724, 45747, 13156, 46293, 22870, 19866, 23142, 39338, 23850, 43691, 19754, 52787, 20025]
+[INFO ] pcm_raw index=208 data=[-28, -29, -33, -34, -34, -29, -23, -18, -11, -5, -2, -1, -4, -9, -11, -19]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=31904 sum=50576 sumsq=12989484 peak=471 decode_max_us=1941
+[INFO ] pdm words=1514496 ones=1029484 bits=2041856 pending_words=1024 low=244 high=1152 ring_overruns=22 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=896 data=[11926, 20118, 23190, 42777, 44202, 29895, 19157, 11603, 21845, 20073, 22934, 26278, 45419, 6860, 51883, 21803, 21899, 36409, 38234, 38313, 27081, 51611, 21162, 52405, 19662, 19790, 37734, 38129, 38342, 43673, 51890, 45853, 19157, 21198, 21845, 25510, 22117, 43674, 42442, 44204, 27980, 45781, 21685, 22869, 22121, 22119, 5788, 27305, 53868, 53939, 19755, 38101, 21846, 37737, 39271, 6508, 42697, 45741, 11084, 52562, 54614, 21334, 42329, 42601]
+[INFO ] pcm_raw index=224 data=[-25, -25, -30, -29, -27, -26, -20, -13, -6, 0, 4, 2, 1, -3, -11, -16]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=18144 sum=21503 sumsq=6817041 peak=342 decode_max_us=1941
+[INFO ] pdm words=1587072 ones=584699 bits=1161216 pending_words=1024 low=244 high=1152 ring_overruns=23 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=960 data=[43462, 43693, 10923, 14635, 19301, 35670, 21910, 26967, 9580, 43378, 52379, 11595, 13017, 21301, 41827, 42330, 42645, 43813, 45863, 12973, 13107, 35672, 46734, 13929, 36518, 23703, 10023, 10955, 12981, 13029, 13141, 38245, 25961, 26058, 22963, 9645, 18100, 52051, 13029, 21844, 54937, 25958, 42599, 9835, 11434, 43858, 44371, 21685, 37721, 22873, 26025, 39282, 43435, 7338, 53963, 13196, 46437, 13626, 22869, 43606, 43430, 43690, 53867, 13133]
+[INFO ] pcm_raw index=240 data=[-21, -22, -24, -24, -24, -22, -14, -9, 0, 5, 7, 9, 8, 5, 2, -1]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=1024 data=[11573, 13657, 19802, 38234, 38345, 38604, 23751, 11058, 54452, 54102, 21210, 25830, 39258, 43611, 9898, 52518, 52525, 13645, 21817, 21417, 21930, 22186, 27306, 43698, 52019, 11602, 54629, 11683, 27221, 27734, 38602, 50854, 53938, 52525, 19669, 20022, 25813, 43429, 23194, 43626, 44140, 52017, 54573, 11853, 36238, 21849, 39318, 43370, 27433, 43820, 29898, 52564, 46297, 21389, 43318, 27045, 42666, 39348, 50859, 13610, 54477, 38093, 38234, 21909]
+[INFO ] pcm_raw index=256 data=[-6, -8, -12, -14, -11, -6, 1, 4, 6, 10, 12, 12, 11, 11, 8, 2]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=28192 sum=34430 sumsq=9025466 peak=458 decode_max_us=1941
+[INFO ] pdm words=1699840 ones=907753 bits=1804288 pending_words=1024 low=244 high=1152 ring_overruns=25 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=1088 data=[45402, 43379, 6828, 43851, 11595, 21686, 22069, 22118, 37801, 43626, 39718, 44338, 44338, 52580, 52565, 22889, 14742, 43621, 51820, 39636, 27851, 19765, 13646, 21734, 23094, 39530, 26226, 43690, 46250, 54474, 58675, 22093, 23125, 26970, 42597, 53862, 44331, 10707, 21675, 26798, 21400, 58773, 27238, 23318, 44197, 53707, 19125, 11476, 54612, 47704, 58713, 42661, 26282, 51622, 52042, 43860, 44370, 55635, 25814, 42326, 38556, 26033, 51818, 53962]
+[INFO ] pcm_raw index=272 data=[-2, -6, -7, -8, -10, -11, -5, 4, 8, 12, 16, 16, 15, 13, 10, 6]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=18336 sum=24299 sumsq=3202759 peak=53 decode_max_us=1941
+[INFO ] pdm words=1773184 ones=590209 bits=1173504 pending_words=1024 low=244 high=1152 ring_overruns=26 dma_errors=0 spi_sr=2
+[INFO ] pdm_raw index=1152 data=[44371, 13525, 13657, 21862, 20249, 27036, 39593, 45874, 27476, 52019, 25909, 22069, 42390, 39260, 39590, 29863, 13004, 43875, 11574, 35685, 36261, 26261, 50858, 23219, 10861, 19125, 13523, 21395, 22164, 59962, 38315, 5738, 44203, 10931, 19245, 21715, 36237, 38233, 39318, 38569, 29351, 10923, 11060, 45900, 52627, 21845, 38121, 43347, 51990, 26438, 43820, 43701, 19635, 21717, 25909, 25958, 26966, 44118, 29382, 44202, 54060, 52052, 54611, 38198]
+[INFO ] pcm_raw index=288 data=[-1, -7, -9, -11, -8, -4, 1, 10, 10, 13, 19, 18, 17, 13, 6, 1]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=22560 sum=23304 sumsq=7371738 peak=278 decode_max_us=1941
+[INFO ] pdm words=1863424 ones=725786 bits=1443840 pending_words=1024 low=244 high=1152 ring_overruns=27 dma_errors=0 spi_sr=2
+[INFO ] pdm_raw index=1216 data=[39226, 38569, 23210, 43690, 44330, 45908, 44373, 19812, 54694, 21866, 42390, 46182, 45740, 43858, 53972, 54115, 38229, 22952, 59754, 27303, 6828, 51883, 13642, 54585, 13146, 21402, 21930, 22213, 50970, 44235, 10060, 54093, 21717, 21907, 42346, 21916, 27242, 42700, 42802, 46292, 43865, 19797, 14741, 22293, 27285, 43818, 23243, 10932, 46283, 13197, 36153, 21850, 21926, 23205, 29354, 42674, 44362, 30005, 11604, 54861, 22169, 21851, 10586, 43441]
+[INFO ] pcm_raw index=304 data=[-3, -8, -11, -11, -13, -9, -4, 1, 6, 11, 17, 14, 14, 9, 4, 1]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=26784 sum=17630 sumsq=7116822 peak=504 decode_max_us=1941
+[INFO ] pdm words=1970560 ones=861123 bits=1714176 pending_words=1024 low=202 high=1152 ring_overruns=28 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=1280 data=[45769, 46253, 13618, 52821, 21390, 26197, 42394, 42649, 46246, 44205, 11563, 21326, 19673, 21925, 22105, 43626, 23212, 43442, 52013, 13491, 21842, 59701, 39270, 22108, 39323, 10860, 43722, 52554, 52557, 22739, 26195, 26277, 38554, 43372, 27441, 51829, 19155, 21294, 21845, 21862, 22166, 39260, 43626, 42706, 51637, 11469, 13621, 21337, 22861, 42646, 23209, 26410, 43444, 44148, 46260, 54573, 36245, 13910, 38490, 38313, 45482, 27436, 44210, 53944]
+[INFO ] pcm_raw index=320 data=[-5, -8, -13, -16, -14, -12, -5, -2, 2, 10, 13, 11, 11, 12, 8, 3]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=1344 data=[54098, 59732, 58789, 22122, 39333, 51826, 29866, 40338, 45899, 25429, 21901, 38505, 22170, 42666, 39596, 51883, 21196, 54101, 21813, 23181, 23189, 43626, 38571, 18098, 44212, 52107, 21812, 55893, 20074, 22890, 38554, 45719, 20938, 45876, 54061, 22836, 58710, 25957, 27290, 23147, 9900, 43722, 52554, 45965, 21731, 21909, 38234, 27222, 42666, 27802, 53684, 44211, 19794, 52883, 13721, 38118, 42409, 26058, 45673, 44340, 39757, 19668, 47438, 21849]
+[INFO ] pcm_raw index=336 data=[-4, -10, -12, -15, -14, -12, -8, -1, 3, 7, 8, 8, 6, 4, 0, -6]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=1408 data=[22166, 38314, 27303, 6828, 51883, 21677, 19789, 21845, 38230, 39260, 22954, 39594, 45852, 44236, 52557, 21715, 38296, 54937, 42346, 39593, 45738, 44242, 44364, 46421, 21806, 42298, 22170, 26986, 43627, 10706, 44333, 11446, 21294, 22869, 22873, 42405, 44121, 51867, 18892, 43859, 13133, 21690, 13673, 19877, 43414, 43433, 42826, 42804, 45746, 54667, 13529, 25814, 38122, 38311, 6507, 9900, 51635, 13011, 19285, 11876, 46756, 58774, 43578, 43462]
+[INFO ] pcm_raw index=352 data=[-7, -12, -19, -19, -18, -17, -11, -5, -2, 1, 7, 8, 4, 4, 0, -6]
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=32960 sum=42996 sumsq=7960098 peak=311 decode_max_us=1941
+[INFO ] pdm words=2102400 ones=1060218 bits=2109440 pending_words=1024 low=202 high=1152 ring_overruns=30 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=22816 sum=4907 sumsq=4055835 peak=156 decode_max_us=1941
+[INFO ] pdm words=2193664 ones=732497 bits=1460224 pending_words=1024 low=202 high=1152 ring_overruns=31 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=1472 data=[43692, 51883, 21204, 47307, 39250, 59813, 21930, 39271, 12891, 7468, 43821, 21300, 54165, 21846, 22890, 20261, 43686, 45738, 45741, 21195, 21333, 21845, 22165, 23194, 23191, 10907, 18122, 46285, 11093, 21209, 21861, 25943, 9130, 27035, 18854, 53964, 43736, 46261, 38189, 38246, 22885, 27301, 43378, 51819, 11050, 55467, 13653, 11670, 19802, 21925, 43578, 43689, 43804, 45741, 13004, 58083, 14646, 25933, 43414, 23210, 23210, 44140, 51893, 10978]
+[INFO ] pcm_raw index=368 data=[-11, -16, -20, -21, -21, -17, -10, -1, 3, 7, 11, 12, 8, 6, 1, -1]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=27040 sum=11026 sumsq=3828736 peak=55 decode_max_us=1941
+[INFO ] pdm words=2301824 ones=867618 bits=1730560 pending_words=1024 low=194 high=1152 ring_overruns=32 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=1536 data=[55478, 13669, 21910, 38310, 43414, 51820, 51658, 52530, 52563, 21718, 21907, 42342, 42409, 43627, 9907, 11435, 21203, 25396, 54931, 39145, 38313, 43610, 43818, 43692, 54445, 19669, 19797, 22165, 22122, 25970, 27250, 39634, 44203, 35637, 11620, 54628, 55866, 26214, 42587, 9900, 43698, 46253, 11827, 13901, 22070, 25961, 22185, 38694, 43690, 50900, 40148, 46410, 55860, 58709, 42329, 42646, 29286, 44202, 44204, 52043, 21710, 19289, 38105, 38505]
+[INFO ] pcm_raw index=384 data=[-5, -12, -16, -16, -14, -9, -4, -1, 6, 10, 10, 13, 9, 10, 6, -4]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=1600 data=[38322, 26406, 29386, 46258, 44427, 36045, 26933, 26021, 38258, 38508, 42778, 53931, 11602, 46413, 25306, 21818, 26010, 27046, 43442, 44146, 45900, 46388, 46691, 21737, 23129, 26266, 42666, 43473, 52043, 11445, 22701, 25910, 22874, 22934, 27302, 43676, 44148, 29994, 54610, 52629, 21353, 22105, 26278, 42410, 42706, 42707, 11060, 54068, 55635, 21862, 22870, 42645, 43718, 38732, 39723, 21675, 21209, 21326, 22869, 41897, 23206, 43622, 45852, 44212]
+[INFO ] pcm_raw index=400 data=[-7, -11, -15, -15, -13, -10, -6, 2, 7, 11, 16, 13, 12, 10, 8, 5]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=1664 data=[44333, 36053, 19876, 54693, 39513, 27302, 44134, 52426, 29907, 13140, 54489, 21901, 42645, 38570, 27291, 10924, 29869, 19659, 22067, 25494, 19909, 26970, 50790, 51882, 29994, 53965, 21204, 55859, 26966, 22184, 59164, 23210, 51882, 46290, 44372, 46644, 58725, 14746, 22166, 43419, 10905, 54442, 52050, 46413, 19798, 13670, 13978, 22170, 27302, 43693, 6858, 54451, 19789, 21717, 38230, 38458, 42406, 42697, 43635, 19239, 13644, 45972, 58198, 21402]
+[INFO ] pcm_raw index=416 data=[0, -4, -9, -12, -11, -7, -2, 3, 9, 13, 17, 19, 21, 16, 12, 8]
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=33472 sum=18326 sumsq=6265328 peak=539 decode_max_us=1941
+[INFO ] pdm words=2435712 ones=1074013 bits=2142208 pending_words=1024 low=194 high=1152 ring_overruns=34 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=23072 sum=5610 sumsq=3581150 peak=509 decode_max_us=1941
+[INFO ] pdm words=2528000 ones=740321 bits=1476608 pending_words=1024 low=194 high=1152 ring_overruns=35 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=1728 data=[38234, 39537, 27307, 10922, 53934, 13005, 25784, 58597, 26985, 20265, 43433, 44314, 46251, 13493, 19673, 13529, 26965, 38566, 26282, 40087, 19242, 44426, 52057, 19176, 55699, 41898, 15018, 23210, 43691, 21100, 46420, 44373, 21733, 25998, 23205, 38508, 50546, 43819, 10963, 13485, 38091, 39222, 25497, 23193, 38570, 39594, 45492, 43820, 54098, 52569, 11862, 14741, 38313, 42602, 42610, 43820, 42709, 13107, 21333, 14677, 22117, 39509, 50853, 51819]
+[INFO ] pcm_raw index=432 data=[-1, -5, -8, -13, -11, -8, -4, 1, 5, 12, 17, 17, 18, 14, 10, 4]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=27296 sum=-1343 sumsq=4275757 peak=317 decode_max_us=1941
+[INFO ] pdm words=2637184 ones=875894 bits=1746944 pending_words=1024 low=186 high=1152 ring_overruns=36 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=1792 data=[18845, 21164, 54453, 13877, 21849, 21914, 38257, 42602, 44198, 46281, 54068, 46414, 13645, 42325, 27222, 39530, 27302, 52007, 12980, 54060, 58197, 22741, 26021, 22954, 26218, 51612, 51884, 45780, 46292, 58069, 38457, 21926, 26202, 43626, 40044, 51995, 13612, 52440, 54117, 21734, 36454, 38313, 43674, 39750, 46194, 46290, 46475, 20045, 25941, 27214, 26282, 26218, 27946, 39730, 52019, 21205, 19670, 21846, 22870, 27285, 39718, 39604, 27434, 52532]
+[INFO ] pcm_raw index=448 data=[0, -5, -8, -7, -9, -8, -3, 0, 5, 13, 16, 17, 13, 8, 6, -2]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=1856 data=[40502, 19161, 38229, 22107, 5466, 43686, 42699, 10930, 46381, 19341, 13206, 21859, 42346, 23146, 39578, 51889, 53933, 13493, 19669, 21849, 22102, 26970, 27290, 39602, 43722, 46258, 54578, 55858, 58773, 38234, 38501, 45670, 45482, 44211, 12973, 19285, 19670, 21850, 13673, 39318, 50857, 23762, 27338, 52524, 52533, 13204, 55637, 22169, 22185, 26988, 43434, 45738, 46407, 11604, 46420, 55637, 22873, 26261, 51562, 27802, 43730, 44234, 54099, 21709]
+[INFO ] pcm_raw index=464 data=[-10, -13, -21, -23, -22, -17, -10, -5, 0, 4, 6, 5, 3, 0, -5, -7]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=1920 data=[38118, 21862, 26010, 27302, 42674, 43722, 52530, 46414, 13018, 21817, 27219, 43670, 43674, 29481, 52043, 11468, 54669, 13646, 26965, 26982, 42650, 43434, 53675, 19125, 19635, 22091, 38229, 26981, 27046, 23706, 42794, 45739, 13610, 54162, 54613, 21909, 22933, 43609, 29290, 43628, 51883, 19245, 19763, 21844, 55694, 22762, 23130, 27290, 44124, 50899, 10067, 13139, 21812, 59731, 42342, 26021, 43801, 29354, 29874, 51893, 13523, 21835, 42325, 26201]
+[INFO ] pcm_raw index=480 data=[-13, -18, -19, -23, -23, -21, -18, -13, -7, 0, 3, 3, 2, -3, -7, -12]
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=33984 sum=8727 sumsq=4805233 peak=197 decode_max_us=1941
+[INFO ] pdm words=2773120 ones=1089178 bits=2174976 pending_words=1024 low=186 high=1152 ring_overruns=38 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=23328 sum=11871 sumsq=3377063 peak=81 decode_max_us=1941
+[INFO ] pdm words=2866432 ones=748148 bits=1492992 pending_words=1024 low=186 high=1152 ring_overruns=39 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=1984 data=[39274, 39578, 43692, 43723, 11091, 21203, 22862, 13910, 38250, 22953, 44124, 29355, 13004, 44248, 52564, 54872, 55701, 29078, 27244, 42666, 51885, 13483, 21332, 54613, 25909, 50522, 26225, 38572, 43687, 13085, 19635, 21325, 22868, 54693, 23145, 23146, 42666, 40138, 29874, 47277, 21325, 25806, 22873, 23126, 42646, 43685, 52401, 44316, 54446, 13101, 42197, 21909, 39258, 26278, 42650, 51017, 44236, 46259, 14644, 54169, 21846, 22953, 26203, 10666]
+[INFO ] pcm_raw index=496 data=[-14, -19, -25, -24, -24, -21, -12, -6, 0, 4, 7, 7, 7, 4, -1, -6]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=27552 sum=2461 sumsq=4109679 peak=110 decode_max_us=1941
+[INFO ] pdm words=2976640 ones=882588 bits=1763328 pending_words=1024 low=178 high=1152 ring_overruns=40 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=2048 data=[44139, 13010, 51939, 14637, 22101, 22165, 38506, 23321, 43692, 43692, 52434, 46413, 21814, 21861, 22952, 60058, 42604, 43698, 45771, 19667, 21689, 22069, 38309, 39270, 45466, 27339, 10924, 51928, 44371, 21845, 22839, 5463, 9641, 39595, 10922, 40522, 45908, 54099, 38101, 43341, 27413, 38697, 27434, 43699, 10957, 21292, 55605, 36238, 23125, 42601, 27292, 42666, 45894, 52050, 46420, 54581, 22872, 59045, 22939, 9894, 27932, 43701, 11084, 52564]
+[INFO ] pcm_raw index=512 data=[-13, -19, -18, -19, -20, -14, -8, -6, 0, 7, 13, 13, 11, 3, -4, -7]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=2112 data=[58197, 22873, 38298, 27030, 46170, 43819, 11437, 19756, 55509, 21849, 38230, 39529, 43434, 43444, 43722, 54477, 19668, 58709, 37798, 22121, 43434, 26438, 43852, 40266, 54612, 46422, 14692, 59033, 39526, 40042, 51819, 21163, 13618, 55507, 25933, 39481, 26970, 43370, 43628, 29810, 46253, 19171, 19859, 13722, 19865, 27034, 26282, 27814, 45771, 19061, 21677, 36181, 21734, 23125, 27226, 40028, 27430, 52012, 44339, 13644, 55510, 21354, 14697, 38569]
+[INFO ] pcm_raw index=528 data=[-11, -16, -19, -19, -17, -11, -5, 0, 5, 12, 17, 17, 16, 13, 9, 6]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=2176 data=[43634, 23755, 11050, 54603, 13204, 58597, 22117, 23653, 29274, 45734, 51892, 44243, 13141, 19812, 54885, 26969, 27813, 27338, 29355, 21102, 13107, 25901, 38230, 37801, 26026, 39284, 27755, 18131, 11467, 22091, 13717, 25942, 25962, 38554, 40043, 7338, 45875, 13514, 58706, 55885, 41877, 27241, 39276, 27418, 43722, 53939, 13132, 55597, 38105, 38286, 38569, 22218, 43371, 11442, 40245, 11061, 36149, 21902, 22105, 26986, 38346, 27308, 42699, 19629]
+[INFO ] pcm_raw index=544 data=[4, 1, -1, -2, -5, -4, -2, 0, 9, 16, 21, 23, 20, 17, 12, 7]
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=34496 sum=15675 sumsq=4790127 peak=292 decode_max_us=1941
+[INFO ] pdm words=3114624 ones=1104906 bits=2207744 pending_words=1024 low=178 high=1152 ring_overruns=42 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=23584 sum=14715 sumsq=3306049 peak=42 decode_max_us=1941
+[INFO ] pdm words=3208960 ones=756737 bits=1509376 pending_words=1024 low=178 high=1152 ring_overruns=43 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=2240 data=[19277, 21733, 13673, 21866, 26025, 39346, 43629, 10951, 21324, 46297, 13901, 22117, 38490, 42646, 51612, 44231, 11549, 21293, 36173, 39097, 42329, 38678, 39590, 51881, 44586, 46290, 46644, 58197, 25945, 23126, 40022, 43690, 39634, 43725, 11594, 54611, 37594, 22838, 23190, 39281, 43434, 51826, 45866, 58037, 19283, 36436, 55641, 39269, 27244, 22187, 10866, 29979, 21613, 22707, 14677, 22093, 43349, 43673, 26311, 6828, 44202, 52051, 19283, 36068]
+[INFO ] pcm_raw index=560 data=[0, -5, -7, -10, -9, -4, 1, 5, 8, 16, 21, 21, 18, 17, 8, -1]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=27840 sum=21967 sumsq=5366339 peak=691 decode_max_us=1941
+[INFO ] pdm words=3320320 ones=891792 bits=1781760 pending_words=1024 low=170 high=1152 ring_overruns=44 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=2304 data=[58725, 21957, 23193, 50602, 43698, 27827, 19244, 54605, 13657, 14677, 39573, 23154, 26310, 43804, 43828, 44245, 11597, 38197, 23141, 21929, 43369, 51654, 43850, 29396, 46291, 13869, 38229, 23125, 42586, 23706, 43623, 20914, 52011, 35668, 46413, 41814, 20073, 38313, 23242, 23211, 10055, 19117, 35512, 54484, 54884, 54885, 27215, 6598, 38579, 9898, 52524, 44363, 21347, 13669, 21909, 38492, 22890, 43436, 27308, 43826, 54067, 19300, 54117, 22869]
+[INFO ] pcm_raw index=576 data=[-4, -7, -13, -13, -11, -12, -10, -3, 3, 9, 10, 11, 7, 2, 1, -6]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=19552 sum=988 sumsq=5105218 peak=240 decode_max_us=1941
+[INFO ] pdm words=3398528 ones=626784 bits=1251328 pending_words=1024 low=170 high=1152 ring_overruns=45 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=2368 data=[27045, 23702, 39722, 39626, 45874, 52045, 21331, 21861, 22862, 39574, 23655, 9674, 50893, 10029, 36013, 22068, 58709, 42382, 39577, 27429, 44198, 54060, 43827, 36067, 19364, 58277, 23141, 39577, 43686, 51994, 45874, 54067, 13203, 25443, 25957, 23193, 38508, 27078, 44325, 54060, 52045, 19789, 20053, 22101, 42330, 39526, 43625, 44330, 43700, 53940, 52117, 11854, 21907, 27237, 23205, 43462, 43690, 44331, 7501, 11478, 13114, 21721, 23145, 15002]
+[INFO ] pcm_raw index=592 data=[-12, -17, -24, -25, -25, -24, -20, -13, -8, -4, -1, -1, 0, 0, -5, -12]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=2432 data=[27302, 43721, 45771, 12984, 46382, 19797, 25934, 39317, 42661, 43690, 42668, 52506, 54452, 46675, 19801, 36249, 21961, 26215, 10908, 40107, 11090, 52524, 55635, 21849, 21925, 42582, 42694, 42780, 43819, 13003, 21834, 55525, 13971, 38310, 26970, 42694, 43435, 19242, 51924, 54571, 25939, 25941, 39481, 43413, 45733, 50890, 51885, 11053, 21324, 58197, 37721, 26022, 14954, 39338, 43690, 29990, 54091, 19787, 13910, 13654, 37798, 23146, 27238, 51821]
+[INFO ] pcm_raw index=608 data=[-18, -21, -24, -25, -23, -21, -16, -9, -1, 2, 5, 9, 6, 2, 0, -7]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=2496 data=[10924, 53939, 21716, 47445, 21850, 36438, 43414, 51562, 45769, 52011, 21173, 21805, 22867, 26981, 23638, 39593, 42700, 43467, 13012, 52051, 21845, 21907, 43241, 39574, 27433, 43698, 43828, 44370, 44644, 46440, 54870, 26025, 38569, 43814, 40146, 43850, 54603, 13667, 21846, 22105, 26265, 27305, 43690, 44148, 45748, 52555, 21844, 54677, 22937, 22890, 27289, 45674, 45770, 45772, 54570, 58956, 47758, 20058, 42327, 9834, 50634, 44203, 19125, 19284]
+[INFO ] pcm_raw index=624 data=[-12, -18, -22, -24, -26, -21, -14, -8, -2, 0, 2, 4, 6, 4, 0, 0]
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=31008 sum=-8596 sumsq=5037368 peak=646 decode_max_us=1941
+[INFO ] pdm words=3522560 ones=992035 bits=1984512 pending_words=1024 low=170 high=1152 ring_overruns=47 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=19744 sum=7970 sumsq=2847052 peak=380 decode_max_us=1941
+[INFO ] pdm words=3601536 ones=631534 bits=1263616 pending_words=1024 low=170 high=1152 ring_overruns=48 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=2560 data=[52789, 38230, 21925, 43414, 29338, 27942, 46258, 45901, 19285, 21722, 19814, 39269, 43670, 43813, 52519, 12981, 19637, 14667, 42325, 26213, 27290, 23210, 43698, 43850, 52405, 36046, 13717, 21913, 22954, 22172, 42778, 50994, 51893, 19253, 21334, 13669, 25958, 23146, 39322, 45740, 27436, 45900, 46390, 11606, 21845, 27222, 26026, 43370, 44202, 44210, 52429, 19794, 54692, 52823, 5466, 38569, 43626, 44202, 44339, 11475, 11922, 54677, 22761, 27222]
+[INFO ] pcm_raw index=640 data=[-8, -13, -13, -16, -15, -13, -7, -2, 1, 7, 15, 15, 13, 12, 9, 6]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=24000 sum=87 sumsq=4586077 peak=812 decode_max_us=1941
+[INFO ] pdm words=3697536 ones=769089 bits=1536000 pending_words=1024 low=170 high=1152 ring_overruns=49 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=2624 data=[39338, 43689, 46252, 43747, 11108, 54102, 13733, 21926, 27046, 27245, 10611, 11474, 45870, 13876, 47524, 54886, 22950, 43429, 53676, 45740, 44588, 52811, 22757, 21850, 38250, 22217, 43437, 5844, 43480, 52405, 21337, 21721, 38294, 42597, 43690, 43435, 19117, 13004, 54579, 36197, 21845, 43353, 39530, 39580, 39730, 43826, 45964, 52534, 21334, 22094, 27237, 27057, 39594, 43730, 42806, 10963, 21843, 22093, 26970, 22121, 42666, 42443, 10951, 19667]
+[INFO ] pcm_raw index=656 data=[-1, -6, -10, -14, -14, -9, -1, 2, 7, 14, 18, 16, 15, 17, 12, 7]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=2688 data=[11572, 55883, 22118, 13992, 60054, 43690, 42825, 46379, 19763, 11865, 13710, 22117, 42586, 43625, 45745, 44333, 11084, 46677, 13653, 26021, 22890, 43430, 43627, 21099, 13523, 11659, 21845, 22885, 25962, 38314, 43435, 10861, 19122, 54483, 21334, 13654, 22105, 43349, 51881, 27434, 50994, 44341, 11449, 21717, 38229, 38313, 39321, 43690, 43676, 51893, 11445, 13494, 25781, 38297, 25961, 42646, 51825, 43818, 52049, 52781, 19673, 21845, 26854, 26262]
+[INFO ] pcm_raw index=672 data=[3, -2, -3, -3, -1, 0, 2, 8, 15, 21, 21, 25, 25, 18, 16, 12]
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=15744 sum=4295 sumsq=2289613 peak=39 decode_max_us=1941
+[INFO ] pdm words=3760512 ones=503068 bits=1007616 pending_words=1024 low=170 high=1152 ring_overruns=50 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=15776 sum=-1082 sumsq=2208776 peak=369 decode_max_us=1941
+[INFO ] pdm words=3823616 ones=505073 bits=1009664 pending_words=1023 low=170 high=1152 ring_overruns=51 dma_errors=0 spi_sr=2
+[INFO ] pdm_raw index=2752 data=[42666, 27334, 53932, 43916, 46419, 20022, 22869, 42342, 23337, 39346, 43700, 29867, 21688, 46420, 55701, 22105, 29033, 42442, 43690, 44338, 51923, 35669, 21814, 36250, 21916, 22951, 10906, 45770, 45901, 10969, 35637, 42297, 38297, 39337, 42667, 6826, 54386, 46387, 13652, 54614, 22841, 38550, 27749, 43721, 29490, 43827, 11603, 21301, 25934, 25946, 38234, 43670, 42796, 27436, 43746, 53945, 11621, 13909, 22118, 38313, 39530, 50982, 44241, 46410]
+[INFO ] pcm_raw index=688 data=[2, -2, -1, -5, -5, 0, 5, 12, 18, 22, 26, 27, 27, 24, 18, 13]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=20032 sum=1866 sumsq=3804770 peak=651 decode_max_us=1941
+[INFO ] pdm words=3903744 ones=641668 bits=1282048 pending_words=1024 low=170 high=1152 ring_overruns=52 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=2816 data=[46645, 13651, 27213, 23205, 26266, 43634, 27092, 43820, 52436, 54485, 36182, 21866, 26006, 43626, 43690, 45746, 54068, 44388, 54585, 22869, 42406, 42346, 43698, 23850, 54443, 13708, 44685, 36437, 39270, 23193, 43687, 10907, 13490, 44365, 19789, 21845, 22121, 25942, 53590, 43814, 51821, 13482, 47434, 55605, 21817, 26981, 22185, 39338, 45420, 39756, 43731, 19668, 47317, 22157, 14949, 43354, 38694, 43690, 44203, 19739, 37557, 37717, 20058, 13989]
+[INFO ] pcm_raw index=704 data=[4, 0, 3, 0, -2, 0, 3, 9, 15, 15, 14, 18, 17, 14, 15, 10]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=28416 sum=-5194 sumsq=4317628 peak=366 decode_max_us=1941
+[INFO ] pdm words=4017408 ones=907993 bits=1818624 pending_words=1024 low=152 high=1152 ring_overruns=53 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=2880 data=[23205, 43690, 38612, 27942, 58183, 22731, 26837, 22761, 26966, 43670, 43687, 11050, 52019, 19757, 21816, 54885, 22105, 43356, 39338, 43846, 43851, 13133, 13644, 58713, 20122, 14998, 27250, 27306, 51890, 52050, 52565, 13157, 25493, 23205, 23206, 43434, 44148, 43476, 53965, 21333, 13717, 22165, 23145, 39516, 50781, 10923, 13100, 52554, 55637, 13653, 43237, 26266, 38569, 51818, 51884, 52509, 19762, 55861, 20054, 22121, 22950, 43434, 27825, 45770]
+[INFO ] pcm_raw index=720 data=[5, 1, -4, -7, -11, -9, 0, 5, 9, 11, 18, 20, 19, 20, 15, 7]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=28480 sum=-9187 sumsq=4038047 peak=199 decode_max_us=1941
+[INFO ] pdm words=4131328 ones=911996 bits=1822720 pending_words=1024 low=150 high=1152 ring_overruns=54 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=2944 data=[52532, 52557, 21846, 21722, 27221, 29334, 40229, 46236, 54044, 54603, 20025, 14678, 22105, 42602, 27242, 45513, 52524, 52020, 54117, 13877, 26213, 38313, 39594, 27802, 51915, 19155, 19765, 21337, 25445, 26217, 42348, 38572, 43721, 52020, 53941, 21210, 19673, 25957, 43354, 23717, 45722, 45897, 44340, 52531, 21845, 13673, 25450, 22937, 43627, 9674, 43858, 29396, 54476, 54861, 25942, 14950, 26265, 40044, 27308, 43820, 52045, 19667, 38198, 25449]
+[INFO ] pcm_raw index=736 data=[0, -5, -8, -11, -11, -9, -6, -2, 3, 9, 13, 17, 17, 18, 16, 9]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=20224 sum=-3178 sumsq=3154316 peak=326 decode_max_us=1941
+[INFO ] pdm words=4212224 ones=646360 bits=1294336 pending_words=1024 low=150 high=1152 ring_overruns=55 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=3008 data=[25948, 23196, 23241, 43732, 40139, 13652, 44437, 21846, 25946, 27030, 51549, 10023, 13129, 47309, 19766, 21717, 27033, 21930, 27301, 45738, 45770, 52051, 13528, 52581, 22102, 22890, 27049, 42780, 43819, 11083, 19285, 19797, 21849, 23126, 23653, 45673, 43723, 18861, 11597, 13140, 58201, 22101, 38554, 23146, 27802, 44202, 46282, 46413, 19789, 21923, 21926, 22122, 42394, 45722, 51922, 39779, 13139, 13715, 22165, 22874, 38569, 27306, 43721, 45899]
+[INFO ] pcm_raw index=752 data=[5, -2, -9, -10, -8, -6, 0, 6, 10, 12, 17, 18, 18, 19, 13, 4]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=20288 sum=-10961 sumsq=2698683 peak=146 decode_max_us=1941
+[INFO ] pdm words=4293376 ones=649769 bits=1298432 pending_words=1024 low=150 high=1152 ring_overruns=56 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=3072 data=[13107, 21806, 22069, 22937, 23190, 27051, 6826, 44330, 51925, 21198, 13657, 21413, 38313, 39577, 43692, 43629, 21165, 19277, 25813, 14934, 21914, 39338, 26283, 10929, 52429, 19125, 25421, 41782, 42573, 44133, 27306, 51818, 52020, 44213, 25273, 13669, 21866, 21868, 26022, 46182, 45740, 53940, 51941, 21301, 38485, 21930, 22875, 10662, 44146, 51667, 13491, 13625, 19797, 38297, 22121, 29094, 42700, 38701, 18901, 11093, 13877, 21864, 55957, 38601]
+[INFO ] pcm_raw index=768 data=[-1, -5, -9, -9, -10, -7, 0, 4, 11, 17, 21, 22, 21, 20, 15, 11]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=28672 sum=10968 sumsq=4712606 peak=213 decode_max_us=1941
+[INFO ] pdm words=4408064 ones=919134 bits=1835008 pending_words=1024 low=144 high=1152 ring_overruns=57 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=3136 data=[27244, 43691, 18146, 44371, 21333, 21849, 22874, 26985, 43465, 43723, 7466, 54579, 21331, 26195, 23141, 42348, 38507, 11371, 7469, 11572, 54115, 20115, 38553, 22949, 50970, 42706, 43725, 11091, 21331, 38222, 26006, 23190, 39593, 43819, 6956, 45908, 52053, 21843, 27193, 23130, 42409, 51623, 13419, 19156, 44366, 13621, 22165, 22885, 29273, 43689, 44203, 10932, 52525, 11668, 54629, 21909, 42348, 25970, 43612, 53869, 18136, 43917, 21813, 25957]
+[INFO ] pcm_raw index=784 data=[4, 0, -4, -6, -1, 3, 6, 9, 14, 20, 23, 25, 27, 22, 17, 14]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=28736 sum=-7783 sumsq=5120205 peak=185 decode_max_us=1941
+[INFO ] pdm words=4523008 ones=918509 bits=1839104 pending_words=1024 low=142 high=1152 ring_overruns=58 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=3200 data=[23130, 22193, 39594, 40234, 51896, 52020, 55598, 21923, 22166, 27036, 23210, 43698, 45748, 44590, 13497, 21861, 25958, 23194, 27301, 52394, 51891, 19786, 52882, 54933, 20118, 27285, 42698, 42668, 44316, 54093, 11577, 13965, 36262, 22181, 43626, 39602, 43819, 11477, 11062, 21717, 22117, 25510, 42601, 29292, 42706, 43821, 11596, 54611, 14696, 54681, 39333, 27306, 39602, 43724, 29908, 45785, 21326, 25833, 21929, 42394, 43628, 42794, 53962, 54578]
+[INFO ] pcm_raw index=800 data=[7, 5, 2, 0, 5, 9, 13, 20, 24, 30, 31, 32, 34, 31, 27, 23]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=20480 sum=-9003 sumsq=2875749 peak=250 decode_max_us=1941
+[INFO ] pdm words=4604928 ones=654856 bits=1310720 pending_words=1024 low=142 high=1152 ring_overruns=59 dma_errors=0 spi_sr=82
+[INFO ] pdm_raw index=3264 data=[58581, 21846, 26842, 36522, 38578, 27061, 9940, 45780, 46646, 19673, 26260, 60057, 43433, 45738, 43858, 43859, 21331, 37609, 25941, 39589, 42604, 27307, 18122, 52554, 55477, 21845, 21913, 38298, 26266, 50858, 40236, 29522, 52053, 13653, 21846, 38249, 27033, 45718, 45739, 7468, 52405, 13645, 21818, 21818, 42341, 45418, 42651, 19114, 52404, 46387, 13653, 37686, 43341, 29097, 26282, 43633, 52020, 42724, 54068, 54676, 58713, 22169, 39530, 39340]
+[INFO ] pcm_raw index=816 data=[16, 11, 7, 6, 5, 3, 8, 16, 19, 22, 28, 27, 26, 27, 22, 16]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=20544 sum=3701 sumsq=3679051 peak=494 decode_max_us=1941
+[INFO ] pdm words=4687104 ones=657379 bits=1314816 pending_words=1024 low=142 high=1152 ring_overruns=60 dma_errors=0 spi_sr=2
+[INFO ] pdm_raw index=3328 data=[42706, 44316, 54484, 46297, 21845, 38249, 27225, 42667, 6854, 51914, 58066, 46483, 21337, 25998, 38505, 39591, 6604, 27826, 53933, 21685, 21845, 25817, 27283, 43626, 42666, 44147, 13003, 13522, 58707, 25913, 38250, 21930, 43606, 53873, 46259, 10963, 21813, 11877, 13673, 38489, 39530, 38697, 44330, 27949, 12981, 21714, 58771, 25957, 23203, 43610, 45468, 39628, 44242, 29580, 54605, 21845, 38234, 25961, 39593, 43689, 45740, 52508, 52781, 13653]
+[INFO ] pcm_raw index=832 data=[8, 2, 1, 0, 0, 3, 7, 12, 17, 21, 22, 23, 24, 18, 10, 6]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=28928 sum=-7919 sumsq=3698203 peak=43 decode_max_us=1941
+[INFO ] pdm words=4802816 ones=923809 bits=1851392 pending_words=1024 low=136 high=1152 ring_overruns=61 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=3392 data=[14692, 59734, 42346, 27078, 43690, 44236, 44331, 20021, 21305, 38230, 38297, 27242, 43418, 52010, 43853, 11146, 55628, 55653, 21910, 39273, 43378, 42794, 27858, 53709, 21204, 55635, 37797, 26006, 42650, 26407, 10922, 52049, 52408, 54485, 21718, 25945, 38501, 51558, 45674, 44202, 53962, 54099, 19795, 23116, 55973, 21930, 38567, 6770, 50891, 11466, 54579, 21333, 21861, 21865, 38506, 26054, 45481, 46377, 46386, 52441, 11149, 39246, 21914, 38250]
+[INFO ] pcm_raw index=848 data=[4, -1, -8, -11, -10, -6, 0, 4, 8, 13, 15, 15, 15, 11, 4, -1]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=28992 sum=-2266 sumsq=3624310 peak=122 decode_max_us=1941
+[INFO ] pdm words=4918784 ones=926375 bits=1855488 pending_words=1024 low=134 high=1152 ring_overruns=62 dma_errors=0 spi_sr=2
+[INFO ] pdm_raw index=3456 data=[43415, 12913, 45772, 45749, 19757, 25812, 59028, 55957, 43610, 39370, 43698, 43732, 44363, 20044, 55640, 58713, 39525, 27754, 42443, 10036, 43732, 46411, 36185, 13654, 42329, 39574, 43673, 52378, 53940, 29908, 46393, 13541, 25997, 42406, 38322, 23197, 9927, 13129, 54093, 19299, 21845, 25945, 26021, 29274, 43434, 44139, 20909, 13597, 21716, 55513, 21849, 26217, 26265, 44138, 43691, 11058, 53941, 13645, 21721, 36246, 22874, 39589, 27802, 51882]
+[INFO ] pcm_raw index=864 data=[-7, -15, -20, -21, -20, -16, -14, -9, -3, -2, 0, 1, 0, 0, -3, -9]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=20736 sum=-17175 sumsq=3399339 peak=45 decode_max_us=1941
+[INFO ] pdm words=5001728 ones=662525 bits=1327104 pending_words=1024 low=134 high=1152 ring_overruns=63 dma_errors=0 spi_sr=2
+[INFO ] pdm_raw index=3520 data=[51893, 11571, 13646, 13901, 26211, 42405, 42665, 50858, 43819, 12981, 11565, 36179, 38230, 25942, 27290, 26058, 42706, 39725, 19245, 21330, 58770, 56403, 39573, 43433, 29130, 43691, 19243, 21323, 21837, 38105, 22948, 60006, 42411, 9895, 11559, 19149, 19763, 21844, 55638, 22889, 22170, 43430, 43721, 51914, 46381, 13133, 14549, 38227, 29014, 39270, 43434, 42667, 11057, 51925, 11596, 47445, 21845, 26213, 42345, 43465, 39626, 43730, 45874, 54100]
+[INFO ] pcm_raw index=880 data=[-13, -19, -21, -21, -21, -19, -16, -11, -10, -5, 0, 1, 2, -2, -6, -12]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=20800 sum=12300 sumsq=3932178 peak=143 decode_max_us=1941
+[INFO ] pdm words=5084928 ones=664171 bits=1331200 pending_words=1024 low=134 high=1152 ring_overruns=64 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=3584 data=[54489, 19861, 42341, 27050, 23210, 27434, 50994, 46409, 58670, 21326, 38483, 27049, 23131, 10666, 29479, 12973, 21675, 36181, 21721, 38293, 43354, 27250, 23366, 43850, 52402, 54612, 52566, 20067, 39510, 39274, 43623, 10951, 11435, 21300, 52437, 22838, 14693, 26025, 42394, 43466, 40108, 43821, 20949, 13029, 36150, 38245, 22186, 22129, 50794, 51890, 43826, 54475, 20021, 21733, 22885, 22938, 42394, 43686, 44210, 45524, 51926, 11481, 19353, 22873]
+[INFO ] pcm_raw index=896 data=[-20, -24, -27, -29, -27, -23, -19, -14, -6, -2, -1, 2, 1, 1, -2, -10]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=29184 sum=4317 sumsq=5472129 peak=254 decode_max_us=1941
+[INFO ] pdm words=5201664 ones=933759 bits=1867776 pending_words=1024 low=128 high=1152 ring_overruns=65 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=3648 data=[38298, 42410, 29100, 43692, 51893, 21171, 26805, 21849, 41833, 23206, 26396, 38701, 10677, 11085, 19787, 38117, 36201, 38313, 23643, 9883, 12970, 54059, 13197, 21301, 26965, 22118, 23317, 42780, 27314, 43730, 52523, 21811, 25827, 26190, 38310, 27226, 29277, 6829, 10932, 52019, 21837, 21338, 19865, 26965, 44195, 43692, 27335, 19146, 54475, 35672, 47438, 25934, 29014, 42602, 39594, 27826, 43850, 54451, 19797, 21837, 26197, 42405, 27290, 43612]
+[INFO ] pcm_raw index=912 data=[-14, -19, -22, -26, -28, -21, -16, -16, -9, -4, -2, 2, 3, 2, 0, -5]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] pdm_raw index=3712 data=[44202, 52020, 51029, 19789, 22757, 21925, 39513, 29275, 10668, 43722, 46379, 35667, 21349, 21861, 22950, 38252, 43433, 43850, 44211, 19637, 20019, 22157, 38293, 42661, 39591, 7323, 18868, 52397, 19789, 21837, 42201, 23193, 26281, 38610, 42666, 54471, 13017, 13013, 25813, 26254, 22170, 39514, 42705, 43692, 52396, 53973, 13203, 21861, 21866, 22105, 43674, 27755, 10669, 18229, 10979, 19797, 14670, 26005, 27033, 43621, 45769, 40146, 43733, 11477]
+[INFO ] pcm_raw index=928 data=[-9, -16, -19, -21, -22, -17, -13, -10, -4, 2, 7, 7, 9, 7, 0, -5]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=25376 sum=-12412 sumsq=6412048 peak=449 decode_max_us=1941
+[INFO ] pdm words=5303168 ones=811898 bits=1624064 pending_words=1024 low=128 high=1152 ring_overruns=67 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=3776 data=[11606, 20025, 26005, 42409, 27306, 39532, 52394, 52405, 13517, 21397, 21849, 38489, 38598, 27052, 43442, 44332, 52052, 44597, 38094, 38485, 39514, 39276, 38610, 27435, 13099, 13650, 54606, 21849, 21914, 38250, 39593, 43691, 10932, 43853, 13611, 38229, 21733, 42345, 39259, 9820, 43722, 43698, 54474, 54102, 13133, 27213, 22897, 22890, 43430, 44187, 10933, 10933, 13619, 22739, 26003, 39317, 43414, 39594, 43434, 52506, 52554, 54477, 21817, 21350]
+[INFO ] pcm_raw index=944 data=[-11, -15, -20, -23, -19, -18, -15, -8, -4, 2, 7, 12, 13, 9, 5, 0]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16896 sum=-1811 sumsq=7803623 peak=204 decode_max_us=1941
+[INFO ] pdm words=5370752 ones=539630 bits=1081344 pending_words=1024 low=128 high=1152 ring_overruns=68 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=3840 data=[37786, 36521, 42665, 43698, 50898, 44362, 58187, 22093, 25913, 42581, 27302, 27058, 43436, 44242, 43861, 11480, 55605, 22121, 20074, 39573, 43825, 39602, 52522, 52562, 54485, 37594, 37734, 25962, 42586, 43692, 27340, 29492, 52021, 14637, 22869, 25942, 39525, 27250, 26284, 43692, 44212, 53964, 54611, 22101, 20118, 21937, 22938, 51813, 52517, 54443, 19157, 19659, 26933, 25434, 37738, 22298, 26226, 43444, 39628, 45780, 45922, 54101, 39094, 38486]
+[INFO ] pcm_raw index=960 data=[-4, -8, -14, -18, -20, -17, -11, -9, -5, 0, 2, 2, 1, 0, -3, -10]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16960 sum=12781 sumsq=2510239 peak=183 decode_max_us=1941
+[INFO ] pdm words=5438592 ones=543362 bits=1085440 pending_words=1024 low=128 high=1152 ring_overruns=69 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=3904 data=[22193, 23146, 43690, 43723, 19117, 21300, 52814, 21225, 39221, 51545, 43626, 39718, 44331, 10067, 21176, 46484, 55525, 22933, 43354, 43610, 51804, 52038, 52021, 13134, 11619, 37782, 21926, 23142, 27799, 10673, 52402, 53877, 21685, 11877, 13717, 23141, 38345, 23334, 42794, 43730, 45748, 53973, 21301, 21910, 21722, 42330, 39530, 42442, 27946, 43857, 46411, 21331, 21845, 22116, 55961, 22298, 27290, 29355, 10701, 11559, 36172, 47500, 55637, 41830]
+[INFO ] pcm_raw index=976 data=[-13, -14, -21, -22, -20, -23, -18, -14, -12, -8, -4, -2, -4, -6, -10, -15]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=25344 sum=4411 sumsq=3130973 peak=319 decode_max_us=1941
+[INFO ] pdm words=5539968 ones=811092 bits=1622016 pending_words=1024 low=128 high=1152 ring_overruns=70 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=3968 data=[39509, 43690, 27292, 43730, 43827, 13613, 19810, 58709, 38234, 38309, 43625, 43691, 9901, 19117, 19637, 19852, 58678, 39253, 27285, 50780, 39596, 44187, 11563, 37549, 37716, 55861, 22889, 26213, 43626, 27817, 43731, 10037, 18259, 21835, 38230, 22101, 42393, 40026, 43686, 44203, 11436, 52554, 58166, 21332, 56398, 22166, 38569, 23366, 23370, 44141, 13106, 46418, 58573, 38483, 26966, 26022, 42602, 42653, 6961, 45875, 11086, 13014, 19798, 13914]
+[INFO ] pcm_raw index=992 data=[-20, -24, -29, -32, -32, -32, -31, -27, -18, -16, -12, -6, -7, -6, -10, -16]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=25408 sum=2418 sumsq=3979042 peak=283 decode_max_us=1941
+[INFO ] pdm words=5641600 ones=812141 bits=1626112 pending_words=1024 low=128 high=1152 ring_overruns=71 dma_errors=0 spi_sr=86
+[INFO ] pdm_raw index=4032 data=[21865, 39345, 38570, 51867, 11444, 43829, 21203, 22072, 54885, 22165, 43433, 27302, 51882, 43828, 51917, 21294, 21844, 55657, 14761, 26204, 39593, 50986, 45869, 11053, 21813, 13654, 36185, 23189, 42647, 6826, 42794, 45898, 30029, 18266, 11481, 25933, 43605, 27301, 39601, 29354, 45517, 18221, 19638, 19796, 54629, 26965, 26281, 27035, 6822, 53706, 29523, 10069, 19285, 19800, 55701, 22889, 23321, 27305, 29386, 43722, 53964, 52564, 46421, 21859]
+[INFO ] pcm_raw index=1008 data=[-22, -32, -35, -36, -33, -35, -31, -25, -21, -16, -13, -7, -7, -12, -15, -17]
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17152 sum=551 sumsq=2344989 peak=168 decode_max_us=1941
+[INFO ] pdm words=5710208 ones=548709 bits=1097728 pending_words=1023 low=128 high=1152 ring_overruns=72 dma_errors=0 spi_sr=86
+[INFO ] pdm_snapshot end words=4096
+[INFO ] pcm_snapshot end samples=1024
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17216 sum=-13988 sumsq=2626774 peak=280 decode_max_us=1941
+[INFO ] pdm words=5779072 ones=549430 bits=1101824 pending_words=1024 low=128 high=1152 ring_overruns=73 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=25600 sum=-407 sumsq=3704935 peak=97 decode_max_us=1941
+[INFO ] pdm words=5881472 ones=819024 bits=1638400 pending_words=1024 low=128 high=1152 ring_overruns=74 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=25664 sum=-2071 sumsq=3487935 peak=130 decode_max_us=1941
+[INFO ] pdm words=5984128 ones=819293 bits=1642496 pending_words=1024 low=128 high=1152 ring_overruns=75 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17408 sum=-13277 sumsq=2868617 peak=339 decode_max_us=1941
+[INFO ] pdm words=6053760 ones=557053 bits=1114112 pending_words=1024 low=128 high=1152 ring_overruns=76 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17472 sum=-13601 sumsq=2782935 peak=179 decode_max_us=1941
+[INFO ] pdm words=6123648 ones=558193 bits=1118208 pending_words=1024 low=128 high=1152 ring_overruns=77 dma_errors=0 spi_sr=2
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=25856 sum=-12417 sumsq=4274221 peak=149 decode_max_us=1941
+[INFO ] pdm words=6227072 ones=826288 bits=1654784 pending_words=1024 low=128 high=1152 ring_overruns=78 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=25920 sum=-11121 sumsq=3536845 peak=332 decode_max_us=1941
+[INFO ] pdm words=6330752 ones=826478 bits=1658880 pending_words=1023 low=128 high=1152 ring_overruns=79 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17664 sum=-11030 sumsq=3234170 peak=283 decode_max_us=1941
+[INFO ] pdm words=6401408 ones=564469 bits=1130496 pending_words=1024 low=128 high=1152 ring_overruns=80 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17728 sum=-134 sumsq=3362226 peak=193 decode_max_us=1941
+[INFO ] pdm words=6472320 ones=567039 bits=1134592 pending_words=1024 low=128 high=1152 ring_overruns=81 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=26112 sum=-13225 sumsq=4016077 peak=341 decode_max_us=1941
+[INFO ] pdm words=6576768 ones=833154 bits=1671168 pending_words=1024 low=128 high=1152 ring_overruns=82 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=26176 sum=-1988 sumsq=4107726 peak=285 decode_max_us=1941
+[INFO ] pdm words=6681472 ones=836617 bits=1675264 pending_words=1024 low=128 high=1152 ring_overruns=83 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17920 sum=-5311 sumsq=1975935 peak=158 decode_max_us=1941
+[INFO ] pdm words=6753152 ones=572078 bits=1146880 pending_words=1024 low=128 high=1152 ring_overruns=84 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=17984 sum=-25917 sumsq=3638041 peak=228 decode_max_us=1941
+[INFO ] pdm words=6825088 ones=574366 bits=1150976 pending_words=1024 low=128 high=1152 ring_overruns=85 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=26368 sum=2006 sumsq=6367168 peak=257 decode_max_us=1941
+[INFO ] pdm words=6930560 ones=842807 bits=1687552 pending_words=1024 low=128 high=1152 ring_overruns=86 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=26432 sum=14411 sumsq=3730301 peak=244 decode_max_us=1941
+[INFO ] pdm words=7036288 ones=844015 bits=1691648 pending_words=1024 low=128 high=1152 ring_overruns=87 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=18176 sum=-12214 sumsq=3084576 peak=123 decode_max_us=1941
+[INFO ] pdm words=7108992 ones=581777 bits=1163264 pending_words=1024 low=128 high=1152 ring_overruns=88 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=18240 sum=-12006 sumsq=2115754 peak=103 decode_max_us=1941
+[INFO ] pdm words=7181952 ones=582093 bits=1167360 pending_words=1024 low=128 high=1152 ring_overruns=89 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=26656 sum=1970 sumsq=6049800 peak=620 decode_max_us=1941
+[INFO ] pdm words=7288576 ones=851102 bits=1705984 pending_words=1024 low=128 high=1152 ring_overruns=90 dma_errors=0 spi_sr=82
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=36864 sum=-1917 sumsq=4419293 peak=260 decode_max_us=1941
+[INFO ] pdm words=7436032 ones=1178335 bits=2359296 pending_words=1024 low=128 high=1152 ring_overruns=92 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=37120 sum=-14932 sumsq=5791164 peak=647 decode_max_us=1941
+[INFO ] pdm words=7584512 ones=1185526 bits=2375680 pending_words=1024 low=128 high=1152 ring_overruns=94 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=37376 sum=-6665 sumsq=5502921 peak=335 decode_max_us=1941
+[INFO ] pdm words=7734016 ones=1194405 bits=2392064 pending_words=1024 low=128 high=1152 ring_overruns=96 dma_errors=0 spi_sr=86
+[WARN ] pdm ring overrun: unknown input loss, realigning

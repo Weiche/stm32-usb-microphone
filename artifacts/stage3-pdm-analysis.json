@@ -1,0 +1,20 @@
+{
+  "word_encoding": "u16 little endian; serial bits MSB first within each word",
+  "words": 4096,
+  "bits": 65536,
+  "nominal_bit_rate_hz": 1024000,
+  "nominal_duration_seconds": 0.064,
+  "ones": 33367,
+  "one_density": 0.5091400146484375,
+  "transitions": 46895,
+  "unique_words": 2100,
+  "last_total_words": 5057664,
+  "last_interval_bits": 1024000,
+  "dma_water_low_words": 62,
+  "dma_water_high_words": 580,
+  "ring_overruns": 0,
+  "dma_hardware_errors": 0,
+  "spi_status_hex": "82",
+  "raw_sanity_pass": true,
+  "limits": "Bit density/activity validate a live candidate PDM stream; acoustic fidelity and physical clock accuracy remain separate tests."
+}
