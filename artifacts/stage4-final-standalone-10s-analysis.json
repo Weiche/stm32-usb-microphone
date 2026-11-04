@@ -1,0 +1,80 @@
+{
+  "file": "captures\\stage4-final-standalone-10s.wav",
+  "samples": 160000,
+  "duration_seconds": 10.0,
+  "clipped_samples": 0,
+  "zero_ms_after_first_200ms": 0,
+  "windows": [
+    {
+      "start_second": 0,
+      "dc_lsb": -3.4795,
+      "rms_ac_lsb": 57.887187310751244,
+      "peak_lsb": 228,
+      "tone_1000_amplitude_lsb": 0.2680246500323866
+    },
+    {
+      "start_second": 1,
+      "dc_lsb": 3.2521875,
+      "rms_ac_lsb": 57.050445563245546,
+      "peak_lsb": 193,
+      "tone_1000_amplitude_lsb": 0.10259534975100443
+    },
+    {
+      "start_second": 2,
+      "dc_lsb": -1.0705,
+      "rms_ac_lsb": 61.02456804230572,
+      "peak_lsb": 208,
+      "tone_1000_amplitude_lsb": 0.1152451573526787
+    },
+    {
+      "start_second": 3,
+      "dc_lsb": -1.2655,
+      "rms_ac_lsb": 64.74664477600365,
+      "peak_lsb": 224,
+      "tone_1000_amplitude_lsb": 0.34098998504971123
+    },
+    {
+      "start_second": 4,
+      "dc_lsb": 2.3851875,
+      "rms_ac_lsb": 66.9331957483717,
+      "peak_lsb": 236,
+      "tone_1000_amplitude_lsb": 0.39196658169695875
+    },
+    {
+      "start_second": 5,
+      "dc_lsb": 0.8115625,
+      "rms_ac_lsb": 55.214247969238826,
+      "peak_lsb": 212,
+      "tone_1000_amplitude_lsb": 0.28868693448513827
+    },
+    {
+      "start_second": 6,
+      "dc_lsb": -7.7104375,
+      "rms_ac_lsb": 62.929273522412394,
+      "peak_lsb": 233,
+      "tone_1000_amplitude_lsb": 0.06848276538308953
+    },
+    {
+      "start_second": 7,
+      "dc_lsb": 6.13125,
+      "rms_ac_lsb": 52.01448138199111,
+      "peak_lsb": 172,
+      "tone_1000_amplitude_lsb": 0.26164545540265427
+    },
+    {
+      "start_second": 8,
+      "dc_lsb": 0.0636875,
+      "rms_ac_lsb": 66.40133945488105,
+      "peak_lsb": 189,
+      "tone_1000_amplitude_lsb": 0.46889820003722393
+    },
+    {
+      "start_second": 9,
+      "dc_lsb": -0.562375,
+      "rms_ac_lsb": 61.08782599143118,
+      "peak_lsb": 229,
+      "tone_1000_amplitude_lsb": 0.08540272078112461
+    }
+  ],
+  "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+}

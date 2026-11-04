@@ -1,0 +1,168 @@
+1025024
+[INFO ] pipe level=985 low=152 high=1024 overflow_events=514 lost_samples=7925 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=48505 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=49516 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=27950 sumsq=1953230 peak=44 decode_max_us=410
+[INFO ] pdm words=3584192 ones=512810 bits=1025024 pending_words=51 low=27 high=331 ring_overruns=1 dma_errors=0 spi_sr=86
+[INFO ] pipe level=921 low=152 high=1024 overflow_events=514 lost_samples=7925 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=49505 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=50517 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=-7783 sumsq=2571579 peak=42 decode_max_us=410
+[INFO ] pdm words=3648192 ones=512519 bits=1024000 pending_words=51 low=27 high=331 ring_overruns=1 dma_errors=0 spi_sr=82
+[INFO ] pipe level=825 low=152 high=1024 overflow_events=514 lost_samples=7925 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=50506 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[WARN ] pdm ring overrun: unknown input loss, realigning
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=51461 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=15056 sum=-5915 sumsq=2690917 peak=125 decode_max_us=410
+[INFO ] pdm words=3708416 ones=482399 bits=963584 pending_words=81 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=702 low=152 high=1024 overflow_events=514 lost_samples=7925 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=51450 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=52352 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=15984 sum=11374 sumsq=2580392 peak=46 decode_max_us=410
+[INFO ] pdm words=3772352 ones=510758 bits=1022976 pending_words=172 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=991 low=152 high=1024 overflow_events=602 lost_samples=9292 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=52341 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=53328 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16032 sum=-2190 sumsq=2491012 peak=40 decode_max_us=410
+[INFO ] pdm words=3836480 ones=512637 bits=1026048 pending_words=110 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=943 low=152 high=1024 overflow_events=627 lost_samples=9678 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=53317 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=54329 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16032 sum=-87 sumsq=2146243 peak=39 decode_max_us=410
+[INFO ] pdm words=3900608 ones=513729 bits=1026048 pending_words=47 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=86
+[INFO ] pipe level=879 low=152 high=1024 overflow_events=627 lost_samples=9678 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=54318 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=55330 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=1585 sumsq=2693249 peak=52 decode_max_us=410
+[INFO ] pdm words=3964608 ones=511940 bits=1024000 pending_words=47 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=783 low=152 high=1024 overflow_events=627 lost_samples=9678 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=55319 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=56330 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=-373 sumsq=2847279 peak=44 decode_max_us=410
+[INFO ] pdm words=4028672 ones=513500 bits=1025024 pending_words=81 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=719 low=152 high=1024 overflow_events=627 lost_samples=9678 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=56319 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=57331 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=4089 sumsq=2466061 peak=41 decode_max_us=410
+[INFO ] pdm words=4092736 ones=514041 bits=1025024 pending_words=88 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=639 low=152 high=1024 overflow_events=627 lost_samples=9678 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=57320 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=58284 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=-31592 sumsq=2654626 peak=39 decode_max_us=410
+[INFO ] pdm words=4156800 ones=511357 bits=1025024 pending_words=84 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=86
+[INFO ] pipe level=1023 low=152 high=1024 overflow_events=647 lost_samples=9985 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=58273 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=59254 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=7641 sumsq=2203529 peak=39 decode_max_us=410
+[INFO ] pdm words=4220864 ones=510607 bits=1025024 pending_words=57 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=964 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=59243 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=91408 reset_discarded=0
+[INFO ] usb interface=1 alt=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=15984 sum=22032 sumsq=2609362 peak=48 decode_max_us=410
+[INFO ] pdm words=4284800 ones=511563 bits=1022976 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=95216 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16032 sum=-4127 sumsq=2508433 peak=46 decode_max_us=410
+[INFO ] pdm words=4348928 ones=513297 bits=1026048 pending_words=80 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=111248 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=1276 sumsq=1960412 peak=37 decode_max_us=410
+[INFO ] pdm words=4412992 ones=512967 bits=1025024 pending_words=71 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=127264 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=-22049 sumsq=2658747 peak=45 decode_max_us=410
+[INFO ] pdm words=4477056 ones=512782 bits=1025024 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=86
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=143280 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=11923 sumsq=2338521 peak=41 decode_max_us=410
+[INFO ] pdm words=4541056 ones=510852 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=159280 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=3424 sumsq=2151568 peak=43 decode_max_us=410
+[INFO ] pdm words=4605056 ones=511508 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=175280 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=4421 sumsq=2610217 peak=48 decode_max_us=410
+[INFO ] pdm words=4669056 ones=512574 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=191280 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=2929 sumsq=2972771 peak=50 decode_max_us=410
+[INFO ] pdm words=4733056 ones=511283 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=207280 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=-14654 sumsq=3023932 peak=41 decode_max_us=410
+[INFO ] pdm words=4797056 ones=511654 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=223280 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16032 sum=17481 sumsq=2798943 peak=49 decode_max_us=410
+[INFO ] pdm words=4861184 ones=513599 bits=1026048 pending_words=80 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=2
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=239312 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=-17030 sumsq=2088162 peak=35 decode_max_us=410
+[INFO ] pdm words=4925248 ones=512947 bits=1025024 pending_words=71 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=255328 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=4343 sumsq=2849497 peak=43 decode_max_us=410
+[INFO ] pdm words=4989312 ones=512277 bits=1025024 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=271344 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=-2237 sumsq=2997753 peak=53 decode_max_us=410
+[INFO ] pdm words=5053312 ones=511233 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=287344 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=3389 sumsq=2572635 peak=45 decode_max_us=410
+[INFO ] pdm words=5117312 ones=511528 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=303344 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=4902 sumsq=1633910 peak=42 decode_max_us=410
+[INFO ] pdm words=5181312 ones=511957 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=319344 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=-7969 sumsq=1696855 peak=33 decode_max_us=410
+[INFO ] pdm words=5245312 ones=511333 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=335344 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=8454 sumsq=2342798 peak=45 decode_max_us=410
+[INFO ] pdm words=5309312 ones=512238 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=351344 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16032 sum=-10466 sumsq=2506764 peak=41 decode_max_us=410
+[INFO ] pdm words=5373440 ones=512792 bits=1026048 pending_words=80 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=367376 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=5976 sumsq=2198356 peak=37 decode_max_us=410
+[INFO ] pdm words=5437504 ones=512317 bits=1025024 pending_words=71 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=383392 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=-2938 sumsq=1830528 peak=34 decode_max_us=410
+[INFO ] pdm words=5501568 ones=512334 bits=1025024 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=6
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=399408 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=17536 sumsq=3103140 peak=40 decode_max_us=410
+[INFO ] pdm words=5565568 ones=511315 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=415408 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=-5910 sumsq=1971326 peak=38 decode_max_us=410
+[INFO ] pdm words=5629568 ones=512032 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=431408 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=-3702 sumsq=2499958 peak=42 decode_max_us=410
+[INFO ] pdm words=5693568 ones=512504 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=447408 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=5608 sumsq=1850024 peak=52 decode_max_us=410
+[INFO ] pdm words=5757568 ones=511714 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=463408 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=-6764 sumsq=2081982 peak=44 decode_max_us=410
+[INFO ] pdm words=5821568 ones=511597 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=479408 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16032 sum=9597 sumsq=2332281 peak=43 decode_max_us=410
+[INFO ] pdm words=5885696 ones=513392 bits=1026048 pending_words=80 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=2
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=495440 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=-25031 sumsq=2160977 peak=41 decode_max_us=410
+[INFO ] pdm words=5949760 ones=512689 bits=1025024 pending_words=71 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=511456 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16016 sum=8060 sumsq=2420384 peak=44 decode_max_us=410
+[INFO ] pdm words=6013824 ones=512081 bits=1025024 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=82
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=527472 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=17314 sumsq=2329070 peak=37 decode_max_us=410
+[INFO ] pdm words=6077824 ones=512694 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=86
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=543472 reset_discarded=870
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=60017 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=0 dma_active=true
+[INFO ] pcm samples=16000 sum=-17309 sumsq=2549337 peak=46 decode_max_us=410
+[INFO ] pdm words=6141824 ones=512356 bits=1024000 pending_words=34 low=27 high=331 ring_overruns=2 dma_errors=0 spi_sr=86
+[INFO ] pipe level=0 low=152 high=1024 overflow_events=678 lost_samples=10463 underruns=0 missing_samples=0 priming_packets=12 rate_up_frames=60006 rate_down_frames=0 rate_q16=65864 gain_q8=1024 clipped=0 idle_discarded=559472 reset_discarded=870

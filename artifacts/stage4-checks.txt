@@ -1,0 +1,28 @@
+   Compiling stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
+    Finished `release` profile [optimized + debuginfo] target(s) in 5.45s
+    Checking stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
+    Finished `release` profile [optimized + debuginfo] target(s) in 1.12s
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.55s
+     Running unittests src\lib.rs (target\x86_64-pc-windows-msvc\debug\deps\stm32f4_usb_mic-bf31859a495d4980.exe)
+
+running 15 tests
+test audio_queue::tests::gain_is_bounded_and_reports_clipping ... ok
+test audio_queue::tests::reconnect_clear_removes_all_old_audio ... ok
+test audio_queue::tests::overflow_keeps_fresh_data_and_reports_exact_loss ... ok
+test resampler::tests::every_fraction_preserves_dc_and_voice_band ... ok
+test tests::tone_energy_is_in_one_khz_dft_bin ... ok
+test tests::tone_has_zero_dc_correct_peak_and_continuous_wrap ... ok
+test tests::usb_frame_has_exactly_one_ms_of_mono_pcm_little_endian ... ok
+test decoder::tests::reset_after_gap_matches_a_fresh_decoder ... ok
+test decoder::tests::fir_has_unity_gain_and_70db_stopband ... ok
+test decoder::tests::decimation_is_exact_and_independent_of_call_grouping ... ok
+test decoder::tests::tone_1khz_amplitude_dc_and_noise ... ok
+test decoder::tests::zero_density_offset_and_integrator_wrap_do_not_create_dc ... ok
+test resampler::tests::fractional_clock_conversion_preserves_tone_and_handles_missing_input ... ok
+test decoder::tests::upper_voice_band_survives_and_aliasing_tone_is_rejected ... ok
+test audio_queue::tests::rate_control_bounds_both_clock_directions_under_dma_bursts ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+    Checking stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 0.69s

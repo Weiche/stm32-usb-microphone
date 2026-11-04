@@ -1,0 +1,24 @@
+{
+  "log": "artifacts\\stage4-rtt.txt",
+  "max_observed_cumulative_values": {
+    "packets": 642063,
+    "usb_errors": 0,
+    "disabled": 3,
+    "discarded_samples": 48,
+    "ring_overruns": 0,
+    "dma_errors": 0,
+    "overflow_events": 0,
+    "lost_samples": 0,
+    "underruns": 0,
+    "missing_samples": 0,
+    "priming_packets": 32,
+    "reset_discarded": 739,
+    "clipped": 0,
+    "decode_max_us": 574,
+    "prepare_max_us": 158
+  },
+  "observed_error_counters_zero": true,
+  "stream_starts": 3,
+  "usb_resets": 2,
+  "scope": "Only visible firmware counters. Normal alt=0 cancels one pending packet; discarded_samples includes this. No proof of absence of every on-wire loss."
+}

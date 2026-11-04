@@ -5,8 +5,9 @@ edition = "2024"
 license = "MIT OR Apache-2.0"
 
 [features]
-default = ["pdm-capture"]
+default = ["live-mic"]
 pdm-capture = []
+live-mic = ["pdm-capture"]
 
 [lib]
 path = "src/lib.rs"
@@ -19,8 +20,8 @@ bench = false
 
 [target.'cfg(target_os = "none")'.dependencies]
 # One reviewed upstream revision: AudioSource is not in the crates.io 0.6 release.
-embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "9f9f1f1bdc6775347b9f3119921da65d56ca3651", features = ["defmt", "stm32f407vg", "time-driver-tim2", "unstable-pac"] }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "9f9f1f1bdc6775347b9f3119921da65d56ca3651", features = ["platform-cortex-m", "executor-thread", "defmt"] }
+embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "9f9f1f1bdc6775347b9f3119921da65d56ca3651", features = ["defmt", "rt", "stm32f407vg", "time-driver-tim2", "unstable-pac"] }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "9f9f1f1bdc6775347b9f3119921da65d56ca3651", features = ["platform-cortex-m", "executor-thread", "executor-interrupt", "defmt"] }
 embassy-usb = { git = "https://github.com/embassy-rs/embassy", rev = "9f9f1f1bdc6775347b9f3119921da65d56ca3651", features = ["defmt"] }
 embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "9f9f1f1bdc6775347b9f3119921da65d56ca3651", features = ["defmt", "tick-hz-1_000_000"] }
 embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "9f9f1f1bdc6775347b9f3119921da65d56ca3651" }

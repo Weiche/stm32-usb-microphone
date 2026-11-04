@@ -1,0 +1,47 @@
+{
+  "elf": "artifacts\\stage4.elf",
+  "entry": "0x08000189",
+  "flash_image_span_bytes": 73040,
+  "allocated_sram_bytes": 20688,
+  "sram_capacity_bytes": 131072,
+  "ccm_allocations": 0,
+  "stack_high_water": "not measured",
+  "sections": [
+    {
+      "section": ".vector_table",
+      "address": "0x08000000",
+      "bytes": 392,
+      "region": "FLASH"
+    },
+    {
+      "section": ".text",
+      "address": "0x08000188",
+      "bytes": 56568,
+      "region": "FLASH"
+    },
+    {
+      "section": ".rodata",
+      "address": "0x0800de80",
+      "bytes": 15704,
+      "region": "FLASH"
+    },
+    {
+      "section": ".data",
+      "address": "0x20000000",
+      "bytes": 376,
+      "region": "SRAM1/2"
+    },
+    {
+      "section": ".bss",
+      "address": "0x20000178",
+      "bytes": 19288,
+      "region": "SRAM1/2"
+    },
+    {
+      "section": ".uninit",
+      "address": "0x20004cd0",
+      "bytes": 1024,
+      "region": "SRAM1/2"
+    }
+  ]
+}

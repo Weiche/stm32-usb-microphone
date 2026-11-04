@@ -1,0 +1,18 @@
+{
+  "taps": 48,
+  "phase_intervals": 32,
+  "coefficient_phases": 33,
+  "rate_hz": 16000,
+  "cutoff_hz": 6880,
+  "beta": 6,
+  "fractional_delay_samples": 23,
+  "passband_grid_hz": [
+    0,
+    6000,
+    20
+  ],
+  "tested_fractional_phases": 65,
+  "passband_db_min": -0.014972098303011666,
+  "passband_db_max": 0.008448545337091318,
+  "scope": "ASRC filter only; excludes CIC, PDM decimation FIR, DC blocker, microphone and Windows processing."
+}

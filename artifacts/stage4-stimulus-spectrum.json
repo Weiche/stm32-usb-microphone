@@ -1,0 +1,15 @@
+{
+  "file": "captures/stage4-final-stimulus.wav",
+  "window_seconds": [
+    4,
+    5
+  ],
+  "search_hz": [
+    980,
+    1020,
+    0.25
+  ],
+  "peak_hz": 999.0,
+  "amplitude_lsb": 75.89835465084167,
+  "scope": "Uncalibrated acoustic response to an 8-second Windows 1 kHz stimulus; excludes direct electrical frequency measurement."
+}

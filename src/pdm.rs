@@ -11,8 +11,8 @@ use embassy_stm32::{Peri, dma, i2s, interrupt, pac, peripherals};
 use static_cell::StaticCell;
 use stm32f4_usb_mic::decoder::Decoder;
 
-pub const DMA_WORDS: usize = 1024;
-pub const BLOCK_WORDS: usize = 128; // 2048 PDM bits, 2 ms at 1.024 MHz.
+pub const DMA_WORDS: usize = 512;
+pub const BLOCK_WORDS: usize = 64; // 1024 PDM bits, 1 ms at 1.024 MHz.
 const SNAPSHOT_WORDS: usize = 4096;
 static SNAPSHOT: Mutex<RefCell<[u16; SNAPSHOT_WORDS]>> =
     Mutex::new(RefCell::new([0; SNAPSHOT_WORDS]));
@@ -121,6 +121,8 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
                     }
                 }
                 assert_eq!(output, pcm.len());
+                #[cfg(feature = "live-mic")]
+                crate::pipe::publish(&pcm);
                 DECODE_MAX_US.fetch_max(decode_start.elapsed().as_micros() as u32, Relaxed);
                 critical_section::with(|cs| {
                     let mut accumulated = PCM_METRICS.borrow(cs).borrow_mut();

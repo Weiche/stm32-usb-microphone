@@ -1,0 +1,10 @@
+{
+  "firmware": "stage4.bin",
+  "sha256": "f66059d058985e93d1782c6c99edc0e74f8035c7fb94205ff93996c56500acde",
+  "rebuilt_flash_image_identical_to_hardware_tested_image": true,
+  "embassy_revision": "9f9f1f1bdc6775347b9f3119921da65d56ca3651",
+  "rust": "1.99.1",
+  "target": "thumbv7em-none-eabihf",
+  "board": "MB997B / STM32F407VG",
+  "hardware_test_mode": "default live-mic; CN1 powered, CN5 Windows 10; RTT no-block-skip"
+}

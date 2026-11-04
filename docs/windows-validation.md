@@ -40,13 +40,13 @@ Cargo runner 已加入 `--speed 1000 --connect-under-reset --verify --rtt-channe
 
 - 两根数据线：CN1（Mini-B）是 ST-LINK/电源；CN5（Micro-AB）是应用 USB OTG FS。
 - 保留 CN2 两个跳帽；BOOT0 保持正常 Flash 启动；确认 JP1/板上电源跳帽原状。
-- 本阶段只输出正弦波，不读取实体麦克风；敲击麦克风不会改变波形。
+- 默认模式输出真实麦克风；`--no-default-features` 才输出阶段一的软件正弦波。实体麦克风录音和稳定性结果见 [阶段四报告](stage4-live.md)。
 
 ```powershell
 cargo run --locked --release
 ```
 
-应依次观察 RTT：`stage1 boot` → `clocks ready` → `descriptors ready` → `usb reset` → `usb configured=true`。
+应依次观察 RTT：`usb-mic boot` → `clocks ready` → `descriptors ready` → `usb reset` → `usb configured=true`。
 `stats vbus=true` 表示 PA9 数字输入读到高电平。若始终为 false，先重新插拔 CN5，检查其 VBUS、数据线和 USB 端口，不要先修改音频类描述符或关闭 VBUS 检测掩盖问题。
 绿色 PD12 LED 每秒翻转。开始录音后应出现 `usb interface=1 alt=1`，累计 `packets` 每秒大约增加 1000。
 停止录音可进入 alt=0 或 suspend；重新打开录音后应继续发送。

@@ -1,73 +1,77 @@
 # STM32F4DISCOVERY USB 麦克风
 
-Rust + Embassy，STM32F407VG / MB997B，Windows 10/11 原生 UAC1 驱动。
+Rust + Embassy，STM32F407VG / MB997B，板载 MP45DT02，无外接采集模块。
+默认固件将真实麦克风送到 UAC1：16 kHz、16-bit PCM、单声道；Windows 原生 usbaudio 驱动。
 
-**第一阶段已在本机 Windows 10 和实体 MB997B 上完成烧录校验、UAC1 枚举及 1 kHz 正弦波录音验证。**
-ST-LINK 已从 V2J14S0 成功升级为 2.49.0。首次 PA9 VBUS 为低，重新插拔 CN5 后枚举正常。
-10 秒录音分析通过；退出调试器并复位后，独立运行的 3 秒录音再次通过。Windows 11 和长期稳定性尚未实测。
-详细记录见 [验证报告](docs/validation.md)，操作步骤见 [Windows 操作说明](docs/windows-validation.md)。
+阶段一的 USB 正弦波、阶段二的 I²S2 DMA、阶段三的 PDM 解码均已在本机实体板验证并分别提交。
+阶段四已完成 600 秒连续实体麦克风录音、停止后重开和复位后脱离调试器的 10 秒录音；可观察错误/丢样计数在连续测试中为 0。结果见 [实时麦克风验证](docs/stage4-live.md)。
+本机为 Windows 10 Enterprise 19045；Windows 11 尚未实测。
 
-## 当前实现
+## 构建与模式
 
-- 上游 `AudioSource` 实现 UAC1 麦克风；16 kHz、16-bit、小端有符号 PCM、单声道。
-- 1 kHz 正弦波，峰值 8192（约 -12.04 dBFS），每 USB 帧 16 samples / 32 bytes。
-- 原生 USB Audio 控制请求、alt 0/1 和音频描述符由 Embassy 实现；支持主通道静音。
-- USB 总线、音频发送、RTT 诊断分为三个 async 任务；发送由端点反压驱动，不额外设 1 ms 定时器。
-- 使用静态存储、无 MCU 堆分配；链接区仅含 Flash 和 128 KiB SRAM1/2，排除 CCM。
-- RTT 输出 PA9 VBUS 电平、USB 状态、累计发送包、可观察错误、丢弃采样和待发送水位。
-- 本阶段没有启用 I²S/DMA，也没有实现 PDM 滤波；`dma_active=false`，DMA 错误统计在第二阶段接入真实事件后增加。
-
-## Windows 原生构建
-
-需要 Rust 的 MSVC 工具链及 Visual Studio C++ Build Tools（主机测试链接器）。工程固定 Rust 1.99.1。
-首次构建会下载固定版本工具链、Embassy 源码与 STM32 元数据，可能较慢；不依赖 WSL。
+使用 Windows 原生 Rust MSVC 工具链、Visual Studio C++ Build Tools、Python 3、probe-rs，无需 WSL。
+固定 Rust 1.99.1；Embassy 各直接依赖固定同一 Git 提交，保留 Cargo.lock。
+上游当前实现的路径为 `embassy_usb::class::uac::device::source::AudioSource`；未重写 UAC。
 
 ```powershell
 rustup target add thumbv7em-none-eabihf
 cargo build --locked --release
 .\tools\check.ps1
+cargo run --locked --release
 ```
 
-如果 PowerShell 执行策略不允许运行脚本，可逐条执行其中命令。
-首次从不带锁文件的源码初始化才需 `cargo build --release`；交付已包含 `Cargo.lock`。
+Cargo runner 使用 `STM32F407VGTx --speed 1000 --connect-under-reset --verify --rtt-channel-mode no-block-skip`。
+需要将 probe-rs 加入 PATH；工具读取 RTT 不应使用 blocking 模式。若执行策略阻止脚本，可逐条运行其命令。
+烧录会覆盖目标 MCU 应用。构建产物位于 `target/thumbv7em-none-eabihf/release/stm32f4-usb-mic`。
 
-构建结果：`target/thumbv7em-none-eabihf/release/stm32f4-usb-mic`（ELF）。
+| 选择 | 命令 | USB 内容 |
+| --- | --- | --- |
+| 默认实时麦克风 | `cargo build --locked --release` | 真实 PCM，默认 4× 数字增益 |
+| PDM/PCM 独立诊断 | `cargo build --locked --release --no-default-features --features pdm-capture` | 1 kHz 软件正弦，后台采集/解码 |
+| 第一阶段最小固件 | `cargo build --locked --release --no-default-features` | 1 kHz 软件正弦，不启动 DMA |
+
+PA0 蓝色 USER 按钮切换 4× → 16× → 1× → 4×，不写 Flash，重启恢复 4×。增益算法已做主机测试；按钮实体操作的验证状态见阶段四报告。
+支持 USB 主通道静音；不宣称支持尚未实现的 USB 音量控制。
+
+## 接线与 Windows 录音
+
+CN1 Mini-B 接 ST-LINK/供电，CN5 Micro-AB 用数据线接 Windows；保留 CN2 两个板内 SWD 跳帽。
+本板 ST-LINK 已从 V2J14S0 升级至 2.49.0。CN5 VBUS 曾读低，重新插拔后恢复；PA9 电平持续写入日志。
 
 ```powershell
-python tools/inspect_elf.py target/thumbv7em-none-eabihf/release/stm32f4-usb-mic --bin artifacts/stage1.bin --json artifacts/memory.json
+python tools/record_windows.py --list
+python tools/record_windows.py --device STM32F4 --seconds 10 --output captures/microphone.wav
+python tools/analyze_microphone.py captures/microphone.wav --json captures/microphone-analysis.json
 ```
 
-`artifacts/stage1.elf`、`artifacts/stage1.bin` 为本次构建产物，不纳入 Git；以源码和锁文件为准。
+脚本只录制名称匹配且唯一的 STM32F4 设备，使用 winmm，不需 pip 包。录音和元数据保存在本地 `captures/`，不纳入 Git。
+`analyze_tone.py` 仅用于软件正弦模式；实体麦克风应使用 `analyze_microphone.py`。
+Windows 音频引擎可能处理或重采样；WAV 文件格式不能单独证明线上描述符正确。
 
-## 烧录与录音
+## 数据路径与调度
 
-1. CN1 接 ST-LINK/电源，CN5 用 USB 数据线接 Windows；CN2 的两个板内 SWD 跳帽保留。
-2. 先解决旧 ST-LINK 固件连接问题，执行 `probe-rs info` 确认芯片。
-3. `cargo run --locked --release` 烧录并查看 RTT。此操作覆盖目标 MCU 的应用程序。
-4. Windows 应出现 `STM32F4 USB Microphone`；关闭音频增强，使用 16 kHz 单声道格式。
-5. `python tools/record_windows.py --list`，再录制并分析：
+PB10 I²S2_CK → MP45DT02，PC3 I²S2_SD ← PDM，PB12 是 HAL 要求的未接麦克风 WS 输出。
+HSE 使用本板 8 MHz 晶振，主 PLL 产生 168 MHz SYSCLK / 48 MHz USB；PLLI2S 产生 51.2 MHz 内核时钟，I²S 分频 50，PDM 名义 1.024 MHz。
+DMA1 Stream3 Channel0，512 个 u16 循环缓冲区，读取每块 64 个半字（1 ms）。
 
-```powershell
-python tools/record_windows.py --device STM32F4 --seconds 10 --output captures/stage1.wav
-python tools/analyze_tone.py captures/stage1.wav --json captures/stage1-analysis.json
-```
+PDM → CIC5 /16 → 191 tap FIR /4 → 20 Hz DC blocker → 1024-sample PCM 队列 → 分数重采样 → 饱和增益 → USB。
+总抽取 64，标称输出 16 kHz。48 tap、32 相位间隔的分数延迟滤波器保持 USB 每包 16 samples / 32 bytes；通过队列水位补偿 MCU/主机时钟差。
 
-Python 录音使用 Windows winmm，不需要 pip 包。它只会选择名称匹配且唯一的设备，匹配失败即退出。
-Windows 音频引擎可能重采样或处理，不能用录音文件格式单独证明线上端点格式；须同时检查 USB 描述符。
+采集/DSP、USB 总线控制、诊断、快照和按钮使用独立异步任务。实时音频发送运行在更高优先级的 Embassy InterruptExecutor（仅软件触发 UART4 向量），能抢占 DSP；不占用 UART4 外设。
+中断优先级 OTG_FS=P2、DMA1_STREAM3=P3、音频执行器=P6，PDM 在主线程执行器。
+不在 await 期间持有锁，FIR 计算保持中断开启。所有 MCU 缓冲区静态分配，无动态堆；链接 RAM 仅 SRAM1/2，排除 CCM。
 
-## 工程导航
+RTT 记录 USB 状态/包数/端点错误、DMA 硬件错误/环形覆盖、PCM 水位/溢出/欠载/丢样、启动补零、重连清空、增益削顶与处理耗时。
+离线 ELF 检查由 `tools/inspect_elf.py` 完成；栈高水位和严格 WCET 未测量。
 
-| 文件 | 用途 |
-| --- | --- |
-| `src/main.rs` | USB 构建、三个任务、静态缓冲区 |
-| `src/board.rs` | MB997B 专用晶振与 PLL 配置 |
-| `src/lib.rs` | PC 可测的正弦波与 PCM 小端编码 |
-| `src/stats.rs` | USB 回调、可观察计数 |
-| `memory.x` | 排除 CCM 的内存布局 |
-| `docs/research.md` | 官方资料、固定提交、API 差异与后续 PDM 依据 |
-| `docs/windows-validation.md` | 烧录、枚举、录音、故障定位与日志清单 |
-| `docs/validation.md` | 本次实际检查结果及硬件限制 |
+## 证据与局限
 
-阶段状态：第一阶段代码与本机短时硬件验证完成。第二至第四阶段未实施；Windows 11、完整 USBView 描述符核对、长期稳定性和系统化重连测试仍需后续验证。
+- [官方资料、API 与板级依据](docs/research.md)
+- [第一阶段硬件记录](docs/validation.md)
+- [第二阶段 PDM 采集与诊断](docs/stage2-pdm.md)
+- [第三阶段滤波、PC 测试及实体快照](docs/stage3-decoder.md)
+- [第四阶段实时麦克风与稳定性](docs/stage4-live.md)
+- [Windows 枚举、录音、恢复操作](docs/windows-validation.md)
 
-USB 使用 Embassy 示例的 `c0de:cafe`，只用于私人实验，不代表已分配的 USB 标识；商业发行需合法 VID/PID。
+本工程使用实验 VID/PID `c0de:cafe`，未经过 USB 认证；Windows 11、标定声学频响/灵敏度、长期温漂、完整电气测量仍未验证。
+软件计数和有限时长录音不能证明绝无每一种线上 USB 丢包；报告会区分观察结果与尚未验证项目。

@@ -1,0 +1,220 @@
+{
+  "file": "captures\\stage4-priority-30s.wav",
+  "samples": 480000,
+  "duration_seconds": 30.0,
+  "clipped_samples": 0,
+  "zero_ms_after_first_200ms": 0,
+  "windows": [
+    {
+      "start_second": 0,
+      "dc_lsb": 0.34725,
+      "rms_ac_lsb": 42.28847115275628,
+      "peak_lsb": 145,
+      "tone_1000_amplitude_lsb": 0.23681526678138226
+    },
+    {
+      "start_second": 1,
+      "dc_lsb": 4.9066875,
+      "rms_ac_lsb": 48.81186823178707,
+      "peak_lsb": 148,
+      "tone_1000_amplitude_lsb": 0.4265816735261691
+    },
+    {
+      "start_second": 2,
+      "dc_lsb": -2.7445,
+      "rms_ac_lsb": 53.55395498700353,
+      "peak_lsb": 169,
+      "tone_1000_amplitude_lsb": 0.23227664932620629
+    },
+    {
+      "start_second": 3,
+      "dc_lsb": -4.34475,
+      "rms_ac_lsb": 46.59365458340331,
+      "peak_lsb": 172,
+      "tone_1000_amplitude_lsb": 0.2552100231832379
+    },
+    {
+      "start_second": 4,
+      "dc_lsb": 6.4094375,
+      "rms_ac_lsb": 45.890373973564365,
+      "peak_lsb": 220,
+      "tone_1000_amplitude_lsb": 0.14938385505618818
+    },
+    {
+      "start_second": 5,
+      "dc_lsb": -4.5446875,
+      "rms_ac_lsb": 46.416620170229365,
+      "peak_lsb": 176,
+      "tone_1000_amplitude_lsb": 0.2413078649432816
+    },
+    {
+      "start_second": 6,
+      "dc_lsb": 2.3605625,
+      "rms_ac_lsb": 54.36342113207735,
+      "peak_lsb": 208,
+      "tone_1000_amplitude_lsb": 0.216678813160647
+    },
+    {
+      "start_second": 7,
+      "dc_lsb": -6.2755,
+      "rms_ac_lsb": 50.1791749608341,
+      "peak_lsb": 168,
+      "tone_1000_amplitude_lsb": 0.17696933319562705
+    },
+    {
+      "start_second": 8,
+      "dc_lsb": 4.1406875,
+      "rms_ac_lsb": 48.93454959971884,
+      "peak_lsb": 168,
+      "tone_1000_amplitude_lsb": 0.5122146073753396
+    },
+    {
+      "start_second": 9,
+      "dc_lsb": -4.207875,
+      "rms_ac_lsb": 50.24872175473098,
+      "peak_lsb": 185,
+      "tone_1000_amplitude_lsb": 0.3796153221011466
+    },
+    {
+      "start_second": 10,
+      "dc_lsb": 3.1911875,
+      "rms_ac_lsb": 49.01381320444109,
+      "peak_lsb": 172,
+      "tone_1000_amplitude_lsb": 0.6108493846516707
+    },
+    {
+      "start_second": 11,
+      "dc_lsb": -1.9920625,
+      "rms_ac_lsb": 42.04065888513278,
+      "peak_lsb": 135,
+      "tone_1000_amplitude_lsb": 0.26668051656265285
+    },
+    {
+      "start_second": 12,
+      "dc_lsb": 2.36225,
+      "rms_ac_lsb": 50.854670630508465,
+      "peak_lsb": 184,
+      "tone_1000_amplitude_lsb": 0.1260686332884987
+    },
+    {
+      "start_second": 13,
+      "dc_lsb": -2.2968125,
+      "rms_ac_lsb": 41.07494935894436,
+      "peak_lsb": 148,
+      "tone_1000_amplitude_lsb": 0.3989032958472155
+    },
+    {
+      "start_second": 14,
+      "dc_lsb": -0.682125,
+      "rms_ac_lsb": 46.21895125902766,
+      "peak_lsb": 152,
+      "tone_1000_amplitude_lsb": 0.19625621418636857
+    },
+    {
+      "start_second": 15,
+      "dc_lsb": -0.377375,
+      "rms_ac_lsb": 42.7463590626076,
+      "peak_lsb": 153,
+      "tone_1000_amplitude_lsb": 0.36131370146768876
+    },
+    {
+      "start_second": 16,
+      "dc_lsb": -1.287625,
+      "rms_ac_lsb": 47.83972091117772,
+      "peak_lsb": 177,
+      "tone_1000_amplitude_lsb": 0.09448805341006082
+    },
+    {
+      "start_second": 17,
+      "dc_lsb": -1.875,
+      "rms_ac_lsb": 48.25846428348088,
+      "peak_lsb": 148,
+      "tone_1000_amplitude_lsb": 0.1041783651102447
+    },
+    {
+      "start_second": 18,
+      "dc_lsb": 1.66575,
+      "rms_ac_lsb": 47.530412915705874,
+      "peak_lsb": 165,
+      "tone_1000_amplitude_lsb": 0.22944806001086687
+    },
+    {
+      "start_second": 19,
+      "dc_lsb": -0.1715625,
+      "rms_ac_lsb": 45.13391190456012,
+      "peak_lsb": 156,
+      "tone_1000_amplitude_lsb": 0.43531443127600816
+    },
+    {
+      "start_second": 20,
+      "dc_lsb": -2.8870625,
+      "rms_ac_lsb": 49.3395346818461,
+      "peak_lsb": 164,
+      "tone_1000_amplitude_lsb": 0.2267293057188402
+    },
+    {
+      "start_second": 21,
+      "dc_lsb": -0.476,
+      "rms_ac_lsb": 42.39157698175429,
+      "peak_lsb": 141,
+      "tone_1000_amplitude_lsb": 0.2363699808572573
+    },
+    {
+      "start_second": 22,
+      "dc_lsb": -0.608,
+      "rms_ac_lsb": 50.17912375679751,
+      "peak_lsb": 167,
+      "tone_1000_amplitude_lsb": 0.24908840155119666
+    },
+    {
+      "start_second": 23,
+      "dc_lsb": 5.53575,
+      "rms_ac_lsb": 54.361416436085435,
+      "peak_lsb": 176,
+      "tone_1000_amplitude_lsb": 0.04555042286932489
+    },
+    {
+      "start_second": 24,
+      "dc_lsb": -3.789375,
+      "rms_ac_lsb": 46.593772514246744,
+      "peak_lsb": 140,
+      "tone_1000_amplitude_lsb": 0.5135451662928545
+    },
+    {
+      "start_second": 25,
+      "dc_lsb": -0.85975,
+      "rms_ac_lsb": 45.96906655499435,
+      "peak_lsb": 156,
+      "tone_1000_amplitude_lsb": 0.32106890000429433
+    },
+    {
+      "start_second": 26,
+      "dc_lsb": -2.4679375,
+      "rms_ac_lsb": 49.06818186968103,
+      "peak_lsb": 164,
+      "tone_1000_amplitude_lsb": 0.2499615993342424
+    },
+    {
+      "start_second": 27,
+      "dc_lsb": 2.6459375,
+      "rms_ac_lsb": 46.4080631705967,
+      "peak_lsb": 159,
+      "tone_1000_amplitude_lsb": 0.05046012657894554
+    },
+    {
+      "start_second": 28,
+      "dc_lsb": -0.021375,
+      "rms_ac_lsb": 46.855289649188755,
+      "peak_lsb": 181,
+      "tone_1000_amplitude_lsb": 0.2160065921382422
+    },
+    {
+      "start_second": 29,
+      "dc_lsb": -2.245125,
+      "rms_ac_lsb": 46.62364918938001,
+      "peak_lsb": 176,
+      "tone_1000_amplitude_lsb": 0.2981930073477012
+    }
+  ],
+  "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+}

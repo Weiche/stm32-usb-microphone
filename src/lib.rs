@@ -1,7 +1,10 @@
 #![no_std]
 
+pub mod audio_queue;
 pub mod decoder;
 mod fir_coeffs;
+pub mod resampler;
+mod resampler_coeffs;
 
 pub const SAMPLE_RATE_HZ: u32 = 16_000;
 pub const SAMPLES_PER_PACKET: usize = 16;

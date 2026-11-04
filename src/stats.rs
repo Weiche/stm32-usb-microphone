@@ -35,12 +35,18 @@ impl Handler for UsbEvents {
     }
     fn suspended(&mut self, suspended: bool) {
         SUSPENDED.store(suspended, Relaxed);
+        #[cfg(feature = "live-mic")]
+        if suspended {
+            crate::pipe::clear();
+        }
         defmt::info!("usb suspended={}", suspended);
     }
     fn set_alternate_setting(&mut self, iface: InterfaceNumber, alt: u8) {
         // Sole function: AudioControl interface 0, AudioStreaming interface 1.
         if u8::from(iface) == 1 {
             STREAMING.store(alt == 1, Relaxed);
+            #[cfg(feature = "live-mic")]
+            crate::pipe::clear();
         }
         defmt::info!("usb interface={} alt={}", u8::from(iface), alt);
     }
@@ -50,4 +56,6 @@ fn clear_stream() {
     CONFIGURED.store(false, Relaxed);
     SUSPENDED.store(false, Relaxed);
     STREAMING.store(false, Relaxed);
+    #[cfg(feature = "live-mic")]
+    crate::pipe::clear();
 }

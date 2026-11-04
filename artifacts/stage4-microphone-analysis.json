@@ -1,0 +1,94 @@
+{
+  "file": "captures\\stage4-microphone.wav",
+  "samples": 192000,
+  "duration_seconds": 12.0,
+  "clipped_samples": 0,
+  "zero_ms_after_first_200ms": 0,
+  "windows": [
+    {
+      "start_second": 0,
+      "dc_lsb": 1.2215,
+      "rms_ac_lsb": 63.249287053294125,
+      "peak_lsb": 204,
+      "tone_1000_amplitude_lsb": 54.91904093353059
+    },
+    {
+      "start_second": 1,
+      "dc_lsb": -5.4940625,
+      "rms_ac_lsb": 70.07380280637047,
+      "peak_lsb": 220,
+      "tone_1000_amplitude_lsb": 30.531250508029967
+    },
+    {
+      "start_second": 2,
+      "dc_lsb": 3.15725,
+      "rms_ac_lsb": 67.29072853995191,
+      "peak_lsb": 208,
+      "tone_1000_amplitude_lsb": 3.217659533441333
+    },
+    {
+      "start_second": 3,
+      "dc_lsb": -1.76125,
+      "rms_ac_lsb": 65.85715601540579,
+      "peak_lsb": 248,
+      "tone_1000_amplitude_lsb": 3.2731948876640105
+    },
+    {
+      "start_second": 4,
+      "dc_lsb": 0.9576875,
+      "rms_ac_lsb": 74.60078516444946,
+      "peak_lsb": 255,
+      "tone_1000_amplitude_lsb": 2.5952761008910503
+    },
+    {
+      "start_second": 5,
+      "dc_lsb": -1.3931875,
+      "rms_ac_lsb": 73.93604561436759,
+      "peak_lsb": 248,
+      "tone_1000_amplitude_lsb": 4.075694750946383
+    },
+    {
+      "start_second": 6,
+      "dc_lsb": 0.5285625,
+      "rms_ac_lsb": 69.73478639949788,
+      "peak_lsb": 452,
+      "tone_1000_amplitude_lsb": 14.951727655829036
+    },
+    {
+      "start_second": 7,
+      "dc_lsb": -2.00875,
+      "rms_ac_lsb": 72.66615734602664,
+      "peak_lsb": 240,
+      "tone_1000_amplitude_lsb": 1.4644165857094391
+    },
+    {
+      "start_second": 8,
+      "dc_lsb": -2.3050625,
+      "rms_ac_lsb": 50.160997043231646,
+      "peak_lsb": 216,
+      "tone_1000_amplitude_lsb": 5.016989670370352
+    },
+    {
+      "start_second": 9,
+      "dc_lsb": 4.418875,
+      "rms_ac_lsb": 42.8135643661489,
+      "peak_lsb": 172,
+      "tone_1000_amplitude_lsb": 0.13157096239618846
+    },
+    {
+      "start_second": 10,
+      "dc_lsb": 0.1979375,
+      "rms_ac_lsb": 46.82462368504518,
+      "peak_lsb": 156,
+      "tone_1000_amplitude_lsb": 0.2698933902166369
+    },
+    {
+      "start_second": 11,
+      "dc_lsb": -2.6593125,
+      "rms_ac_lsb": 39.167452936428525,
+      "peak_lsb": 132,
+      "tone_1000_amplitude_lsb": 0.31461312311261025
+    }
+  ],
+  "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+}

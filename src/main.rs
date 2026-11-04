@@ -4,12 +4,18 @@
 mod board;
 #[cfg(feature = "pdm-capture")]
 mod pdm;
+#[cfg(feature = "live-mic")]
+mod pipe;
 mod stats;
 
 use core::sync::atomic::Ordering::Relaxed;
 use defmt_rtt as _;
 use embassy_executor::Spawner;
 use embassy_stm32::gpio::{Input, Level, Output, Pull, Speed};
+#[cfg(feature = "live-mic")]
+use embassy_stm32::interrupt;
+#[cfg(feature = "live-mic")]
+use embassy_stm32::interrupt::{InterruptExt, Priority};
 use embassy_stm32::{bind_interrupts, peripherals, usb};
 use embassy_usb::class::uac::device::source::{
     AudioSource, Config as SourceConfig, ControlMonitor, FeatureUnitControls, State, Stream,
@@ -18,9 +24,21 @@ use embassy_usb::class::uac::device::{Channel, SampleWidth};
 use embassy_usb::driver::EndpointError;
 use panic_probe as _;
 use static_cell::StaticCell;
-use stm32f4_usb_mic::{SAMPLE_RATE_HZ, SAMPLES_PER_PACKET, SILENCE_PACKET, SINE_PACKET};
+use stm32f4_usb_mic::SAMPLE_RATE_HZ;
+#[cfg(not(feature = "live-mic"))]
+use stm32f4_usb_mic::{SAMPLES_PER_PACKET, SILENCE_PACKET, SINE_PACKET};
 
 type UsbDriver = usb::Driver<'static, peripherals::USB_OTG_FS>;
+
+// UART4 is unused by this application; its vector is software-pended only.
+#[cfg(feature = "live-mic")]
+static USB_EXECUTOR: embassy_executor::InterruptExecutor =
+    embassy_executor::InterruptExecutor::new();
+#[cfg(feature = "live-mic")]
+#[interrupt]
+unsafe fn UART4() {
+    unsafe { USB_EXECUTOR.on_interrupt() }
+}
 
 bind_interrupts!(struct Irqs {
     OTG_FS => usb::InterruptHandler<peripherals::USB_OTG_FS>;
@@ -34,6 +52,7 @@ async fn usb_task(mut device: embassy_usb::UsbDevice<'static, UsbDriver>) {
 }
 
 #[embassy_executor::task]
+#[cfg(not(feature = "live-mic"))]
 async fn audio_task(mut stream: Stream<'static, UsbDriver>, monitor: ControlMonitor<'static>) {
     loop {
         stream.wait_connection().await;
@@ -68,6 +87,48 @@ async fn audio_task(mut stream: Stream<'static, UsbDriver>, monitor: ControlMoni
     }
 }
 
+#[cfg(feature = "live-mic")]
+#[embassy_executor::task]
+async fn audio_task(mut stream: Stream<'static, UsbDriver>, monitor: ControlMonitor<'static>) {
+    let mut bytes = [0u8; 32];
+    loop {
+        stream.wait_connection().await;
+        let mut priming = true;
+        let mut rate = stm32f4_usb_mic::audio_queue::PacketRate::new();
+        let mut resampler = stm32f4_usb_mic::resampler::Resampler::new();
+        loop {
+            let started = embassy_time::Instant::now();
+            pipe::packet(
+                &mut rate,
+                &mut resampler,
+                &mut priming,
+                monitor.muted(),
+                &mut bytes,
+            );
+            pipe::PREPARE_MAX_US.fetch_max(started.elapsed().as_micros() as u32, Relaxed);
+            match stream.write_packet(&bytes).await {
+                Ok(()) => {
+                    stats::PACKETS.fetch_add(1, Relaxed);
+                }
+                Err(error) => {
+                    stats::DROPPED_SAMPLES.fetch_add(16, Relaxed);
+                    match error {
+                        EndpointError::Disabled => {
+                            stats::DISABLED.fetch_add(1, Relaxed);
+                        }
+                        EndpointError::BufferOverflow => {
+                            stats::USB_ERRORS.fetch_add(1, Relaxed);
+                            embassy_time::Timer::after_millis(10).await;
+                        }
+                    }
+                    pipe::clear();
+                    break;
+                }
+            }
+        }
+    }
+}
+
 #[embassy_executor::task]
 async fn diagnostics_task(mut led: Output<'static>, vbus: Input<'static>) {
     loop {
@@ -89,14 +150,17 @@ async fn diagnostics_task(mut led: Output<'static>, vbus: Input<'static>) {
         );
         #[cfg(feature = "pdm-capture")]
         pdm::log_stats();
+        #[cfg(feature = "live-mic")]
+        pipe::log_stats();
     }
 }
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
     defmt::info!(
-        "usb-mic boot: MB997B STM32F407VG UAC1 16000Hz s16le mono sine=1000Hz pdm_capture={}",
-        cfg!(feature = "pdm-capture")
+        "usb-mic boot: MB997B STM32F407VG UAC1 16000Hz s16le mono pdm_capture={} live_mic={}",
+        cfg!(feature = "pdm-capture"),
+        cfg!(feature = "live-mic")
     );
     let p = embassy_stm32::init(board::config());
     defmt::info!("clocks ready: SYSCLK=168MHz USB=48MHz HSE=8MHz crystal");
@@ -113,6 +177,8 @@ async fn main(spawner: Spawner) {
     let _vbus_power_off = Output::new(p.PC0, Level::High, Speed::Low);
     let vbus_sense = Input::new(p.PA9, Pull::None);
     let led = Output::new(p.PD12, Level::Low, Speed::Low);
+    #[cfg(feature = "live-mic")]
+    spawner.spawn(pipe::gain_button_task(Input::new(p.PA0, Pull::None)).unwrap());
 
     static EP_OUT: StaticCell<[u8; 256]> = StaticCell::new();
     let mut driver_config = usb::Config::default();
@@ -165,8 +231,19 @@ async fn main(spawner: Spawner) {
         "descriptors ready: config_bytes={} packet=32 endpoint_max=34",
         device.buffer_usage().config_descriptor_used
     );
+    #[cfg(feature = "live-mic")]
+    {
+        interrupt::OTG_FS.set_priority(Priority::P2);
+        interrupt::DMA1_STREAM3.set_priority(Priority::P3);
+        interrupt::UART4.set_priority(Priority::P6);
+        let usb_spawner = USB_EXECUTOR.start(interrupt::UART4);
+        usb_spawner.spawn(audio_task(stream, control_monitor).unwrap());
+    }
+    #[cfg(not(feature = "live-mic"))]
+    {
+        spawner.spawn(audio_task(stream, control_monitor).unwrap());
+    }
     spawner.spawn(usb_task(device).unwrap());
-    spawner.spawn(audio_task(stream, control_monitor).unwrap());
     spawner.spawn(diagnostics_task(led, vbus_sense).unwrap());
     core::future::pending::<()>().await;
 }

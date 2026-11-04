@@ -1,0 +1,14 @@
+{
+  "device": {
+    "id": 0,
+    "name": "\u9ea6\u514b\u98ce (STM32F4 USB Microphone)",
+    "channels": 2
+  },
+  "bytes": 384000,
+  "samples": 192000,
+  "sample_rate": 16000,
+  "channels": 1,
+  "bits": 16,
+  "wall_seconds": 12.036398599999302,
+  "file": "captures\\stage4-final-stimulus.wav"
+}
