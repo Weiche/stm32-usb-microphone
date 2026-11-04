@@ -1,0 +1,47 @@
+{
+  "elf": "target\\thumbv7em-none-eabihf\\release\\stm32f4-usb-mic",
+  "entry": "0x08000189",
+  "flash_image_span_bytes": 40592,
+  "allocated_sram_bytes": 4084,
+  "sram_capacity_bytes": 131072,
+  "ccm_allocations": 0,
+  "stack_high_water": "not measured",
+  "sections": [
+    {
+      "section": ".vector_table",
+      "address": "0x08000000",
+      "bytes": 392,
+      "region": "FLASH"
+    },
+    {
+      "section": ".text",
+      "address": "0x08000188",
+      "bytes": 32848,
+      "region": "FLASH"
+    },
+    {
+      "section": ".rodata",
+      "address": "0x080081d8",
+      "bytes": 6992,
+      "region": "FLASH"
+    },
+    {
+      "section": ".data",
+      "address": "0x20000000",
+      "bytes": 360,
+      "region": "SRAM1/2"
+    },
+    {
+      "section": ".bss",
+      "address": "0x20000168",
+      "bytes": 2700,
+      "region": "SRAM1/2"
+    },
+    {
+      "section": ".uninit",
+      "address": "0x20000bf4",
+      "bytes": 1024,
+      "region": "SRAM1/2"
+    }
+  ]
+}

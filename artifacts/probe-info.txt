@@ -1,0 +1,7 @@
+Could not attach to target. Try running with --verbose for more information about the target.
+Error: Failed to open probe: Failed to open the debug probe.
+
+Caused by:
+    0: An error which is specific to the debug probe in use occurred.
+    1: The firmware on the probe is outdated, and not supported by probe-rs. The minimum supported firmware version is 26.
+       Use the ST-Link updater utility to update your probe firmware.

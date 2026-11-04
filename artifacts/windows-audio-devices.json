@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "name": "麦克风 (JBL Pebbles)",
+    "channels": 2
+  },
+  {
+    "id": 1,
+    "name": "麦克风 (Steam Streaming Microphone",
+    "channels": 2
+  },
+  {
+    "id": 2,
+    "name": "麦克风 (Virtual Desktop Audio)",
+    "channels": 2
+  }
+]

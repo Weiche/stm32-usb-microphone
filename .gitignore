@@ -1,0 +1,7 @@
+/target/
+/firmware.map
+/captures/
+/artifacts/*.elf
+/artifacts/*.bin
+/artifacts/*.map
+__pycache__/
