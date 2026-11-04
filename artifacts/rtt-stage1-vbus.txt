@@ -1,0 +1,273 @@
+[INFO ] stage1 boot: MB997B STM32F407VG UAC1 16000Hz s16le mono sine=1000Hz
+[INFO ] clocks ready: SYSCLK=168MHz USB=48MHz HSE=8MHz crystal
+[INFO ] descriptors ready: config_bytes=119 packet=32 endpoint_max=34
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] usb enabled=true
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb suspended=true
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb suspended=true
+[INFO ] usb enabled=false
+[INFO ] usb suspended=true
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] usb enabled=true
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb suspended=true
+[INFO ] usb enabled=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] usb enabled=true
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb suspended=true
+[INFO ] usb enabled=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] usb enabled=true
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb suspended=true
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb suspended=true
+[INFO ] usb enabled=false
+[INFO ] usb suspended=true
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=false cfg=false suspend=true stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] usb enabled=true
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb suspended=true
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] stats vbus=true cfg=false suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb reset
+[INFO ] usb interface=0 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] usb configured=true
+[INFO ] usb interface=1 alt=0
+[INFO ] usb interface=1 alt=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=0 usb_errors=0 disabled=0 discarded_samples=0 pending=0 high=0 dma_active=false
+[INFO ] usb interface=1 alt=1
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=1856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=2856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=3856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=4856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=5856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=6856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=7856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=8856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=true packets=9856 usb_errors=0 disabled=0 discarded_samples=0 pending=16 high=16 dma_active=false
+[INFO ] usb interface=1 alt=0
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false
+[INFO ] stats vbus=true cfg=true suspend=false stream=false packets=10021 usb_errors=0 disabled=1 discarded_samples=16 pending=0 high=16 dma_active=false

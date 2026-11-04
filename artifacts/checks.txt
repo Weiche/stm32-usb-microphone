@@ -1,17 +1,15 @@
    Compiling stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
-    Finished `release` profile [optimized + debuginfo] target(s) in 4.70s
+    Finished `release` profile [optimized + debuginfo] target(s) in 4.99s
     Checking stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
-    Finished `release` profile [optimized + debuginfo] target(s) in 0.91s
-   Compiling stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
-    Finished `test` profile [optimized + debuginfo] target(s) in 0.96s
+    Finished `release` profile [optimized + debuginfo] target(s) in 0.86s
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.58s
      Running unittests src\lib.rs (target\x86_64-pc-windows-msvc\debug\deps\stm32f4_usb_mic-931d3db5a7a20c99.exe)
 
 running 3 tests
-test tests::tone_has_zero_dc_correct_peak_and_continuous_wrap ... ok
 test tests::tone_energy_is_in_one_khz_dft_bin ... ok
+test tests::tone_has_zero_dc_correct_peak_and_continuous_wrap ... ok
 test tests::usb_frame_has_exactly_one_ms_of_mono_pcm_little_endian ... ok
 
 test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-    Checking stm32f4-usb-mic v0.1.0 (C:\Users\Che Wei\Documents\Codex\2026-11-05\stm32f4discovery-usb-rust-embassy-stm32f4discovery-windows\outputs\stm32f4-usb-mic)
-    Finished `dev` profile [optimized + debuginfo] target(s) in 0.66s
+    Finished `dev` profile [optimized + debuginfo] target(s) in 0.53s

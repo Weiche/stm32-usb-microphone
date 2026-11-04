@@ -1,0 +1,20 @@
+[
+  {
+    "Status": "OK",
+    "Class": "AudioEndpoint",
+    "FriendlyName": "麦克风 (STM32F4 USB Microphone)",
+    "InstanceId": "SWD\\MMDEVAPI\\{0.0.1.00000000}.{89F8D3DD-3F08-41D3-A7E1-F26BB93024E8}"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "USB Composite Device",
+    "InstanceId": "USB\\VID_C0DE&PID_CAFE\\MB997B-STAGE1-0001"
+  },
+  {
+    "Status": "OK",
+    "Class": "MEDIA",
+    "FriendlyName": "STM32F4 USB Microphone",
+    "InstanceId": "USB\\VID_C0DE&PID_CAFE&MI_00\\8&208EEDC2&0&0000"
+  }
+]

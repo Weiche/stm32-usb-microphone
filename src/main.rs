@@ -65,12 +65,13 @@ async fn audio_task(mut stream: Stream<'static, UsbDriver>, monitor: ControlMoni
 }
 
 #[embassy_executor::task]
-async fn diagnostics_task(mut led: Output<'static>) {
+async fn diagnostics_task(mut led: Output<'static>, vbus: Input<'static>) {
     loop {
         embassy_time::Timer::after_secs(1).await;
         led.toggle();
         defmt::info!(
-            "stats cfg={} suspend={} stream={} packets={} usb_errors={} disabled={} discarded_samples={} pending={} high={} dma_active=false",
+            "stats vbus={} cfg={} suspend={} stream={} packets={} usb_errors={} disabled={} discarded_samples={} pending={} high={} dma_active=false",
+            vbus.is_high(),
             stats::CONFIGURED.load(Relaxed),
             stats::SUSPENDED.load(Relaxed),
             stats::STREAMING.load(Relaxed),
@@ -94,7 +95,7 @@ async fn main(spawner: Spawner) {
     // HIGH disables the host VBUS power switch in USB device mode.
     // Keep the GPIO objects alive for the lifetime of main's static task frame.
     let _vbus_power_off = Output::new(p.PC0, Level::High, Speed::Low);
-    let _vbus_sense = Input::new(p.PA9, Pull::None);
+    let vbus_sense = Input::new(p.PA9, Pull::None);
     let led = Output::new(p.PD12, Level::Low, Speed::Low);
 
     static EP_OUT: StaticCell<[u8; 256]> = StaticCell::new();
@@ -150,6 +151,6 @@ async fn main(spawner: Spawner) {
     );
     spawner.spawn(usb_task(device).unwrap());
     spawner.spawn(audio_task(stream, control_monitor).unwrap());
-    spawner.spawn(diagnostics_task(led).unwrap());
+    spawner.spawn(diagnostics_task(led, vbus_sense).unwrap());
     core::future::pending::<()>().await;
 }

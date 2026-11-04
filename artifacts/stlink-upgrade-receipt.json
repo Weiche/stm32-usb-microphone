@@ -1,0 +1,11 @@
+{
+  "package": "stsw-link007-v3-18-12.zip",
+  "package_sha256": "8bc652628506b04103b0b14417b2f918c4d5696090045c82002bc557102cbe85",
+  "updater_authenticode_status": "Valid",
+  "updater_signer": "CN=STMicroelectronics International N.V., O=STMicroelectronics International N.V., L=Plan-les-Ouates, S=Genève, C=CH, SERIALNUMBER=54298350, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=NL",
+  "version_before": "V2J14S0",
+  "version_after_as_reported": "2.49.0",
+  "upgrade_log": "artifacts/stlink-upgrade.txt",
+  "method": "Official STLinkUpgrade.jar -update",
+  "forced_reprogramming": false
+}

@@ -1,6 +1,9 @@
 # Windows 烧录、录音与验收
 
-## 当前阻碍：旧 ST-LINK 固件
+## ST-LINK 固件升级（本板已完成）
+
+本板已使用 STSW-LINK007 3.18.12 的 Java 命令行工具完成 V2J14S0 → 2.49.0 升级。
+下列旧固件错误及恢复流程保留用于复现和其他板子；不再是当前阻碍。本板重新插拔 CN5 后已成功枚举，并通过 Windows 10 上的 10 秒录音和复位后独立运行的 3 秒录音验证。
 
 2026-11-05 检测到 `0483:3748` STLink V2；`probe-rs 0.32.0 info` 返回：
 
@@ -10,7 +13,7 @@ The minimum supported firmware version is 26.
 Use the ST-Link updater utility to update your probe firmware.
 ```
 
-这不是目标应用编译错误。尚未识别目标 MCU，尚未烧录；不能据此判断 USB 固件是否能正常运行。
+这不是目标应用编译错误。该记录来自升级前；升级、烧录和当前 USB 状态见 [验证报告](validation.md)。
 
 1. 从 [STSW-LINK007 官方页面](https://www.st.com/en/development-tools/stsw-link007.html) 获取 Windows ST-LINK 升级工具，或使用已安装的 STM32CubeProgrammer 的 ST-LINK 升级功能。
 2. CN1 保持供电，关闭占用 ST-LINK 的调试器，按官方工具提示连接、查看并升级 ST-LINK/V2 固件。
@@ -20,6 +23,18 @@ Use the ST-Link updater utility to update your probe firmware.
 工具安装可使用 [probe-rs 官方安装说明](https://probe.rs/docs/getting-started/installation/)，例如 `cargo install probe-rs-tools --locked`。
 本轮使用下载后通过官方 `.sha256` 校验的 probe-rs 0.32.0 Windows 预编译程序，保存在工作区 `work/tools`，未修改系统 PATH。
 ST-LINK 在 Windows 使用官方 ST 驱动；不要为 CN5 USB Audio 接口替换成 WinUSB/Zadig 驱动。
+
+有 Java 运行时的环境，可在升级包的 `AllPlatforms` 目录用官方命令行接口：
+
+```powershell
+java -jar STLinkUpgrade.jar -list
+java -jar STLinkUpgrade.jar -checkVer
+java -jar STLinkUpgrade.jar -update
+```
+
+这些命令已对本板实际执行成功。`-update` 为正常升级；不需要 `-force_prog` 或指定另一种探针功能类型。
+`probe-rs info` 对本板不能自动识别型号，并且会忽略 `--chip`；确认 SWD 可用应使用显式目标的 read/run。
+Cargo runner 已加入 `--speed 1000 --connect-under-reset --verify --rtt-channel-mode no-block-skip`；探针实际协商为 950 kHz。
 
 ## 接线和启动
 
@@ -32,6 +47,7 @@ cargo run --locked --release
 ```
 
 应依次观察 RTT：`stage1 boot` → `clocks ready` → `descriptors ready` → `usb reset` → `usb configured=true`。
+`stats vbus=true` 表示 PA9 数字输入读到高电平。若始终为 false，先重新插拔 CN5，检查其 VBUS、数据线和 USB 端口，不要先修改音频类描述符或关闭 VBUS 检测掩盖问题。
 绿色 PD12 LED 每秒翻转。开始录音后应出现 `usb interface=1 alt=1`，累计 `packets` 每秒大约增加 1000。
 停止录音可进入 alt=0 或 suspend；重新打开录音后应继续发送。
 

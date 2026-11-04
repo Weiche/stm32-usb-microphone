@@ -1,0 +1,3 @@
+Firmware version detected: V2J14S0
+...............Upgrade is successful.
+Version read: 2.49.0

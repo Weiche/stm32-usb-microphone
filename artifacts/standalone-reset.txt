@@ -1,0 +1,1 @@
+ WARN probe_rs::util::common_options: Unable to use specified speed of 1000 kHz, actual speed used is 950 kHz

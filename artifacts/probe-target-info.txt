@@ -1,0 +1,8 @@
+ WARN probe_rs::cmd::common::info: ignoring --chip option
+ WARN probe_rs::util::common_options: Unable to use specified speed of 1000 kHz, actual speed used is 950 kHz
+Could not attach to target. Try running with --verbose for more information about the target.
+Error: Connecting to the chip was unsuccessful.
+
+Caused by:
+    0: Unable to load specification for chip
+    1: The connected chip could not automatically be determined.

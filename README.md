@@ -2,9 +2,10 @@
 
 Rust + Embassy，STM32F407VG / MB997B，Windows 10/11 原生 UAC1 驱动。
 
-**本次交付为第一阶段：USB 软件正弦波固件。尚未通过实体板的烧录、枚举或录音验证。**
-已检测到板载 ST-LINK/V2，但 probe-rs 拒绝连接：其固件低于最低支持版本 26。
-详细记录见 [验证报告](docs/validation.md)，恢复步骤见 [Windows 操作说明](docs/windows-validation.md)。
+**第一阶段已在本机 Windows 10 和实体 MB997B 上完成烧录校验、UAC1 枚举及 1 kHz 正弦波录音验证。**
+ST-LINK 已从 V2J14S0 成功升级为 2.49.0。首次 PA9 VBUS 为低，重新插拔 CN5 后枚举正常。
+10 秒录音分析通过；退出调试器并复位后，独立运行的 3 秒录音再次通过。Windows 11 和长期稳定性尚未实测。
+详细记录见 [验证报告](docs/validation.md)，操作步骤见 [Windows 操作说明](docs/windows-validation.md)。
 
 ## 当前实现
 
@@ -13,7 +14,7 @@ Rust + Embassy，STM32F407VG / MB997B，Windows 10/11 原生 UAC1 驱动。
 - 原生 USB Audio 控制请求、alt 0/1 和音频描述符由 Embassy 实现；支持主通道静音。
 - USB 总线、音频发送、RTT 诊断分为三个 async 任务；发送由端点反压驱动，不额外设 1 ms 定时器。
 - 使用静态存储、无 MCU 堆分配；链接区仅含 Flash 和 128 KiB SRAM1/2，排除 CCM。
-- RTT 输出 USB 状态、累计发送包、可观察错误、丢弃采样和待发送水位。
+- RTT 输出 PA9 VBUS 电平、USB 状态、累计发送包、可观察错误、丢弃采样和待发送水位。
 - 本阶段没有启用 I²S/DMA，也没有实现 PDM 滤波；`dma_active=false`，DMA 错误统计在第二阶段接入真实事件后增加。
 
 ## Windows 原生构建
@@ -67,6 +68,6 @@ Windows 音频引擎可能重采样或处理，不能用录音文件格式单独
 | `docs/windows-validation.md` | 烧录、枚举、录音、故障定位与日志清单 |
 | `docs/validation.md` | 本次实际检查结果及硬件限制 |
 
-阶段状态：第一阶段代码交付；硬件验收待完成。第二至第四阶段未实施。第一阶段硬件不通过时，先解决枚举/传输问题，再进入采集阶段。
+阶段状态：第一阶段代码与本机短时硬件验证完成。第二至第四阶段未实施；Windows 11、完整 USBView 描述符核对、长期稳定性和系统化重连测试仍需后续验证。
 
 USB 使用 Embassy 示例的 `c0de:cafe`，只用于私人实验，不代表已分配的 USB 标识；商业发行需合法 VID/PID。

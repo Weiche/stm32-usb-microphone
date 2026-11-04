@@ -1,0 +1,6 @@
+Could not attach to target. Try running with --verbose for more information about the target.
+Error: Connecting to the chip was unsuccessful.
+
+Caused by:
+    0: Unable to load specification for chip
+    1: The connected chip could not automatically be determined.

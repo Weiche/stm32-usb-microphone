@@ -1,7 +1,7 @@
 {
   "elf": "target\\thumbv7em-none-eabihf\\release\\stm32f4-usb-mic",
   "entry": "0x08000189",
-  "flash_image_span_bytes": 40592,
+  "flash_image_span_bytes": 40688,
   "allocated_sram_bytes": 4084,
   "sram_capacity_bytes": 131072,
   "ccm_allocations": 0,
@@ -16,12 +16,12 @@
     {
       "section": ".text",
       "address": "0x08000188",
-      "bytes": 32848,
+      "bytes": 32940,
       "region": "FLASH"
     },
     {
       "section": ".rodata",
-      "address": "0x080081d8",
+      "address": "0x08008234",
       "bytes": 6992,
       "region": "FLASH"
     },

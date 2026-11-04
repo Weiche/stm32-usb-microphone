@@ -2,7 +2,7 @@
 target = "thumbv7em-none-eabihf"
 
 [target.thumbv7em-none-eabihf]
-runner = "probe-rs run --chip STM32F407VGTx"
+runner = "probe-rs run --chip STM32F407VGTx --speed 1000 --connect-under-reset --verify --rtt-channel-mode no-block-skip"
 rustflags = [
   "-C", "link-arg=-Tlink.x",
   "-C", "link-arg=-Tdefmt.x",
