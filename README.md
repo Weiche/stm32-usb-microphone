@@ -7,6 +7,14 @@ Rust + Embassy，STM32F407VG / MB997B，板载 MP45DT02，无外接采集模块�
 阶段四已完成 600 秒连续实体麦克风录音、停止后重开和复位后脱离调试器的 10 秒录音；可观察错误/丢样计数在连续测试中为 0。结果见 [实时麦克风验证](docs/stage4-live.md)。
 本机为 Windows 10 Enterprise 19045；Windows 11 尚未实测。
 
+## 从这里开始
+
+1. 按下方说明连接 CN1、CN5，安装构建与调试工具。
+2. 运行 `tools/check.ps1` 做离线检查，再用 `cargo run --locked --release` 烧录默认实时麦克风。
+3. 在另一个 PowerShell 窗口录音，使用 `analyze_microphone.py` 分析真实麦克风数据。
+
+完整操作见 [Windows 使用与排错](docs/windows-validation.md)；[文档索引](docs/README.md) 区分当前指南、实现说明和各阶段历史证据。
+
 ## 构建与模式
 
 使用 Windows 原生 Rust MSVC 工具链、Visual Studio C++ Build Tools、Python 3、probe-rs，无需 WSL。
@@ -30,6 +38,9 @@ Cargo runner 使用 `STM32F407VGTx --speed 1000 --connect-under-reset --verify -
 | PDM/PCM 独立诊断 | `cargo build --locked --release --no-default-features --features pdm-capture` | 1 kHz 软件正弦，后台采集/解码 |
 | 第一阶段最小固件 | `cargo build --locked --release --no-default-features` | 1 kHz 软件正弦，不启动 DMA |
 
+烧录对应模式时，将表中的 `cargo build` 换成 `cargo run`，保留全部 feature 参数。
+`--features pdm-capture` 单独使用仍保留默认 `live-mic`；独立诊断必须同时指定 `--no-default-features`。
+
 PA0 蓝色 USER 按钮切换 4× → 16× → 1× → 4×，不写 Flash，重启恢复 4×。增益算法已做主机测试；按钮实体操作的验证状态见阶段四报告。
 支持 USB 主通道静音；不宣称支持尚未实现的 USB 音量控制。
 
@@ -50,6 +61,8 @@ Windows 音频引擎可能处理或重采样；WAV 文件格式不能单独证�
 
 ## 数据路径与调度
 
+模块职责、时钟和日志字段见 [当前固件架构](docs/architecture.md)。
+
 PB10 I²S2_CK → MP45DT02，PC3 I²S2_SD ← PDM，PB12 是 HAL 要求的未接麦克风 WS 输出。
 HSE 使用本板 8 MHz 晶振，主 PLL 产生 168 MHz SYSCLK / 48 MHz USB；PLLI2S 产生 51.2 MHz 内核时钟，I²S 分频 50，PDM 名义 1.024 MHz。
 DMA1 Stream3 Channel0，512 个 u16 循环缓冲区，读取每块 64 个半字（1 ms）。
@@ -65,6 +78,9 @@ RTT 记录 USB 状态/包数/端点错误、DMA 硬件错误/环形覆盖、PCM 
 离线 ELF 检查由 `tools/inspect_elf.py` 完成；栈高水位和严格 WCET 未测量。
 
 ## 证据与局限
+
+上述硬件结果来自仓库保存的 2026-11-05 验证记录；后续只改文档不构成新一轮实体测试。
+`artifacts/` 保存版本化文本/JSON 证据；`captures/` 和 ELF/BIN/map 未纳入 Git，克隆仓库不会自动获得原始录音或固件二进制。
 
 - [官方资料、API 与板级依据](docs/research.md)
 - [第一阶段硬件记录](docs/validation.md)

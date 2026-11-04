@@ -1,9 +1,12 @@
 # Windows 烧录、录音与验收
 
+适用于当前默认 `live-mic` 固件。接线与模式速查见 [README](../README.md)，计数字段见 [架构说明](architecture.md)。
+截至 2026-11-05，已保存 Windows 10 Enterprise 19045 上 600 秒连续实体麦克风录音、三次顺序重开和复位后无调试器的 10 秒录音记录，见 [阶段四报告](stage4-live.md)。Windows 11 尚未实测；下列操作是复验指南，不表示本次文档更新重新进行了硬件测试。
+
 ## ST-LINK 固件升级（本板已完成）
 
 本板已使用 STSW-LINK007 3.18.12 的 Java 命令行工具完成 V2J14S0 → 2.49.0 升级。
-下列旧固件错误及恢复流程保留用于复现和其他板子；不再是当前阻碍。本板重新插拔 CN5 后已成功枚举，并通过 Windows 10 上的 10 秒录音和复位后独立运行的 3 秒录音验证。
+下列旧固件错误及恢复流程保留用于复现和其他板子；不再是当前阻碍。升级和初次正弦录音记录见 [第一阶段报告](validation.md)，当前真实麦克风结果见阶段四报告。
 
 2026-11-05 检测到 `0483:3748` STLink V2；`probe-rs 0.32.0 info` 返回：
 
@@ -17,11 +20,11 @@ Use the ST-Link updater utility to update your probe firmware.
 
 1. 从 [STSW-LINK007 官方页面](https://www.st.com/en/development-tools/stsw-link007.html) 获取 Windows ST-LINK 升级工具，或使用已安装的 STM32CubeProgrammer 的 ST-LINK 升级功能。
 2. CN1 保持供电，关闭占用 ST-LINK 的调试器，按官方工具提示连接、查看并升级 ST-LINK/V2 固件。
-3. 升级结束按提示重新插拔 CN1，重新运行 `probe-rs list` 与 `probe-rs info`。
+3. 升级结束按提示重新插拔 CN1，重新运行 `probe-rs list`。可保存 `probe-rs info` 的自动识别输出；本板须结合下述显式目标操作判断 SWD 是否可用。
 4. 确认目标属于 STM32F407、板内 CN2 SWD 跳帽齐全，再烧录。未验证目标身份时不要使用整片擦除或修改 option bytes。
 
 工具安装可使用 [probe-rs 官方安装说明](https://probe.rs/docs/getting-started/installation/)，例如 `cargo install probe-rs-tools --locked`。
-本轮使用下载后通过官方 `.sha256` 校验的 probe-rs 0.32.0 Windows 预编译程序，保存在工作区 `work/tools`，未修改系统 PATH。
+历史验收使用通过官方 `.sha256` 校验的 probe-rs 0.32.0 Windows 预编译程序；当时工具路径为 `work/tools`，该本地目录不随仓库交付。新环境需自行安装并加入 PATH。
 ST-LINK 在 Windows 使用官方 ST 驱动；不要为 CN5 USB Audio 接口替换成 WinUSB/Zadig 驱动。
 
 有 Java 运行时的环境，可在升级包的 `AllPlatforms` 目录用官方命令行接口：
@@ -80,7 +83,7 @@ Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -match 'VID_C0DE&PID_C
 `wMaxPacketSize=34` 是容量，不能误判正常 32-byte 包为欠载；上游保留一个采样的余量。
 Windows 录音 API 可能重采样，WAV 文件标注 16 kHz 本身不证明描述符正确。
 
-## 录音和信号验收
+## 默认真实麦克风录音
 
 Windows 设置 → 隐私/隐私和安全性 → 麦克风：允许桌面应用访问。
 在声音输入或经典 `mmsys.cpl` 的录制设备中选择本设备，尽可能选择 1 channel、16-bit、16000 Hz；关闭增强、降噪、AGC、通信衰减和监听。
@@ -88,27 +91,58 @@ Windows 设置 → 隐私/隐私和安全性 → 麦克风：允许桌面应用�
 
 ```powershell
 python tools/record_windows.py --list
-python tools/record_windows.py --device STM32F4 --seconds 10 --output captures/stage1.wav
-python tools/analyze_tone.py captures/stage1.wav --json captures/stage1-analysis.json
+python tools/record_windows.py --device STM32F4 --seconds 10 --output captures/microphone.wav
+python tools/analyze_microphone.py captures/microphone.wav --json captures/microphone-analysis.json
 ```
 
-可另用 Windows 录音机验证能打开设备和播放，定量检查优先使用脚本产生的无压缩 WAV。
-推荐验收值（未处理录音）：1000 Hz 主峰，峰值约 8192（-12.04 dBFS），RMS 约 5793（-15.05 dBFS），DC 接近 0，无削顶，无整毫秒静音。
-脚本允许一定幅度误差，输出 THD、16-sample 周期差异、静音段和 exit code；必须保留原 WAV 才能复核。
-脚本不能证明无 USB 丢帧：正好丢失一个完整正弦周期仍可能看似连续，需配合 RTT/USB 抓包判断。
+录音脚本使用 Windows winmm 和 Python 标准库，无需 pip 包；仅选择名称匹配且唯一的输入设备，拒绝无匹配或歧义匹配。输出 WAV 和同名 `.capture.json` 元数据。保持固件运行，在另一个 PowerShell 窗口执行录音命令。
 
-## 稳定性方法（本轮未执行）
+录音时说话或拍手，回放确认声音响应；分析结果检查时长、峰值、DC、AC RMS、削顶及启动后全零毫秒。室内背景声的幅度随环境变化，不使用阶段一正弦波的峰值/THD 作为真实麦克风门槛。必须保留原 WAV 才能复核，分析值不能单独证明无丢帧或标定声学性能。
 
-1. 连续录音 10 分钟：`--seconds 600`。对比录音时长、实际耗时、波形和 RTT 计数，USB 错误在稳定运行中应不增加。
+默认数字增益 4×；USER 按钮循环 4× → 16× → 1×，重启恢复。可以分别录音比较幅度及削顶；Windows 主通道静音应使输出为零，恢复后应继续响应。实体按钮和静音操作仍待手工验收，算法测试通过不能代替这两项。
+
+### 软件正弦诊断
+
+需要隔离麦克风/DSP 问题时，先烧录无采集的最小固件：
+
+```powershell
+cargo run --locked --release --no-default-features
+```
+
+在另一个窗口执行：
+
+```powershell
+python tools/record_windows.py --device STM32F4 --seconds 10 --output captures/tone.wav
+python tools/analyze_tone.py captures/tone.wav --json captures/tone-analysis.json
+```
+
+预期 1000 Hz 主峰，峰值约 8192（-12.04 dBFS），RMS 约 5793（-15.05 dBFS），DC 接近 0，无削顶和启动后整毫秒静音。分析脚本报告 THD 和周期差异；完整周期丢失可能无法由正弦波发现。
+
+要同时检查 PDM/PCM 后台处理，烧录 `cargo run --locked --release --no-default-features --features pdm-capture`；USB 仍为正弦。完成诊断后用 `cargo run --locked --release` 恢复真实麦克风。
+
+## 稳定性复验与剩余验收
+
+1. 连续录音 10 分钟：`--seconds 600`。此项已有阶段四历史通过记录；新固件复验仍需对比录音时长、实际耗时、波形和 RTT 计数。
 2. 录音启动/停止 20 次；CN1 保持供电时 CN5 插拔 20 次；每次 Windows 都应能重新打开录音。
 3. 再测试 Windows 睡眠/恢复、USB 端口或 Hub 切换。逐项记录操作、时刻、设备状态和故障，不把一次成功称为长期稳定。
 4. 保留开启和结束时的 RTT；恢复后 packets 必须继续增加，LED 不能停止。
 
-统计解释：`packets` 是驱动接受的写包数，不是主机确认收到的包数（等时传输不重试）。`usb_errors` 是 API 暴露的 BufferOverflow；`disabled` 是端点失效次数，可由正常停止/拔线引起。
-`discarded_samples` 只统计写包返回错误而丢弃的 16 个软件采样，不是端到端丢样总数。
-`pending/high` 是软件当前/最高待发送采样数（0/16），最低水位固定为 0；并非尚未存在的 DMA 环形缓冲区。
-`dma_active=false` 表示 DMA 错误、过载/欠载统计此时不适用。第二阶段必须加入真实 DMA 错误和环形缓冲区统计，第四阶段加入生产/消费丢样与时钟漂移策略。
-计数器为 u32 累计并会回绕，固件重启后清零；不要把重启造成的计数下降解释为恢复正常。
+600 秒命令示例（先保持默认固件运行，另一个窗口录音）：
+
+```powershell
+python tools/record_windows.py --device STM32F4 --seconds 600 --output captures/stability.wav
+python tools/analyze_microphone.py captures/stability.wav --json captures/stability-analysis.json
+```
+
+保存本次完整 RTT 为新的日志文件后再汇总，不要把仓库中的历史日志当作本次结果：
+
+```powershell
+python tools/summarize_rtt.py artifacts/retest-rtt.txt --json artifacts/retest-rtt-summary.json --expect-clean
+```
+
+稳态检查 `usb_errors/ring_overruns/dma_errors/overflow_events/lost_samples/underruns/missing_samples` 不增长。`disabled/discarded_samples` 可因正常关流增加；预填补零、空闲丢弃和重置清空单独统计。完整含义见 [RTT 字段表](architecture.md#rtt-字段与边界)。计数器复位、回绕或 RTT 丢日志都可能影响判断。
+
+三次顺序重开不等于 20 次启停；复位不等于断电启动或 CN5 拔插。20 次启停/拔插、睡眠恢复、不同端口、Windows 11 和 8 小时录音尚未系统完成，应逐项记录。
 
 ## 出问题时的观察顺序与回传资料
 
@@ -121,4 +155,4 @@ python tools/analyze_tone.py captures/stage1.wav --json captures/stage1-analysis
 | 能枚举但录不到 | 检查隐私权限、所选设备、alt=1 是否到来、packets 是否增长、mute 是否开启 |
 | 杂音/间断/重连后不恢复 | 保存 WAV、capture JSON、analysis JSON、RTT 前后计数、Windows 版本和发生故障的精确操作 |
 
-如需示波器检查，仅在排错阶段由用户操作：8 MHz 晶振应使用适合的高阻探头以免扰动；本阶段 PB10 无 PDM 时钟属于预期。无需外接模块完成正常使用。
+如需示波器检查，仅在排错阶段由用户操作：8 MHz 晶振应使用适合的高阻探头以免扰动。启用 `pdm-capture` 时 PB10 名义时钟为 1.024 MHz；只有 `--no-default-features` 且未启用采集时不输出 PDM 时钟。物理频率精度尚未测量；正常使用无需外接采集模块。

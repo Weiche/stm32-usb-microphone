@@ -3,6 +3,9 @@
 2026-11-05，实体 MB997B / STM32F407VG，Windows 10 Enterprise 19045，系统 usbaudio 驱动。
 默认 `live-mic` 已连接板载 MP45DT02 → PDM 解码 → USB；不依赖外接采集模块。已完成连续录音、重新打开音频流以及复位后的独立运行检查。
 
+本文是 2026-11-05 保存的验证记录；文档更新不代表重跑硬件测试。当前操作见 [Windows 指南](windows-validation.md)，模块和日志字段见 [架构说明](architecture.md)。
+文中的 `stage4-*` 证据文件位于 [artifacts](../artifacts/)；原始 WAV、ELF/BIN/map 不随 Git 交付。最终映像对应关系见 [来源记录](../artifacts/stage4-firmware-provenance.json) 和 [校验和](../artifacts/SHA256SUMS-stage4.txt)。
+
 ## 实现与故障边界
 
 USB 总线使用上游 `AudioSource`；未实现第二套音频类。配置 16 kHz、s16le、单声道，端点最大包长保留上游的 34 bytes，实际每包固定 32 bytes / 16 samples。
@@ -71,8 +74,15 @@ PCM 水位观察范围 145..272 samples；DSP 块最长观测 574 us（含被高
 cargo run --locked --release
 python tools/record_windows.py --seconds 600 --output captures/stability.wav
 python tools/analyze_microphone.py captures/stability.wav --json captures/stability-analysis.json
-python tools/summarize_rtt.py artifacts/stage4-rtt.txt --json artifacts/stage4-rtt-summary.json --expect-clean
 ```
+
+保持固件运行，在另一个 PowerShell 窗口录音。另将本次 RTT 保存为 `artifacts/retest-rtt.txt` 后汇总：
+
+```powershell
+python tools/summarize_rtt.py artifacts/retest-rtt.txt --json artifacts/retest-rtt-summary.json --expect-clean
+```
+
+仓库的 `stage4-rtt.txt` 是历史长测记录，可用于复算历史汇总，不能当作本次录音日志。
 
 录音时每秒约 1000 个成功提交的 USB 包、16000 PCM samples、1024000 PDM bits。应检查 `overflow_events/lost_samples/underruns/missing_samples/ring_overruns/dma_errors/usb_errors` 不增长。
 `priming_packets` 是启动有意补零；`idle_discarded` 是未录音时主动丢弃的实时输入；`reset_discarded` 是关闭/重置清空队列。

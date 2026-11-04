@@ -2,6 +2,8 @@
 
 2026-11-05，实体 MB997B / STM32F407VG。阶段一的 USB 软件正弦波保留，采集与 USB 使用独立任务。
 
+> 历史记录：本报告描述第二阶段构建，当时为 1024 半字 DMA /128 半字处理块。当前源码已改为 512 /64，默认 USB 输出真实麦克风，见 [当前架构](architecture.md) 和 [阶段四报告](stage4-live.md)。
+
 ## 配置依据
 
 按已核对的 MB997 B-02 原理图、ST 官方 BSP 和固定 Embassy 提交实现，未套用其他开发板配置。
@@ -48,7 +50,7 @@ HAL 遇 DMA TEIF 会 panic，因此 IRQ 前置处理先锁存并计数 TEIF/DMEI
 ## 复现与故障观察
 
 ```powershell
-cargo run --locked --release
+cargo run --locked --release --no-default-features --features pdm-capture
 python tools/extract_pdm.py artifacts/stage2-rtt.txt --output captures/stage2-pdm.u16le --json artifacts/stage2-pdm-analysis.json
 ```
 
@@ -58,4 +60,4 @@ python tools/extract_pdm.py artifacts/stage2-rtt.txt --output captures/stage2-pd
 若 ring_overruns 增加，回传水位、USB 状态和 RTT 模式；保持 no-block-skip，不能用阻塞打印代替实时诊断。
 若 `vbus=false`，先确认 CN5 仍连接；它与 PDM 位流是否活动是两个独立观察。
 
-目前默认 feature 为 `pdm-capture`，USB 仍发送软件正弦波；尚未将麦克风数据误当 PCM 直接送往 USB。
+第二阶段当时默认 feature 为 `pdm-capture`，USB 仍发送软件正弦波。上述命令显式选择当前源码的独立诊断模式，不会恢复第二阶段历史缓冲区配置；重现原始版本需使用对应阶段提交。

@@ -2,6 +2,8 @@
 
 查阅日期：2026-11-05（Asia/Tokyo）。用户确认板号为 MB997B、OTG CN5 已接电脑。
 
+本文保留初始资料核对与设计决策，外部资料未因文档整理而重新查阅。固定 revision 的源码链接是依赖依据；“当日”“第一阶段”“后续”描述当时状态，当前实现以 [架构说明](architecture.md) 与 [阶段四报告](stage4-live.md) 为准。
+
 ## Embassy 依赖
 
 所有直接使用的 Embassy crate 固定同一官方提交：
@@ -34,7 +36,7 @@ stream.write_packet(packet).await
 该音源描述符为 UAC1 / bcdADC=0x0100；拓扑为 Microphone Input Terminal → Mute Feature Unit → USB Streaming Output Terminal。
 仅一条采样率 16000、一声道、16-bit；IN 等时异步端点间隔 1 帧。
 上游按“每帧采样数加一个采样”的余量分配端点，因此 `wMaxPacketSize=34`，本阶段正常 payload 是 32 bytes，二者不矛盾。
-源设备没有单独 feedback 端点。当前软件波形随 USB 帧节拍发送；未来真实采集时钟与 USB SOF 独立，必须重新处理时钟漂移及 15/16/17 等可变采样包，不能只照搬本阶段定长包。
+源设备没有单独 feedback 端点。第一阶段软件波形随 USB 帧节拍发送；真实采集时钟与 USB SOF 独立，需要时钟漂移补偿。第四阶段最终采用分数重采样与固定 16-sample 包，15/16/17 变长包仅是未成功的早期尝试，不能当作当前策略。
 
 ## 板级原理图
 
@@ -53,7 +55,7 @@ MB997B 的完整 B-01/B-02 后缀尚未由用户确认；本阶段涉及的晶�
 | sheet 5 | PA9 VBUS_FS | 配为无上拉输入，开启硬件 VBUS detection |
 | sheet 5 | PC0 → U6 STMPS2141STR 的低有效 EN | PC0 高电平，关闭主机供电开关 |
 | sheet 5 | PA10 USB ID | 设备模式不启用 OTG 主机切换 |
-| sheet 4 / U9 MP45DT02 | PB10 CLK_IN、PC3 PDM_OUT | 第一阶段不驱动，留给 I²S2 |
+| sheet 4 / U9 MP45DT02 | PB10 CLK_IN、PC3 PDM_OUT | 当前由 I²S2 采集；第一阶段不驱动 |
 | sheet 6 | PD12 绿色 LED | 每秒翻转，证明 executor 有进展 |
 
 供电约定：CN1 供电，CN5 用于 USB 音频数据和 VBUS 检测。CN5 不是本固件的板级供电来源。
@@ -61,7 +63,7 @@ USB 描述符设 `self_powered=true`、CN5 `max_power=0`；板上 VBUS 检测/�
 
 PLL：8 MHz / M=8 × N=336 = 336 MHz VCO；P=2 得 168 MHz SYSCLK；Q=7 得 48 MHz USB。
 AHB=168 MHz、APB1=42 MHz、APB2=84 MHz；TIM2 由 HAL 作为 Embassy 时间驱动。
-第一阶段没有启用 PLLI2S。后续 PLLI2S 与主 PLL 共享 PLLM，必须保留一致的除数并计算真实 PDM 采样率。
+第一阶段没有启用 PLLI2S。当前采集模式共享 PLLM=8，以 PLLI2SN=256、PLLI2SR=5 得到 51.2 MHz 内核时钟；I²S 分频 50，名义 PDM 位速率 1.024 MHz，物理精度尚未独立测量。
 
 RAM：SRAM1 112 KiB + SRAM2 16 KiB = 128 KiB，位于 `0x20000000..0x20020000`。
 CCM 64 KiB 位于 `0x10000000`，DMA1/2 不可访问。`memory.x` 不声明 CCM；`inspect_elf.py` 检查全部已分配 section 只处于允许的 Flash/SRAM 区域。
@@ -79,7 +81,7 @@ CCM 64 KiB 位于 `0x10000000`，DMA1/2 不可访问。`memory.x` 不声明 CCM�
 `I2S2_Init` 为 Master RX、16B、LSB standard、CPOL HIGH、MCLK disabled，`AudioFreq=2*PCM AudioFreq`。
 这些 I²S 配置承载的是连续 PDM 位流，不表示麦克风直接输出 16-bit PCM。
 `PDMDecoder_Init` 使用 LSB 位序、小端、64 倍抽取、每毫秒 AudioFreq/1000 个 PCM 输出；ST 库使用 CRC 外设并带独立的库/许可要求。
-本项目后续将自写并测试 Rust PDM 滤波，不把 ST 二进制滤波库当作已实现功能。
+本项目现已实现并测试 Rust CIC/FIR/DC blocker，见 [第三阶段](stage3-decoder.md)；未使用 ST 二进制滤波库。
 
 BSP 的默认 32 MHz I²S 时钟与整数分频并非严格 1.024 MHz PDM 位时钟；不能把注释中的 16 kHz 当成已测得采样率。
-进入第二阶段前需检查 Embassy I²S 无 WS 用法、实际分频、位边沿/顺序，测量 PB10，再决定 PLLI2S；没有在第一阶段预设这些未经验证的参数。
+第二阶段已核对 HAL 的 WS 要求、分频及位序，并完成 DMA 活动位流验证；第三阶段进一步验证声音响应。PB10 物理位时钟的仪器测量仍未完成，不能把配置值当作测量结果。
