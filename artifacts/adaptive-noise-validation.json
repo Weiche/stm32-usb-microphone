@@ -1,0 +1,202 @@
+{
+  "algorithm": "Experimental anchored energy guard, 504ms quiet hold, slow bounded PSD tracking; exact firmware Rust DSP on host",
+  "parameters": {
+    "hop_samples": 128,
+    "update_alpha": 0.0016,
+    "per_bin_power_bounds_vs_calibration": [
+      0.25,
+      4.0
+    ]
+  },
+  "source_sha256": {
+    "src/noise_tracker.rs": "74387caae6409f83f02fedd06837aed5e0029818df7c4679fe394be1b0aa2f1a",
+    "src/denoiser.rs": "30b4e2f34b933c75ece660a93f5069a37dad3372d8412163e3ad2f3a30ed4142",
+    "examples/denoise_pcm.rs": "2d7d3a018b0faf11853cd21b83dbcd9b21433b5a3f6ae1c1b99bfbf8c78b3289",
+    "tools/validate_adaptive_noise.py": "28702d7391950fa549b0113c0a973b09d0d11edece10fb32006ea624366accb6",
+    "Cargo.toml": "7013a6a943adaee8a014c55b865ab0f0654fe3e276118a07cedf63f081fbcefd",
+    "src/lib.rs": "b68aa1dac0f7939c0c2fccf7bf3ff829cf4269bdd709020bfd69ef6ee835c8f7",
+    "src/main.rs": "ec5f42c3dc7b5cb9315d195b93c7560ca1e0b455ec3c298b5b7e37d49d715595",
+    "src/noise.rs": "f70ff1f6dbff6357d5d362fd2a8c4dcb29e0bc9cbbab2dfedaca2477b83c05fa",
+    "src/pdm.rs": "a4730bc0af6105ad668ad8dbc19660e1fa646bdbc9055519527095f7f9da170e"
+  },
+  "host_executable_sha256": "cb76e151b0812cacd4e102ffd3fa9552771984bbc87aaa22de3844c434cdb079",
+  "git_base": "fe16343a29702ff9a6c4821e317188da21f18f39",
+  "checks": {
+    "moderate_rise_followed": true,
+    "rise_residual_reduced": true,
+    "noise-rise_no_output_saturation": true,
+    "moderate_fall_followed": true,
+    "noise-fall_no_output_saturation": true,
+    "harmonics_not_learned": true,
+    "harmonic_reconstruction_not_degraded": true,
+    "harmonics_no_output_saturation": true,
+    "weak-harmonics_no_output_saturation": true,
+    "silent-calibration_not_learned": true,
+    "silent-calibration_no_output_saturation": true,
+    "room-recording_no_output_saturation": true
+  },
+  "passed": true,
+  "results": {
+    "noise-rise": {
+      "samples": 640000,
+      "input_pcm_sha256": "5a45cd2c4b1650fc30607c7051f00c90f398d0e2e5c909877e301b3987a906b6",
+      "final_power_ratio": 2.259,
+      "update_hops": 4937,
+      "guarded_hops_fraction": 0.0,
+      "full_scale_output_samples": 0,
+      "last_5s_extra_attenuation_vs_fixed_db": 2.1931802696573652,
+      "last_5s_input_to_output_attenuation_db": 11.942006351046926
+    },
+    "noise-fall": {
+      "samples": 640000,
+      "input_pcm_sha256": "4e79f7f9cb630ca29f22794546d5562b4d996bd546952f1908cacfbfa45dd185",
+      "final_power_ratio": 0.423,
+      "update_hops": 4937,
+      "guarded_hops_fraction": 0.0,
+      "full_scale_output_samples": 0,
+      "last_5s_extra_attenuation_vs_fixed_db": -0.06114674837702624,
+      "last_5s_input_to_output_attenuation_db": 11.93871836866029
+    },
+    "harmonics": {
+      "samples": 480000,
+      "input_pcm_sha256": "fb58db3d357c1a0d3ea628c5650723a8e5472d76918b2def7f9f42a1560725ce",
+      "final_power_ratio": 1.005,
+      "update_hops": 1099,
+      "guarded_hops_fraction": 0.6733333333333333,
+      "full_scale_output_samples": 0,
+      "known_signal_guard_fraction": 1.0,
+      "known_signal_update_hops": 0,
+      "known_signal_error_change_db": 0.021810454576346453
+    },
+    "weak-harmonics": {
+      "samples": 480000,
+      "input_pcm_sha256": "6f5e4d22694c604a5631610ad85a3f4af052e9b16503b35650430db3781c2371",
+      "final_power_ratio": 1.006,
+      "update_hops": 3687,
+      "guarded_hops_fraction": 0.0,
+      "full_scale_output_samples": 0,
+      "known_signal_guard_fraction": 0.0,
+      "known_signal_update_hops": 2487,
+      "scope": "Deliberate low-SNR limitation probe; updates during this synthetic signal are NOT asserted to be safe."
+    },
+    "silent-calibration": {
+      "samples": 480000,
+      "input_pcm_sha256": "de8d296a0708c89f630e4a290ab15255f43551d77f07db0d557425a5dc2de87d",
+      "final_power_ratio": 1.0,
+      "update_hops": 705,
+      "guarded_hops_fraction": 0.7784,
+      "full_scale_output_samples": 0,
+      "known_signal_guard_fraction": 1.0,
+      "known_signal_update_hops": 0
+    },
+    "room-recording": {
+      "samples": 480000,
+      "input_pcm_sha256": "5a78b8f99d7b23632a66c79126b51150c0cfebf96d87fe3b34b5f1612dbeb980",
+      "final_power_ratio": 1.374,
+      "update_hops": 2744,
+      "guarded_hops_fraction": 0.19786666666666666,
+      "full_scale_output_samples": 0,
+      "activity_requested": {
+        "interval_seconds": [
+          5,
+          15
+        ],
+        "guarded_fraction": 0.5912,
+        "updating_fraction": 0.2496,
+        "adaptive_vs_fixed_level_db": -0.021249194618214156
+      },
+      "background_requested": {
+        "interval_seconds": [
+          25,
+          30
+        ],
+        "guarded_fraction": 0.0,
+        "updating_fraction": 1.0,
+        "adaptive_vs_fixed_level_db": -1.063810029460054
+      },
+      "source_sha256": "674e7e9869d86d9afea7cfec62db0559d8a4c7752b837eae28ebda1c927475d6"
+    }
+  },
+  "limitations": [
+    "No on-board CPU, USB, timing, or stack verification of this new firmware.",
+    "Harmonics are synthetic, not a speech intelligibility benchmark.",
+    "Room segments follow the old recording protocol, contain pauses and have no clean-speech reference.",
+    "Energy guard can confuse weak speech and noise; strong or tonal background changes may freeze tracking.",
+    "Noise-change scenarios are deterministic synthetic signals, not a recorded fan-speed change.",
+    "The host uses a precomputed noise profile; startup calibration is tested separately in Rust.",
+    "Listening is required before enabling by default."
+  ],
+  "recorded_at": "2026-11-06T00:48:22.065796+09:00",
+  "firmware_build": {
+    "command": "cargo build --locked --release --features adaptive-noise",
+    "elf_sha256": "fa47e3eb716a77dccf399cca3e9375a42d344355d5fc7bedcf25288a0b652f4c",
+    "bin_sha256": "6905cc96d364c63ab1e93b2238b979e4da7291d878fa33503586ceb2c0725657",
+    "memory": {
+      "elf": "target\\thumbv7em-none-eabihf\\release\\stm32f4-usb-mic",
+      "entry": "0x08000189",
+      "flash_image_span_bytes": 92568,
+      "allocated_sram_bytes": 29768,
+      "sram_capacity_bytes": 131072,
+      "ccm_allocations": 0,
+      "stack_high_water": "not measured",
+      "sections": [
+        {
+          "section": ".vector_table",
+          "address": "0x08000000",
+          "bytes": 392,
+          "region": "FLASH"
+        },
+        {
+          "section": ".text",
+          "address": "0x08000188",
+          "bytes": 72592,
+          "region": "FLASH"
+        },
+        {
+          "section": ".rodata",
+          "address": "0x08011d18",
+          "bytes": 19200,
+          "region": "FLASH"
+        },
+        {
+          "section": ".data",
+          "address": "0x20000000",
+          "bytes": 384,
+          "region": "SRAM1/2"
+        },
+        {
+          "section": ".bss",
+          "address": "0x20000180",
+          "bytes": 28360,
+          "region": "SRAM1/2"
+        },
+        {
+          "section": ".uninit",
+          "address": "0x20007048",
+          "bytes": 1024,
+          "region": "SRAM1/2"
+        }
+      ]
+    },
+    "flashed": false
+  },
+  "verification": {
+    "tools/check.ps1": "passed: fmt, default firmware build, default/adaptive firmware Clippy, 27 Rust tests, host tests Clippy, host example Clippy",
+    "compatibility_clippy": "passed: no features, pdm-capture, raw live-mic",
+    "python_offline_tests": "5 passed",
+    "fixed_profile_python_parity": "passed, maximum difference 1 LSB; artifacts/denoiser-host-parity.json"
+  },
+  "listening_copies": {
+    "interval_seconds": [
+      3,
+      15
+    ],
+    "shared_gain_db": 12,
+    "individual_normalization": false,
+    "clipped_samples": 0,
+    "local_files": [
+      "listen-room-fixed.wav",
+      "listen-room-adaptive.wav"
+    ]
+  }
+}

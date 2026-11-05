@@ -9,6 +9,7 @@ default = ["live-mic", "noise-suppression"]
 pdm-capture = []
 live-mic = ["pdm-capture"]
 noise-suppression = ["live-mic"]
+adaptive-noise = ["noise-suppression"]
 
 [lib]
 path = "src/lib.rs"

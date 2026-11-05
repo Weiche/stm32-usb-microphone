@@ -107,7 +107,9 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
     #[cfg(feature = "noise-suppression")]
     let denoiser = {
         static STATE: StaticCell<stm32f4_usb_mic::denoiser::Denoiser> = StaticCell::new();
-        STATE.init(stm32f4_usb_mic::denoiser::Denoiser::new())
+        let state = STATE.init(stm32f4_usb_mic::denoiser::Denoiser::new());
+        state.set_adaptive_enabled(cfg!(feature = "adaptive-noise"));
+        state
     };
     #[cfg(feature = "noise-suppression")]
     let mut processed = [0.0f32; BLOCK_WORDS / 4];

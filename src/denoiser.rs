@@ -1,6 +1,8 @@
 //! Allocation-free, 12 dB calibrated Wiener suppression, 16 kHz mono.
 //! Both active and bypass paths have a fixed 256-sample pipeline delay.
 use crate::denoiser_tables::{TWIDDLE, WINDOW};
+use crate::noise_tracker::NoiseTracker;
+pub use crate::noise_tracker::TrackingStatus;
 
 pub const FFT_SIZE: usize = 256;
 pub const HOP: usize = 128;
@@ -86,6 +88,7 @@ pub struct Denoiser {
     calibration: u32,
     enabled: bool,
     ready: bool,
+    tracker: NoiseTracker,
 }
 
 impl Default for Denoiser {
@@ -110,6 +113,7 @@ impl Denoiser {
             calibration: 0,
             enabled: true,
             ready: false,
+            tracker: NoiseTracker::new(),
         }
     }
 
@@ -123,6 +127,7 @@ impl Denoiser {
         state.ready = true;
         state.warmup = 0;
         state.previous_gain.fill(FLOOR);
+        state.tracker.initialize(&state.noise);
         state
     }
 
@@ -133,7 +138,19 @@ impl Denoiser {
         self.calibration
     }
     pub fn set_enabled(&mut self, enabled: bool) {
+        if self.enabled != enabled {
+            self.tracker.pause();
+        }
         self.enabled = enabled;
+    }
+
+    /// Opt-in experimental tracking; fixed-profile behavior remains the default.
+    pub fn set_adaptive_enabled(&mut self, enabled: bool) {
+        self.tracker.set_enabled(enabled);
+    }
+
+    pub fn tracking_status(&self) -> TrackingStatus {
+        self.tracker.status()
     }
 
     /// Relearn in a quiet room. Audio continues in delayed bypass during learning.
@@ -144,10 +161,12 @@ impl Denoiser {
         self.ready = false;
         self.previous_gain.fill(1.0);
         self.previous_posterior.fill(0.0);
+        self.tracker.initialize(&[1e-20; BINS]);
     }
 
     /// Reset temporal history after an input discontinuity, retaining calibration.
     pub fn reset_signal(&mut self) {
+        self.tracker.pause();
         self.input.fill(0.0);
         self.output.fill(0.0);
         self.overlap.fill(0.0);
@@ -218,10 +237,18 @@ impl Denoiser {
                         *noise = (*noise / CALIBRATION_FRAMES as f32).max(1e-20);
                     }
                     self.ready = true;
+                    self.tracker.initialize(&self.noise);
                 }
             }
         }
         if !learning && self.enabled {
+            if self.tracker.status().enabled {
+                // Reuse the gain scratch array before it is overwritten below.
+                for (power, sample) in self.target.iter_mut().zip(&self.work) {
+                    *power = sample.re * sample.re + sample.im * sample.im;
+                }
+                self.tracker.observe(&self.target, &mut self.noise);
+            }
             for bin in 0..BINS {
                 let sample = self.work[bin];
                 let posterior =
@@ -287,6 +314,7 @@ mod tests {
     #[test]
     fn bypass_has_exact_delay_and_keeps_sample_values() {
         let mut state = Denoiser::with_noise_profile(&[1.0; BINS]);
+        state.set_adaptive_enabled(true);
         state.set_enabled(false);
         let mut history = [0i16; 2048];
         for (i, x) in history[..1792].iter_mut().enumerate() {
@@ -303,21 +331,40 @@ mod tests {
         }
         assert!(actual[..DELAY_SAMPLES].iter().all(|&x| x == 0));
         assert_eq!(&actual[DELAY_SAMPLES..], &history[..1792]);
+        assert_eq!(state.tracking_status().updates, 0);
     }
 
     #[test]
     fn calibration_completes_and_signal_reset_preserves_it() {
         let mut state = Denoiser::new();
+        state.set_adaptive_enabled(true);
         let mut output = [0; BLOCK];
         for _ in 0..(WARMUP_FRAMES + CALIBRATION_FRAMES) * (HOP / BLOCK) as u32 {
             state.process(&[0; BLOCK], &mut output);
         }
         assert!(state.ready());
         assert_eq!(state.calibration_frames(), CALIBRATION_FRAMES);
+        assert!(state.tracking_status().enabled);
+        // Learning must start only after the calibrated reference exists.
+        assert_eq!(state.tracking_status().updates, 0);
+        for _ in 0..100 * HOP / BLOCK {
+            state.process(&[0; BLOCK], &mut output);
+        }
+        let updates = state.tracking_status().updates;
+        assert!(updates > 0);
+        let noise = state.noise;
         state.reset_signal();
         assert!(state.ready());
+        assert_eq!(state.noise, noise);
+        assert_eq!(state.tracking_status().updates, updates);
+        for _ in 0..63 * HOP / BLOCK {
+            state.process(&[0; BLOCK], &mut output);
+        }
+        assert_eq!(state.tracking_status().updates, updates);
         state.recalibrate();
         assert!(!state.ready());
         assert_eq!(state.calibration_frames(), 0);
+        assert!(state.tracking_status().enabled);
+        assert_eq!(state.tracking_status().updates, 0);
     }
 }

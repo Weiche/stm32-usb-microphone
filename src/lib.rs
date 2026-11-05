@@ -6,6 +6,7 @@ pub mod denoiser;
 mod denoiser_tables;
 mod fir_coeffs;
 pub mod level_meter;
+mod noise_tracker;
 pub mod resampler;
 mod resampler_coeffs;
 

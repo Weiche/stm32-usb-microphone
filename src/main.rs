@@ -220,6 +220,8 @@ async fn main(spawner: Spawner) {
         defmt::info!(
             "noise: 12dB cap; startup calibration, keep quiet for 5 seconds; USER hold 1-3s=bypass, >=3s=relearn"
         );
+        #[cfg(feature = "adaptive-noise")]
+        defmt::info!("noise: experimental guarded background tracking enabled");
     }
 
     static EP_OUT: StaticCell<[u8; 256]> = StaticCell::new();

@@ -7,10 +7,14 @@ try {
     if ($LASTEXITCODE) { throw 'firmware build failed' }
     cargo clippy --locked --release -- -D warnings
     if ($LASTEXITCODE) { throw 'firmware clippy failed' }
+    cargo clippy --locked --release --features adaptive-noise -- -D warnings
+    if ($LASTEXITCODE) { throw 'adaptive firmware clippy failed' }
     cargo test --locked --lib --target x86_64-pc-windows-msvc
     if ($LASTEXITCODE) { throw 'host tests failed' }
     cargo clippy --locked --lib --tests --target x86_64-pc-windows-msvc -- -D warnings
     if ($LASTEXITCODE) { throw 'host clippy failed' }
+    cargo clippy --locked --release --example denoise_pcm --target x86_64-pc-windows-msvc -- -D warnings
+    if ($LASTEXITCODE) { throw 'host denoiser example clippy failed' }
 } finally {
     Pop-Location
 }

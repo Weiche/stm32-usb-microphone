@@ -10,6 +10,14 @@ static READY: AtomicBool = AtomicBool::new(false);
 static CALIBRATION: AtomicU32 = AtomicU32::new(0);
 static HOPS: AtomicU32 = AtomicU32::new(0);
 static MAX_US: AtomicU32 = AtomicU32::new(0);
+#[cfg(feature = "adaptive-noise")]
+static TRACK_SPEECH: AtomicBool = AtomicBool::new(false);
+#[cfg(feature = "adaptive-noise")]
+static TRACK_UPDATING: AtomicBool = AtomicBool::new(false);
+#[cfg(feature = "adaptive-noise")]
+static TRACK_UPDATES: AtomicU32 = AtomicU32::new(0);
+#[cfg(feature = "adaptive-noise")]
+static TRACK_POWER: AtomicU32 = AtomicU32::new(1000);
 
 pub fn process(state: &mut Denoiser, input: &[i16; BLOCK], output: &mut [f32; BLOCK]) {
     let work = crate::perf::begin();
@@ -21,6 +29,14 @@ pub fn process(state: &mut Denoiser, input: &[i16; BLOCK], output: &mut [f32; BL
     if state.process_f32(input, output) {
         HOPS.fetch_add(1, Relaxed);
         MAX_US.fetch_max(start.elapsed().as_micros() as u32, Relaxed);
+        #[cfg(feature = "adaptive-noise")]
+        {
+            let tracking = state.tracking_status();
+            TRACK_SPEECH.store(tracking.speech_detected, Relaxed);
+            TRACK_UPDATING.store(tracking.updating, Relaxed);
+            TRACK_UPDATES.store(tracking.updates, Relaxed);
+            TRACK_POWER.store(tracking.power_permille, Relaxed);
+        }
     }
     READY.store(state.ready(), Relaxed);
     CALIBRATION.store(state.calibration_frames(), Relaxed);
@@ -35,6 +51,14 @@ pub fn log_stats() {
         CALIBRATION.load(Relaxed),
         HOPS.load(Relaxed),
         MAX_US.load(Relaxed)
+    );
+    #[cfg(feature = "adaptive-noise")]
+    defmt::info!(
+        "noise tracking=true speech_guard={} updating={} updates={} power_permille={}",
+        TRACK_SPEECH.load(Relaxed),
+        TRACK_UPDATING.load(Relaxed),
+        TRACK_UPDATES.load(Relaxed),
+        TRACK_POWER.load(Relaxed)
     );
 }
 
