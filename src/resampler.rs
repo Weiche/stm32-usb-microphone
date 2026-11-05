@@ -21,9 +21,19 @@ impl Resampler {
     }
     /// Returns None on missing input. Caller must re-prime and reset after starvation.
     pub fn next(&mut self, step_q16: u32, mut input: impl FnMut() -> Option<i16>) -> Option<i16> {
+        self.next_f32(step_q16, || input().map(f32::from))
+            .map(|sample| sample.clamp(-32768.0, 32767.0) as i16)
+    }
+
+    /// PCM in LSB units, retaining fractional precision until USB digital gain.
+    pub fn next_f32(
+        &mut self,
+        step_q16: u32,
+        mut input: impl FnMut() -> Option<f32>,
+    ) -> Option<f32> {
         assert!((65208..=65864).contains(&step_q16));
         for _ in 0..self.phase_q16 >> 16 {
-            let sample = f32::from(input()?);
+            let sample = input()?;
             self.history[self.cursor] = sample;
             self.history[self.cursor + 48] = sample;
             self.cursor += 1;
@@ -42,7 +52,7 @@ impl Resampler {
             b += sample * c1;
         }
         self.phase_q16 += step_q16;
-        Some((a + (b - a) * blend).clamp(-32768.0, 32767.0) as i16)
+        Some(a + (b - a) * blend)
     }
 }
 
@@ -50,6 +60,16 @@ impl Resampler {
 mod tests {
     use super::*;
     extern crate std;
+    #[test]
+    fn fractional_pcm_is_not_quantized_before_gain() {
+        let mut state = Resampler::new();
+        for i in 0..100 {
+            let sample = state.next_f32(65536, || Some(0.24)).unwrap();
+            if i > 64 {
+                assert!((sample - 0.24).abs() < 1e-6);
+            }
+        }
+    }
     #[test]
     fn every_fraction_preserves_dc_and_voice_band() {
         for taps in PHASES {

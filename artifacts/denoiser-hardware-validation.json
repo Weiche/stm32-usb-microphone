@@ -1,0 +1,215 @@
+{
+  "recorded_at": "2026-11-05T23:25:57.460947+09:00",
+  "board": "STM32F407VG / MB997B, SYSCLK 168 MHz, Windows 10, CN1 powered and CN5 via original hub",
+  "firmware": {
+    "default_features": [
+      "live-mic",
+      "noise-suppression"
+    ],
+    "elf_sha256": "0486639242a28b4df6874c21be165b2a6286089c428548c740b7eace80ee4cf7",
+    "bin_sha256": "1986c026d29a5c9d10f6b1883f3f1258065b973920fa5d9424cd51406f43150d",
+    "flash_verified": true,
+    "flash_acr_before": "0x005",
+    "flash_acr_after": "0x705",
+    "stronger_profile_cap_db": 12,
+    "noise_profile": "On-device pre-gain PCM calibration: 504 ms warmup + 4 s averaging; fixed until recalibration",
+    "extra_pipeline_delay_samples": 256,
+    "extra_pipeline_delay_ms": 16,
+    "retains_float_pcm_until_final_gain": true
+  },
+  "checks": {
+    "tools/check.ps1": "passed, 20 Rust tests plus build/fmt/firmware and host clippy",
+    "compatibility_clippy": "passed: no features, pdm-capture only, live-mic without suppression",
+    "offline_reference_tests": "5 passed",
+    "host_parity": {
+      "input_sha256": "674e7e9869d86d9afea7cfec62db0559d8a4c7752b837eae28ebda1c927475d6",
+      "reference": "captures\\denoise-offline-v1\\wiener-12db.wav",
+      "samples": 480000,
+      "max_abs_error_lsb": 1.0,
+      "rms_error_lsb": 0.0035355339059327377,
+      "same_samples_fraction": 0.9999875,
+      "passed": true,
+      "scope": "Host execution of exact no_std f32 DSP with the same fixed profile; startup on-device calibration is separate."
+    }
+  },
+  "memory": {
+    "elf": "target\\thumbv7em-none-eabihf\\release\\stm32f4-usb-mic",
+    "entry": "0x08000189",
+    "flash_image_span_bytes": 85712,
+    "allocated_sram_bytes": 29048,
+    "sram_capacity_bytes": 131072,
+    "ccm_allocations": 0,
+    "stack_high_water": "not measured",
+    "sections": [
+      {
+        "section": ".vector_table",
+        "address": "0x08000000",
+        "bytes": 392,
+        "region": "FLASH"
+      },
+      {
+        "section": ".text",
+        "address": "0x08000188",
+        "bytes": 67012,
+        "region": "FLASH"
+      },
+      {
+        "section": ".rodata",
+        "address": "0x0801074c",
+        "bytes": 17924,
+        "region": "FLASH"
+      },
+      {
+        "section": ".data",
+        "address": "0x20000000",
+        "bytes": 384,
+        "region": "SRAM1/2"
+      },
+      {
+        "section": ".bss",
+        "address": "0x20000180",
+        "bytes": 27640,
+        "region": "SRAM1/2"
+      },
+      {
+        "section": ".uninit",
+        "address": "0x20006d78",
+        "bytes": 1024,
+        "region": "SRAM1/2"
+      }
+    ]
+  },
+  "recordings": [
+    {
+      "capture": {
+        "device": {
+          "id": 0,
+          "name": "麦克风 (STM32F4 USB Microphone)",
+          "channels": 2
+        },
+        "bytes": 3840000,
+        "samples": 1920000,
+        "sample_rate": 16000,
+        "channels": 1,
+        "bits": 16,
+        "wall_seconds": 120.03419189999931,
+        "file": "captures\\denoiser-float-120s.wav"
+      },
+      "analysis": {
+        "file": "captures\\denoiser-float-120s.wav",
+        "samples": 1920000,
+        "duration_seconds": 120.0,
+        "clipped_samples": 0,
+        "zero_ms_after_first_200ms": 0,
+        "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+      },
+      "wav_sha256": "d267278a5aa2d6401a5905bf8943014b7287ce4dc797e27c25ec3d7cc6a474ef",
+      "debugger_attached": true
+    },
+    {
+      "capture": {
+        "device": {
+          "id": 0,
+          "name": "麦克风 (STM32F4 USB Microphone)",
+          "channels": 2
+        },
+        "bytes": 1920000,
+        "samples": 960000,
+        "sample_rate": 16000,
+        "channels": 1,
+        "bits": 16,
+        "wall_seconds": 60.03425810000044,
+        "file": "captures\\denoiser-float-standalone-60s.wav"
+      },
+      "analysis": {
+        "file": "captures\\denoiser-float-standalone-60s.wav",
+        "samples": 960000,
+        "duration_seconds": 60.0,
+        "clipped_samples": 0,
+        "zero_ms_after_first_200ms": 0,
+        "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+      },
+      "wav_sha256": "0ea89028fde76cb377218b2f5c680a67979b3b4b8279d521a566886464e233ee",
+      "debugger_attached": false
+    }
+  ],
+  "rtt": {
+    "log": "captures\\denoiser-float-rtt.txt",
+    "max_observed_cumulative_values": {
+      "packets": 120021,
+      "usb_errors": 0,
+      "disabled": 1,
+      "discarded_samples": 16,
+      "ring_overruns": 0,
+      "dma_errors": 0,
+      "overflow_events": 0,
+      "lost_samples": 0,
+      "underruns": 0,
+      "missing_samples": 0,
+      "priming_packets": 11,
+      "reset_discarded": 264,
+      "clipped": 0,
+      "decode_max_us": 363,
+      "prepare_max_us": 89
+    },
+    "observed_error_counters_zero": true,
+    "stream_starts": 1,
+    "usb_resets": 2,
+    "scope": "Only visible firmware counters. Normal alt=0 cancels one pending packet; discarded_samples includes this. No proof of absence of every on-wire loss."
+  },
+  "dwt_work": {
+    "selected_streaming_windows": 119,
+    "selection": "stats stream=true and audio_permille >50 to omit partial start/stop intervals",
+    "permille": {
+      "dsp_permille": {
+        "min": 425,
+        "median": 425,
+        "max": 428
+      },
+      "audio_permille": {
+        "min": 85,
+        "median": 85,
+        "max": 85
+      },
+      "noise_subset_permille": {
+        "min": 145,
+        "median": 145,
+        "max": 147
+      },
+      "accounted_permille": {
+        "min": 510,
+        "median": 510,
+        "max": 513
+      }
+    },
+    "scope": "Instrumented DSP and packet preparation only, not complete CPU utilization. DSP deducts nested audio preparation cycles. Noise is a subset of DSP. Other IRQ time can be included within measured spans; other tasks/IRQs are not comprehensively covered."
+  },
+  "noise_hop_max_observed_us": 1319,
+  "intermediate_versions": [
+    {
+      "label": "Initial FFT, Flash acceleration disabled, integer queue",
+      "wav": "captures/denoiser-live-30s.wav",
+      "zero_ms_after_200ms": 2,
+      "rtt": "captures/denoiser-initial-rtt.txt",
+      "note": "Instrumented work about 88%; no reported firmware error counters. Zero samples alone do not prove USB packet loss."
+    },
+    {
+      "label": "Flash acceleration enabled, integer queue",
+      "wav": "captures/denoiser-final-120s.wav",
+      "zero_ms_after_200ms": 7,
+      "standalone_wav": "captures/denoiser-standalone-60s.wav",
+      "standalone_zero_ms_after_200ms": 3,
+      "rtt": "captures/denoiser-final-rtt.txt",
+      "note": "Long zero runs often not aligned to USB packet boundaries; final revision retains fractional PCM until final gain."
+    }
+  ],
+  "limitations": [
+    "The 120 s final run has RTT counters; the standalone 60 s run has WAV completion and signal metrics without reading live MCU counters.",
+    "Zero counters and WAV metrics cannot prove absence of every USB on-wire loss.",
+    "No clean acoustic reference or calibrated on-device noise-reduction dB measurement was made; offline listening acceptance remains separate.",
+    "Physical USER long-press controls, mute, power-cycle calibration, repeated unplug/reconnect, Windows 11 and longer endurance remain unverified.",
+    "Stack high-water, strict WCET and complete end-to-end latency remain unmeasured."
+  ],
+  "final_state": "Final default suppression firmware left running; debugger exited, no reset after successful calibration; uncommitted source changes.",
+  "local_evidence": "Complete WAV/RTT/ELF/BIN and analysis files remain under ignored captures/; tracked summaries do not contain original speech audio."
+}

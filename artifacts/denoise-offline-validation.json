@@ -1,0 +1,145 @@
+{
+  "input": "captures\\denoise-room-30s.wav",
+  "input_sha256": "674e7e9869d86d9afea7cfec62db0559d8a4c7752b837eae28ebda1c927475d6",
+  "rate_hz": 16000,
+  "samples": 480000,
+  "duration_seconds": 30.0,
+  "python": "3.13.3",
+  "numpy": "2.4.4",
+  "algorithm": "Calibrated decision-directed Wiener baseline; fixed noise PSD, gain smoothing",
+  "parameters": {
+    "fft_size": 256,
+    "hop_samples": 128,
+    "window": "periodic sqrt-Hann, normalized overlap-add",
+    "decision_directed_alpha": 0.96,
+    "gain_smoothing_open_close": [
+      0.2,
+      0.8
+    ],
+    "frequency_smoothing_kernel": [
+      0.25,
+      0.5,
+      0.25
+    ]
+  },
+  "calibration_seconds": [
+    0.5,
+    4.5
+  ],
+  "results": [
+    {
+      "name": "Mild (6 dB cap)",
+      "max_spectral_attenuation_db": 6,
+      "file": "captures\\denoise-offline-v1\\wiener-6db.wav",
+      "samples": 480000,
+      "clipped_samples_at_write": 0,
+      "background": {
+        "interval_seconds": [
+          25,
+          30
+        ],
+        "input_rms_lsb": 213.38223687200394,
+        "output_rms_lsb": 118.99103248774674,
+        "level_reduction_db": 5.072880611479121,
+        "scope": "Total recorded level change; not clean-speech SNR or intelligibility."
+      },
+      "speech_requested_region": {
+        "interval_seconds": [
+          5,
+          15
+        ],
+        "input_rms_lsb": 441.62121387423184,
+        "output_rms_lsb": 399.6729585001342,
+        "level_reduction_db": 0.86690323705419,
+        "scope": "Total recorded level change; not clean-speech SNR or intelligibility."
+      }
+    },
+    {
+      "name": "Stronger (12 dB cap)",
+      "max_spectral_attenuation_db": 12,
+      "file": "captures\\denoise-offline-v1\\wiener-12db.wav",
+      "samples": 480000,
+      "clipped_samples_at_write": 0,
+      "background": {
+        "interval_seconds": [
+          25,
+          30
+        ],
+        "input_rms_lsb": 213.38223687200394,
+        "output_rms_lsb": 71.14430300452736,
+        "level_reduction_db": 9.540362690395721,
+        "scope": "Total recorded level change; not clean-speech SNR or intelligibility."
+      },
+      "speech_requested_region": {
+        "interval_seconds": [
+          5,
+          15
+        ],
+        "input_rms_lsb": 441.62121387423184,
+        "output_rms_lsb": 387.8847367372813,
+        "level_reduction_db": 1.126944733933036,
+        "scope": "Total recorded level change; not clean-speech SNR or intelligibility."
+      }
+    }
+  ],
+  "listening_copies": {
+    "excerpt_seconds": [
+      3,
+      15
+    ],
+    "shared_gain_db": 12,
+    "individual_loudness_normalization": false,
+    "clipping": false
+  },
+  "limitations": [
+    "Noise-only and speech regions follow the user's recording protocol; not independently transcribed.",
+    "Real recording has no clean-speech reference. Level reduction is not an SNR improvement measurement.",
+    "Calibration precedes processing the entire file, including its beginning; not a streaming startup implementation.",
+    "Fixed profile does not track changes in the fan/AC after calibration.",
+    "Aligned offline output does not measure MCU CPU load, memory, end-to-end latency or USB stability.",
+    "Audio naturalness and consonant preservation require listening."
+  ],
+  "recorded_at": "2026-11-05T22:51:26.692683+09:00",
+  "capture_metadata": {
+    "device": {
+      "id": 0,
+      "name": "麦克风 (STM32F4 USB Microphone)",
+      "channels": 2
+    },
+    "bytes": 960000,
+    "samples": 480000,
+    "sample_rate": 16000,
+    "channels": 1,
+    "bits": 16,
+    "wall_seconds": 30.013843499999894,
+    "file": "captures\\denoise-room-30s.wav"
+  },
+  "verification": {
+    "unittest_command": "python -m unittest discover -s tools -p test_denoise_offline.py -v",
+    "tests_passed": 5,
+    "source_pcm_copy_exact": true,
+    "full_output_samples_each": 480000,
+    "listening_samples_each": 192000,
+    "plot_visually_inspected": true
+  },
+  "tool_sha256": "9c704ea835c4db0ad56347cf19c0f715ab28a8acdf283efbd9d81dae8d46ecd3",
+  "output_sha256": {
+    "listen-original.wav": "bc5d9555bd64ccab4bce24d6f0007acce3454ce5b882e04f8e894db0fb2131b6",
+    "listen-wiener-12db.wav": "9d17326f5c92f87e94b50db0660b550519b193dbae9343b67837c6d0ab2bb128",
+    "listen-wiener-6db.wav": "a0e12b82809e2f7c0709b11c5743ddad6b1dee9c39ef11582faf2ada5490dcfa",
+    "original.wav": "674e7e9869d86d9afea7cfec62db0559d8a4c7752b837eae28ebda1c927475d6",
+    "wiener-12db.wav": "ece2dd302745660d6e7801a995e50a013b59e666fc34f3e593197dfc28ee8ae8",
+    "wiener-6db.wav": "ca12552d228f4ba7e3f04cc6e0a78b5235a38d52c3404c2a948aa4d187a2fef5"
+  },
+  "local_outputs": "captures\\denoise-offline-v1",
+  "firmware_modified": false,
+  "listening_feedback": {
+    "date": "2026-11-05",
+    "source": "User feedback after auditioning the supplied comparison clips",
+    "feedback": "User reports that the stronger setting currently seems acceptable without obvious problems.",
+    "selected_profile": "Stronger (12 dB cap)",
+    "max_spectral_attenuation_db": 12,
+    "decision": "Baseline for a subsequent MCU port",
+    "scope": "This recording and listening session only; not a general speech-quality or on-device validation."
+  }
+}

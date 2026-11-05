@@ -1,6 +1,26 @@
 use embassy_stm32::rcc::*;
 use embassy_stm32::time::Hertz;
 
+/// STM32F407 ART Flash read acceleration. Call after RCC initialization, which
+/// writes FLASH_ACR latency and clears the cache/prefetch enables in this HAL.
+/// These are Flash-side caches, not a DMA-visible SRAM data cache.
+pub fn enable_flash_acceleration() {
+    let flash = embassy_stm32::pac::FLASH;
+    let before = flash.acr().read().0;
+    flash.acr().modify(|w| {
+        w.set_icen(true);
+        w.set_dcen(true);
+        w.set_prften(true);
+    });
+    cortex_m::asm::dsb();
+    cortex_m::asm::isb();
+    defmt::info!(
+        "flash ACR before={=u32:x} after={=u32:x}",
+        before,
+        flash.acr().read().0
+    );
+}
+
 pub fn config() -> embassy_stm32::Config {
     let mut config = embassy_stm32::Config::default();
     // MB997 B-02 schematic sheet 3: X2, 8 MHz on PH0/PH1.

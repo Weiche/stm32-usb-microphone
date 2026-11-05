@@ -1,19 +1,24 @@
 //! Bounded PCM queue, capture/USB clock control, and saturating gain.
-pub struct PcmRing<const N: usize> {
-    data: [i16; N],
+pub struct PcmRing<const N: usize, T: Copy = i16> {
+    data: [T; N],
     read: usize,
     len: usize,
 }
-impl<const N: usize> Default for PcmRing<N> {
+impl<const N: usize, T: Copy + Default> Default for PcmRing<N, T> {
     fn default() -> Self {
-        Self::new()
+        Self::with_zero(T::default())
     }
 }
 impl<const N: usize> PcmRing<N> {
     pub const fn new() -> Self {
+        Self::with_zero(0)
+    }
+}
+impl<const N: usize, T: Copy> PcmRing<N, T> {
+    pub const fn with_zero(zero: T) -> Self {
         assert!(N > 0);
         Self {
-            data: [0; N],
+            data: [zero; N],
             read: 0,
             len: 0,
         }
@@ -31,7 +36,7 @@ impl<const N: usize> PcmRing<N> {
         count
     }
     /// Preserve the newest data if full; return the exact number of old samples lost.
-    pub fn push(&mut self, samples: &[i16]) -> usize {
+    pub fn push(&mut self, samples: &[T]) -> usize {
         let mut discarded = 0;
         for &sample in samples {
             if self.len == N {
@@ -47,7 +52,7 @@ impl<const N: usize> PcmRing<N> {
         }
         discarded
     }
-    pub fn pop(&mut self) -> Option<i16> {
+    pub fn pop(&mut self) -> Option<T> {
         if self.len == 0 {
             return None;
         }
@@ -94,9 +99,30 @@ pub fn gain(sample: i16, q8: u32) -> (i16, bool) {
     )
 }
 
+/// Preserve sub-LSB denoiser/resampler output until after digital gain.
+pub fn gain_f32(sample: f32, q8: u32) -> (i16, bool) {
+    let value = sample * q8.min(4096) as f32 / 256.0;
+    let rounded = if value >= 0.0 {
+        value + 0.5
+    } else {
+        value - 0.5
+    };
+    let clipped = !(-32768.0..32768.0).contains(&value);
+    (rounded.clamp(-32768.0, 32767.0) as i16, clipped)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn fractional_pcm_survives_queue_and_final_gain() {
+        let mut ring = PcmRing::<4, f32>::with_zero(0.0);
+        ring.push(&[0.24, -0.24, 0.12]);
+        assert_eq!(gain_f32(ring.pop().unwrap(), 1024), (1, false));
+        assert_eq!(gain_f32(ring.pop().unwrap(), 1024), (-1, false));
+        assert_eq!(gain_f32(ring.pop().unwrap(), 4096), (2, false));
+        assert_eq!(gain_f32(9000.0, 1024), (32767, true));
+    }
     #[test]
     fn overflow_keeps_fresh_data_and_reports_exact_loss() {
         let mut ring = PcmRing::<4>::new();

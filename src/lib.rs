@@ -2,6 +2,8 @@
 
 pub mod audio_queue;
 pub mod decoder;
+pub mod denoiser;
+mod denoiser_tables;
 mod fir_coeffs;
 pub mod resampler;
 mod resampler_coeffs;

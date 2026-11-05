@@ -2,6 +2,7 @@
 
 Rust + Embassy，STM32F407VG / MB997B，板载 MP45DT02，无外接采集模块。
 默认固件将真实麦克风送到 UAC1：16 kHz、16-bit PCM、单声道；Windows 原生 usbaudio 驱动。
+默认启用 12 dB 上限的 Wiener 降噪。启动后先保持安静约 5 秒，红灯熄灭、橙灯亮后完成校准；使用与验证范围见 [板上降噪](docs/live-denoise.md)。
 
 阶段一的 USB 正弦波、阶段二的 I²S2 DMA、阶段三的 PDM 解码均已在本机实体板验证并分别提交。
 阶段四已完成 600 秒连续实体麦克风录音、停止后重开和复位后脱离调试器的 10 秒录音；可观察错误/丢样计数在连续测试中为 0。结果见 [实时麦克风验证](docs/stage4-live.md)。
@@ -28,20 +29,22 @@ cargo build --locked --release
 cargo run --locked --release
 ```
 
-Cargo runner 使用 `STM32F407VGTx --speed 1000 --connect-under-reset --verify --rtt-channel-mode no-block-skip`。
+Cargo runner 使用 `STM32F407VGTx --speed 1000 --connect-under-reset --verify --no-catch-reset --rtt-channel-mode no-block-skip`。
 需要将 probe-rs 加入 PATH；工具读取 RTT 不应使用 blocking 模式。若执行策略阻止脚本，可逐条运行其命令。
 烧录会覆盖目标 MCU 应用。构建产物位于 `target/thumbv7em-none-eabihf/release/stm32f4-usb-mic`。
 
 | 选择 | 命令 | USB 内容 |
 | --- | --- | --- |
-| 默认实时麦克风 | `cargo build --locked --release` | 真实 PCM，默认 4× 数字增益 |
+| 默认实时降噪麦克风 | `cargo build --locked --release` | Wiener 降噪，默认 4× 数字增益 |
+| 原声实时麦克风 | `cargo build --locked --release --no-default-features --features live-mic` | 真实 PCM，无降噪 |
 | PDM/PCM 独立诊断 | `cargo build --locked --release --no-default-features --features pdm-capture` | 1 kHz 软件正弦，后台采集/解码 |
 | 第一阶段最小固件 | `cargo build --locked --release --no-default-features` | 1 kHz 软件正弦，不启动 DMA |
 
 烧录对应模式时，将表中的 `cargo build` 换成 `cargo run`，保留全部 feature 参数。
 `--features pdm-capture` 单独使用仍保留默认 `live-mic`；独立诊断必须同时指定 `--no-default-features`。
 
-PA0 蓝色 USER 按钮切换 4× → 16× → 1× → 4×，不写 Flash，重启恢复 4×。增益算法已做主机测试；按钮实体操作的验证状态见阶段四报告。
+PA0 USER 短按后松开，增益切换 4× → 16× → 1× → 4×；按住 1～3 秒后松开，切换降噪 / 原声；按住至少 3 秒后松开，重新校准，随后安静约 5 秒。
+重启恢复 4×、降噪开启并重新校准，不写 Flash。新长按控制已实现，实体按钮操作仍待验证。
 支持 USB 主通道静音；不宣称支持尚未实现的 USB 音量控制。
 
 ## 接线与 Windows 录音
@@ -67,7 +70,7 @@ PB10 I²S2_CK → MP45DT02，PC3 I²S2_SD ← PDM，PB12 是 HAL 要求的未接
 HSE 使用本板 8 MHz 晶振，主 PLL 产生 168 MHz SYSCLK / 48 MHz USB；PLLI2S 产生 51.2 MHz 内核时钟，I²S 分频 50，PDM 名义 1.024 MHz。
 DMA1 Stream3 Channel0，512 个 u16 循环缓冲区，读取每块 64 个半字（1 ms）。
 
-PDM → CIC5 /16 → 191 tap FIR /4 → 20 Hz DC blocker → 1024-sample PCM 队列 → 分数重采样 → 饱和增益 → USB。
+PDM → CIC5 /16 → 191 tap FIR /4 → 20 Hz DC blocker → Wiener 降噪 → 1024-sample PCM 队列 → 分数重采样 → 饱和增益 → USB。
 总抽取 64，标称输出 16 kHz。48 tap、32 相位间隔的分数延迟滤波器保持 USB 每包 16 samples / 32 bytes；通过队列水位补偿 MCU/主机时钟差。
 
 采集/DSP、USB 总线控制、诊断、快照和按钮使用独立异步任务。实时音频发送运行在更高优先级的 Embassy InterruptExecutor（仅软件触发 UART4 向量），能抢占 DSP；不占用 UART4 外设。
@@ -87,6 +90,7 @@ RTT 记录 USB 状态/包数/端点错误、DMA 硬件错误/环形覆盖、PCM 
 - [第二阶段 PDM 采集与诊断](docs/stage2-pdm.md)
 - [第三阶段滤波、PC 测试及实体快照](docs/stage3-decoder.md)
 - [第四阶段实时麦克风与稳定性](docs/stage4-live.md)
+- [离线降噪对比](docs/offline-denoise.md) / [板上降噪与处理预算](docs/live-denoise.md)
 - [Windows 枚举、录音、恢复操作](docs/windows-validation.md)
 
 本工程使用实验 VID/PID `c0de:cafe`，未经过 USB 认证；Windows 11、标定声学频响/灵敏度、长期温漂、完整电气测量仍未验证。

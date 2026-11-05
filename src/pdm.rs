@@ -103,10 +103,18 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
     let mut snapshot_valid = true;
     let mut decoder = Decoder::new();
     let mut pcm = [0i16; BLOCK_WORDS / 4];
+    #[cfg(feature = "noise-suppression")]
+    let denoiser = {
+        static STATE: StaticCell<stm32f4_usb_mic::denoiser::Denoiser> = StaticCell::new();
+        STATE.init(stm32f4_usb_mic::denoiser::Denoiser::new())
+    };
+    #[cfg(feature = "noise-suppression")]
+    let mut processed = [0.0f32; BLOCK_WORDS / 4];
     driver.start();
     loop {
         match driver.read(&mut block).await {
             Ok(()) => {
+                let work = crate::perf::begin();
                 let decode_start = embassy_time::Instant::now();
                 let mut output = 0;
                 let mut metrics = PcmMetrics::EMPTY;
@@ -121,9 +129,14 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
                     }
                 }
                 assert_eq!(output, pcm.len());
-                #[cfg(feature = "live-mic")]
-                crate::pipe::publish(&pcm);
                 DECODE_MAX_US.fetch_max(decode_start.elapsed().as_micros() as u32, Relaxed);
+                #[cfg(feature = "noise-suppression")]
+                {
+                    crate::noise::process(denoiser, &pcm, &mut processed);
+                    crate::pipe::publish(&processed);
+                }
+                #[cfg(all(feature = "live-mic", not(feature = "noise-suppression")))]
+                crate::pipe::publish(&pcm);
                 critical_section::with(|cs| {
                     let mut accumulated = PCM_METRICS.borrow(cs).borrow_mut();
                     accumulated.samples += metrics.samples;
@@ -155,6 +168,7 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
                         SNAPSHOT_READY.store(true, Release);
                     }
                 }
+                crate::perf::end_dsp(work);
                 // DMA wakes in bursts. Let USB/control tasks run between bounded DSP blocks.
                 embassy_futures::yield_now().await;
             }
@@ -166,6 +180,8 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
                 }
                 driver.clear();
                 decoder.reset();
+                #[cfg(feature = "noise-suppression")]
+                denoiser.reset_signal();
                 defmt::warn!("pdm ring overrun: unknown input loss, realigning");
             }
             Err(error) => {

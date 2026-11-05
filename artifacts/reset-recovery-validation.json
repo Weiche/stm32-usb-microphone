@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-05",
+  "symptom": "After physical RESET, no microphone enumeration or visible application response; only ST-LINK present.",
+  "register_observations": {
+    "DHCSR": "0x00030003 (halted)",
+    "DEMCR_before": "0x01000401 (VC_CORERESET enabled)",
+    "CFSR": "0x00000000",
+    "HFSR": "0x00000000",
+    "DFSR": "0x00000001"
+  },
+  "diagnosis": "Reset vector catch left enabled by the previous debugging configuration; no application fault reported by CFSR/HFSR in this observation.",
+  "recovery": {
+    "firmware_reflashed": false,
+    "DEMCR_written": "0x01000400",
+    "DEMCR_verified_after_tool_exit": "0x01000400",
+    "change": "Cleared only VC_CORERESET; other observed DEMCR bits retained. Application execution and USB enumeration resumed."
+  },
+  "project_fix": {
+    "file": ".cargo/config.toml",
+    "added_runner_flag": "--no-catch-reset",
+    "flag_supported_by_installed_probe_rs": true
+  },
+  "physical_reset_validation": {
+    "operator": "User pressed physical RESET and reported waiting approximately 5 seconds",
+    "USB_last_arrival": "2026-11-05T23:58:15.891747+09:00",
+    "present_device_status": "USB composite and audio interface OK",
+    "debugger_attached_during_capture": false,
+    "capture": {
+      "device": {
+        "id": 0,
+        "name": "麦克风 (STM32F4 USB Microphone)",
+        "channels": 2
+      },
+      "bytes": 480000,
+      "samples": 240000,
+      "sample_rate": 16000,
+      "channels": 1,
+      "bits": 16,
+      "wall_seconds": 15.002601300000606,
+      "file": "captures\\reset-recovery-15s.wav"
+    },
+    "analysis": {
+      "file": "captures\\reset-recovery-15s.wav",
+      "samples": 240000,
+      "duration_seconds": 15.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+    },
+    "wav_sha256": "12b9ece53e4bae3561dd811a07706cedaeed7a6bf39883786c348a9498d9740e"
+  },
+  "USB_monitor": {
+    "path": "captures/reset-recovery-usb.jsonl",
+    "events": [
+      {
+        "time": "2026-11-05T23:57:49.2101394+09:00",
+        "event": "start"
+      },
+      {
+        "time": "2026-11-05T23:57:57.7923676+09:00",
+        "event": "baseline"
+      },
+      {
+        "time": "2026-11-05T23:58:49.1670990+09:00",
+        "event": "complete"
+      }
+    ]
+  },
+  "limitations": [
+    "One user-operated physical RESET verified; repeated resets and a power-cycle test were not performed.",
+    "No live MCU counters read during the post-reset 15-second recording.",
+    "Earlier 120 s/60 s denoiser tests validated continuing execution, not physical RESET startup."
+  ]
+}

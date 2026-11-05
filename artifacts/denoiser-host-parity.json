@@ -1,0 +1,10 @@
+{
+  "input_sha256": "674e7e9869d86d9afea7cfec62db0559d8a4c7752b837eae28ebda1c927475d6",
+  "reference": "captures\\denoise-offline-v1\\wiener-12db.wav",
+  "samples": 480000,
+  "max_abs_error_lsb": 1.0,
+  "rms_error_lsb": 0.0035355339059327377,
+  "same_samples_fraction": 0.9999875,
+  "passed": true,
+  "scope": "Host execution of exact no_std f32 DSP with the same fixed profile; startup on-device calibration is separate."
+}

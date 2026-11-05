@@ -2,8 +2,11 @@
 #![no_main]
 
 mod board;
+#[cfg(feature = "noise-suppression")]
+mod noise;
 #[cfg(feature = "pdm-capture")]
 mod pdm;
+mod perf;
 #[cfg(feature = "live-mic")]
 mod pipe;
 mod stats;
@@ -98,6 +101,7 @@ async fn audio_task(mut stream: Stream<'static, UsbDriver>, monitor: ControlMoni
         let mut resampler = stm32f4_usb_mic::resampler::Resampler::new();
         loop {
             let started = embassy_time::Instant::now();
+            let work = perf::begin();
             pipe::packet(
                 &mut rate,
                 &mut resampler,
@@ -106,6 +110,7 @@ async fn audio_task(mut stream: Stream<'static, UsbDriver>, monitor: ControlMoni
                 &mut bytes,
             );
             pipe::PREPARE_MAX_US.fetch_max(started.elapsed().as_micros() as u32, Relaxed);
+            perf::end_audio(work);
             match stream.write_packet(&bytes).await {
                 Ok(()) => {
                     stats::PACKETS.fetch_add(1, Relaxed);
@@ -131,6 +136,7 @@ async fn audio_task(mut stream: Stream<'static, UsbDriver>, monitor: ControlMoni
 
 #[embassy_executor::task]
 async fn diagnostics_task(mut led: Output<'static>, vbus: Input<'static>) {
+    let mut work = perf::Reporter::new();
     loop {
         embassy_time::Timer::after_secs(1).await;
         led.toggle();
@@ -152,17 +158,22 @@ async fn diagnostics_task(mut led: Output<'static>, vbus: Input<'static>) {
         pdm::log_stats();
         #[cfg(feature = "live-mic")]
         pipe::log_stats();
+        #[cfg(feature = "noise-suppression")]
+        noise::log_stats();
+        work.log();
     }
 }
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
+    perf::init();
     defmt::info!(
         "usb-mic boot: MB997B STM32F407VG UAC1 16000Hz s16le mono pdm_capture={} live_mic={}",
         cfg!(feature = "pdm-capture"),
         cfg!(feature = "live-mic")
     );
     let p = embassy_stm32::init(board::config());
+    board::enable_flash_acceleration();
     defmt::info!("clocks ready: SYSCLK=168MHz USB=48MHz HSE=8MHz crystal");
     #[cfg(feature = "pdm-capture")]
     {
@@ -177,8 +188,22 @@ async fn main(spawner: Spawner) {
     let _vbus_power_off = Output::new(p.PC0, Level::High, Speed::Low);
     let vbus_sense = Input::new(p.PA9, Pull::None);
     let led = Output::new(p.PD12, Level::Low, Speed::Low);
-    #[cfg(feature = "live-mic")]
+    #[cfg(all(feature = "live-mic", not(feature = "noise-suppression")))]
     spawner.spawn(pipe::gain_button_task(Input::new(p.PA0, Pull::None)).unwrap());
+    #[cfg(feature = "noise-suppression")]
+    {
+        spawner.spawn(
+            noise::controls_task(
+                Input::new(p.PA0, Pull::None),
+                Output::new(p.PD13, Level::Low, Speed::Low),
+                Output::new(p.PD14, Level::High, Speed::Low),
+            )
+            .unwrap(),
+        );
+        defmt::info!(
+            "noise: 12dB cap; startup calibration, keep quiet for 5 seconds; USER hold 1-3s=bypass, >=3s=relearn"
+        );
+    }
 
     static EP_OUT: StaticCell<[u8; 256]> = StaticCell::new();
     let mut driver_config = usb::Config::default();

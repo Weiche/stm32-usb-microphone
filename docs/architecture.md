@@ -10,12 +10,14 @@
 | `src/board.rs` | HSE、主 PLL、PLLI2S 和总线时钟 |
 | `src/pdm.rs` | I²S2/DMA、原始位流和 PCM 快照、采集诊断 |
 | `src/decoder.rs` / `src/fir_coeffs.rs` | CIC5、191 tap FIR、去直流与 i16 输出 |
+| `src/denoiser.rs` / `src/denoiser_tables.rs` | 无堆分配的 256 点 FFT、Wiener 降噪、现场噪声谱校准和固定延迟 |
+| `src/noise.rs` / `src/perf.rs` | 降噪按钮/LED、状态与 DWT 处理工作量统计 |
 | `src/pipe.rs` | 实时输入、USB 包准备、预填、静音、按钮和运行统计 |
 | `src/audio_queue.rs` | 有界 PCM 队列、队列水位控制与饱和增益 |
 | `src/resampler.rs` / `src/resampler_coeffs.rs` | 分数延迟重采样 |
 | `src/stats.rs` | USB 状态回调与发送统计 |
 
-默认 `live-mic` 隐含 `pdm-capture`。仅启用 `pdm-capture` 时采集并解码，但 USB 发送软件正弦；禁用全部 feature 时仅发送正弦。模式选择命令见 [README](../README.md#构建与模式)。
+默认启用 `live-mic` 和 `noise-suppression`，后者隐含 `live-mic`，再隐含 `pdm-capture`。仅启用 `live-mic` 是无降噪原声；仅启用 `pdm-capture` 时采集并解码，但 USB 发送软件正弦；禁用全部 feature 时仅发送正弦。模式选择命令见 [README](../README.md#构建与模式)。
 
 ## 时钟、引脚与数据路径
 
@@ -27,20 +29,24 @@ I²S2 Master RX 分频 50：PB10 输出名义 1.024 MHz 位时钟，PC3 接收 P
 MP45DT02 / PDM 1.024 MHz
   → I²S2 + DMA（512 半字，8 ms）
   → CIC5 /16（64 kHz）→ 191 tap FIR /4（16 kHz）→ 20 Hz DC blocker
-  → PCM 队列（1024 samples；预填 256；目标 192）
+  → Wiener 降噪（256 点窗 /128 点步进；默认 12 dB 上限；延迟 256 samples）
+  → f32 PCM 队列（1024 samples；预填 256；目标 192）
   → 48 tap 分数重采样（32 相位间隔及插值）
   → Q8 饱和增益 → USB 主通道静音 → s16le USB IN
 ```
 
 USB 每毫秒准备 16 samples /32 bytes，上游端点容量为 34 bytes。水位控制调整重采样输入步长，连接 MCU 采集时钟与主机 USB 节拍。当前实现不使用 15/16/17 samples 变长包；早期尝试和失败记录见阶段四。
+降噪输出、PCM 队列和重采样保留 f32 的小数 LSB，仅在最终数字增益后量化到 i16；无降噪诊断构建保留原 i16 通路。
 
-默认增益 4×，PA0 USER 按钮切换 4× → 16× → 1×。静音仍消费数据；关闭流、reset、断开或 suspend 清空队列，避免重新打开时播放旧音频。USB 音量控制未实现。
+默认增益 4×，PA0 USER 短按切换 4× → 16× → 1×；降噪版新增长按旁路 / 重新校准，见 [降噪说明](live-denoise.md)。静音仍消费数据；关闭流、reset、断开或 suspend 清空队列，避免重新打开时播放旧音频。USB 音量控制未实现。
 
 ## 调度与内存
 
 音频发送使用 UART4 软件触发向量上的 InterruptExecutor（P6），可抢占主线程 DSP。OTG_FS=P2、DMA1_STREAM3=P3，数值越小优先级越高。UART4 外设未启用，其向量已被音频执行器占用。
 
 采集、USB 总线控制、快照、按钮和诊断运行在主线程执行器；每个有界 DSP 块后主动让出执行权。FIR 计算保持中断开启，不在 await 时持有临界区。
+降噪每 8 个 1 ms 解码块处理一次 FFT / IFFT，可被 USB 音频抢占。启动略过 504 ms 后校准 4 秒，校准期间保持延迟一致的旁路；DMA 覆盖时清空降噪时域历史，已完成的噪声谱保留。
+RCC 初始化后开启 STM32F407 Flash 侧指令缓存、数据缓存和预取，保留 HAL 设置的等待周期；启动日志记录 `ACR before=5 after=705`。它不是 SRAM 的数据缓存，不需要对 DMA SRAM 缓冲区做缓存维护。
 
 缓冲区静态分配，无动态堆；`memory.x` 仅声明 Flash 与 128 KiB SRAM1/2，排除 DMA 不可访问的 CCM。历史最终映像静态 SRAM 为 20688 bytes；这不包含已测得的栈峰值，栈高水位尚未测量。
 
@@ -64,6 +70,14 @@ USB 每毫秒准备 16 samples /32 bytes，上游端点容量为 34 bytes。水�
 | `idle_discarded / reset_discarded` | 未录音时主动丢弃 / 关闭或重置时清空的 PCM 数 |
 | `rate_q16 / gain_q8 / clipped` | 重采样输入步长 / 增益 / 增益削顶数 |
 | `decode_max_us / prepare_max_us` | 观察到的最长 DSP 块 / 包准备耗时，不能当作严格 WCET |
+| `noise enabled/ready/calibration_frames` | 降噪使能 / 噪声谱是否就绪 / 已校准帧数，完成为 500 |
+| `noise hops/hop_max_us` | 128-sample hop 累计数 / 含抢占的最长观测耗时 |
+| `work dsp_permille/audio_permille` | 对应诊断区间内解码及降噪 / 包准备周期占墙钟预算的千分比 |
+| `work noise_subset_permille/accounted_permille` | 降噪子集开销 / DSP 与音频包准备合计；不是完整 CPU 占用率 |
+
+`decode_max_us` 当前仅包围 PDM 解码，不再包含 PCM 发布和降噪；与旧版本字段相比时须注意计时范围。
+DWT 为 32-bit，短跨度及每秒统计使用 wrapping 差值。DSP 计时扣除嵌套的音频包准备周期；降噪是 DSP 的子集，不可再次加到合计。
+其他 IRQ 在被测工作期间的时间可能被包含，空闲区间的 IRQ、USB 控制及其他任务未完整覆盖，不能将 `accounted_permille` 称为精确整机 CPU 使用率。
 
 `dma_active=false` 时无采集诊断，软件正弦模式也没有 `pipe` 水位。u32 累计计数会回绕、复位后清零；区间计数不能按累计值解释。DMA 致命硬件错误仍可能由 HAL panic，未实现所有故障的自动恢复。
 

@@ -1,6 +1,6 @@
 # Windows 烧录、录音与验收
 
-适用于当前默认 `live-mic` 固件。接线与模式速查见 [README](../README.md)，计数字段见 [架构说明](architecture.md)。
+适用于当前默认 `live-mic` + `noise-suppression` 固件。启动后安静约 5 秒完成噪声校准；现场校准、原声切换和新映像验证见 [板上降噪](live-denoise.md)。接线与模式速查见 [README](../README.md)，计数字段见 [架构说明](architecture.md)。
 截至 2026-11-05，已保存 Windows 10 Enterprise 19045 上 600 秒连续实体麦克风录音、三次顺序重开和复位后无调试器的 10 秒录音记录，见 [阶段四报告](stage4-live.md)。Windows 11 尚未实测；下列操作是复验指南，不表示本次文档更新重新进行了硬件测试。
 
 ## ST-LINK 固件升级（本板已完成）
@@ -37,7 +37,8 @@ java -jar STLinkUpgrade.jar -update
 
 这些命令已对本板实际执行成功。`-update` 为正常升级；不需要 `-force_prog` 或指定另一种探针功能类型。
 `probe-rs info` 对本板不能自动识别型号，并且会忽略 `--chip`；确认 SWD 可用应使用显式目标的 read/run。
-Cargo runner 已加入 `--speed 1000 --connect-under-reset --verify --rtt-channel-mode no-block-skip`；探针实际协商为 950 kHz。
+Cargo runner 已加入 `--speed 1000 --connect-under-reset --verify --no-catch-reset --rtt-channel-mode no-block-skip`；探针实际协商为 950 kHz。
+`--no-catch-reset` 防止工具留下复位向量捕获，导致退出调试器后按 RESET 停在复位入口；它与避免 RTT 阻塞是两项独立设置。
 
 ## 接线和启动
 
@@ -104,7 +105,7 @@ python tools/analyze_microphone.py captures/microphone.wav --json captures/micro
 
 录音时说话或拍手，回放确认声音响应；分析结果检查时长、峰值、DC、AC RMS、削顶及启动后全零毫秒。室内背景声的幅度随环境变化，不使用阶段一正弦波的峰值/THD 作为真实麦克风门槛。必须保留原 WAV 才能复核，分析值不能单独证明无丢帧或标定声学性能。
 
-默认数字增益 4×；USER 按钮循环 4× → 16× → 1×，重启恢复。可以分别录音比较幅度及削顶；Windows 主通道静音应使输出为零，恢复后应继续响应。实体按钮和静音操作仍待手工验收，算法测试通过不能代替这两项。
+默认数字增益 4×；USER 短按松开循环 4× → 16× → 1×，重启恢复。降噪版按住 1～3 秒松开切换旁路，至少 3 秒松开重新校准。可以分别录音比较幅度及削顶；Windows 主通道静音应使输出为零，恢复后应继续响应。实体按钮和静音操作仍待手工验收，算法测试通过不能代替这两项。
 
 ### 软件正弦诊断
 

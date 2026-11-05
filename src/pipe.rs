@@ -3,13 +3,26 @@ use crate::stats;
 use core::cell::RefCell;
 use core::sync::atomic::{AtomicU32, Ordering::Relaxed};
 use critical_section::Mutex;
+#[cfg(not(feature = "noise-suppression"))]
 use embassy_stm32::gpio::Input;
-use stm32f4_usb_mic::audio_queue::{PacketRate, PcmRing, gain};
+#[cfg(not(feature = "noise-suppression"))]
+use stm32f4_usb_mic::audio_queue::gain;
+#[cfg(feature = "noise-suppression")]
+use stm32f4_usb_mic::audio_queue::gain_f32;
+use stm32f4_usb_mic::audio_queue::{PacketRate, PcmRing};
 use stm32f4_usb_mic::resampler::Resampler;
 
 const CAPACITY: usize = 1024;
 const PREFILL: usize = 256;
-static RING: Mutex<RefCell<PcmRing<CAPACITY>>> = Mutex::new(RefCell::new(PcmRing::new()));
+#[cfg(feature = "noise-suppression")]
+type Sample = f32;
+#[cfg(not(feature = "noise-suppression"))]
+type Sample = i16;
+#[cfg(feature = "noise-suppression")]
+static RING: Mutex<RefCell<PcmRing<CAPACITY, Sample>>> =
+    Mutex::new(RefCell::new(PcmRing::with_zero(0.0)));
+#[cfg(not(feature = "noise-suppression"))]
+static RING: Mutex<RefCell<PcmRing<CAPACITY, Sample>>> = Mutex::new(RefCell::new(PcmRing::new()));
 pub static GAIN_Q8: AtomicU32 = AtomicU32::new(1024);
 static LOW: AtomicU32 = AtomicU32::new(u32::MAX);
 static HIGH: AtomicU32 = AtomicU32::new(0);
@@ -35,7 +48,7 @@ pub fn clear() {
     let removed = critical_section::with(|cs| RING.borrow(cs).borrow_mut().clear());
     RESET_DISCARDED.fetch_add(removed as u32, Relaxed);
 }
-pub fn publish(samples: &[i16]) {
+pub fn publish(samples: &[Sample]) {
     if !active() {
         clear();
         IDLE_DISCARDED.fetch_add(samples.len() as u32, Relaxed);
@@ -88,7 +101,12 @@ pub fn packet(
     let amplification = GAIN_Q8.load(Relaxed);
     // FIR work runs with interrupts enabled. Lock only one source sample at a time.
     for i in 0..16 {
+        #[cfg(not(feature = "noise-suppression"))]
         let sample = resampler.next(step, || {
+            critical_section::with(|cs| RING.borrow(cs).borrow_mut().pop())
+        });
+        #[cfg(feature = "noise-suppression")]
+        let sample = resampler.next_f32(step, || {
             critical_section::with(|cs| RING.borrow(cs).borrow_mut().pop())
         });
         let Some(sample) = sample else {
@@ -97,7 +115,10 @@ pub fn packet(
             *priming = true;
             return;
         };
+        #[cfg(not(feature = "noise-suppression"))]
         let (sample, clipped) = gain(sample, amplification);
+        #[cfg(feature = "noise-suppression")]
+        let (sample, clipped) = gain_f32(sample, amplification);
         if clipped {
             CLIPPED.fetch_add(1, Relaxed);
         }
@@ -133,6 +154,17 @@ pub fn log_stats() {
     );
 }
 
+pub fn cycle_gain() {
+    let gain = match GAIN_Q8.load(Relaxed) {
+        256 => 1024,
+        1024 => 4096,
+        _ => 256,
+    };
+    GAIN_Q8.store(gain, Relaxed);
+    defmt::info!("microphone gain_q8={}", gain);
+}
+
+#[cfg(not(feature = "noise-suppression"))]
 #[embassy_executor::task]
 pub async fn gain_button_task(button: Input<'static>) {
     let mut was_pressed = false;
@@ -140,13 +172,7 @@ pub async fn gain_button_task(button: Input<'static>) {
         embassy_time::Timer::after_millis(20).await;
         let pressed = button.is_high();
         if pressed && !was_pressed {
-            let gain = match GAIN_Q8.load(Relaxed) {
-                256 => 1024,
-                1024 => 4096,
-                _ => 256,
-            };
-            GAIN_Q8.store(gain, Relaxed);
-            defmt::info!("microphone gain_q8={}", gain);
+            cycle_gain();
             embassy_time::Timer::after_millis(150).await;
         }
         was_pressed = pressed;
