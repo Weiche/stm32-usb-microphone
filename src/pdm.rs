@@ -103,6 +103,7 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
     let mut snapshot_valid = true;
     let mut decoder = Decoder::new();
     let mut pcm = [0i16; BLOCK_WORDS / 4];
+    let mut level_meter = stm32f4_usb_mic::level_meter::LevelMeter::new();
     #[cfg(feature = "noise-suppression")]
     let denoiser = {
         static STATE: StaticCell<stm32f4_usb_mic::denoiser::Denoiser> = StaticCell::new();
@@ -133,10 +134,13 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
                 #[cfg(feature = "noise-suppression")]
                 {
                     crate::noise::process(denoiser, &pcm, &mut processed);
+                    crate::level_led::observe(&mut level_meter, processed.iter().copied());
                     crate::pipe::publish(&processed);
                 }
                 #[cfg(all(feature = "live-mic", not(feature = "noise-suppression")))]
                 crate::pipe::publish(&pcm);
+                #[cfg(not(feature = "noise-suppression"))]
+                crate::level_led::observe(&mut level_meter, pcm.iter().copied().map(f32::from));
                 critical_section::with(|cs| {
                     let mut accumulated = PCM_METRICS.borrow(cs).borrow_mut();
                     accumulated.samples += metrics.samples;
@@ -180,6 +184,7 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
                 }
                 driver.clear();
                 decoder.reset();
+                level_meter = stm32f4_usb_mic::level_meter::LevelMeter::new();
                 #[cfg(feature = "noise-suppression")]
                 denoiser.reset_signal();
                 defmt::warn!("pdm ring overrun: unknown input loss, realigning");

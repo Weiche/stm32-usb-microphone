@@ -10,6 +10,7 @@
 | [Windows 使用与验收](windows-validation.md) | 烧录、枚举、真实麦克风/正弦诊断、稳定性复验与排错 |
 | [固件架构](architecture.md) | 当前模块、时钟、数据路径、调度和计数含义 |
 | [离线降噪](offline-denoise.md) / [板上降噪](live-denoise.md) | 用户试听选择、算法对照、现场校准、处理预算及验证边界 |
+| [声音强度指示](level-led.md) | 四个 LED 的分工、蓝灯 PWM 与相对音量映射 |
 | [资料核对](research.md) | 固定依赖与官方板级依据；包含早期决策的历史背景 |
 
 ## 阶段验证记录

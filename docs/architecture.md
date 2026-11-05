@@ -12,6 +12,7 @@
 | `src/decoder.rs` / `src/fir_coeffs.rs` | CIC5、191 tap FIR、去直流与 i16 输出 |
 | `src/denoiser.rs` / `src/denoiser_tables.rs` | 无堆分配的 256 点 FFT、Wiener 降噪、现场噪声谱校准和固定延迟 |
 | `src/noise.rs` / `src/perf.rs` | 降噪按钮/LED、状态与 DWT 处理工作量统计 |
+| `src/level_meter.rs` / `src/level_led.rs` | 20 ms RMS、明暗映射与蓝色 PD15 / TIM4_CH4 硬件 PWM |
 | `src/pipe.rs` | 实时输入、USB 包准备、预填、静音、按钮和运行统计 |
 | `src/audio_queue.rs` | 有界 PCM 队列、队列水位控制与饱和增益 |
 | `src/resampler.rs` / `src/resampler_coeffs.rs` | 分数延迟重采样 |
@@ -37,6 +38,7 @@ MP45DT02 / PDM 1.024 MHz
 
 USB 每毫秒准备 16 samples /32 bytes，上游端点容量为 34 bytes。水位控制调整重采样输入步长，连接 MCU 采集时钟与主机 USB 节拍。当前实现不使用 15/16/17 samples 变长包；早期尝试和失败记录见阶段四。
 降噪输出、PCM 队列和重采样保留 f32 的小数 LSB，仅在最终数字增益后量化到 i16；无降噪诊断构建保留原 i16 通路。
+声音指示在采集侧取降噪 / 旁路后的信号，并计入当前 Q8 数字增益，使用独立蓝灯；未开启 USB 录音时也更新，不受 Windows 主通道静音影响。它不是标定声压级测量。
 
 默认增益 4×，PA0 USER 短按切换 4× → 16× → 1×；降噪版新增长按旁路 / 重新校准，见 [降噪说明](live-denoise.md)。静音仍消费数据；关闭流、reset、断开或 suspend 清空队列，避免重新打开时播放旧音频。USB 音量控制未实现。
 
@@ -72,6 +74,8 @@ RCC 初始化后开启 STM32F407 Flash 侧指令缓存、数据缓存和预取�
 | `decode_max_us / prepare_max_us` | 观察到的最长 DSP 块 / 包准备耗时，不能当作严格 WCET |
 | `noise enabled/ready/calibration_frames` | 降噪使能 / 噪声谱是否就绪 / 已校准帧数，完成为 500 |
 | `noise hops/hop_max_us` | 128-sample hop 累计数 / 含抢占的最长观测耗时 |
+| `level rms_lsb/brightness_permille/pwm_permille` | 20 ms 窗 RMS / 平滑后的相对亮度 / 蓝灯 PWM 占空比，后两项为 0～1000 |
+| `level rms_high/pwm_high/updates` | 本诊断区间最高 RMS / 最高占空比 / 累计 20 ms 窗更新次数 |
 | `work dsp_permille/audio_permille` | 对应诊断区间内解码及降噪 / 包准备周期占墙钟预算的千分比 |
 | `work noise_subset_permille/accounted_permille` | 降噪子集开销 / DSP 与音频包准备合计；不是完整 CPU 占用率 |
 

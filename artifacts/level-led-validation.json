@@ -1,0 +1,170 @@
+{
+  "recorded_at": "2026-11-06T00:14:15.609608+09:00",
+  "board": "STM32F407VG / MB997B",
+  "implementation": {
+    "led": "Blue LD6 / PD15",
+    "timer": "TIM4_CH4",
+    "pwm_hz_configured": 2000,
+    "timer_max_duty_count": 42000,
+    "window_samples": 320,
+    "window_ms": 20,
+    "floor_rms_lsb": 8,
+    "full_rms_lsb": 2048,
+    "range_mapping": "piecewise log2 amplitude, 0..1000 apparent brightness; squared PWM duty",
+    "attack_fraction": 0.5,
+    "release_fraction": 0.1,
+    "source": "Post-denoiser or bypass PCM, current Q8 digital gain; updates while USB is idle too",
+    "pwm_uses_irq_or_dma": false
+  },
+  "firmware_bin_sha256": "aa19b78bd4951441d6f8a5a2531518c0f0552488c8e9ee455fb55c318b6ff23e",
+  "firmware_elf_sha256": "96da22b481b56a6ee0663e120a835833a8582783668503fd33565a0e852a94d1",
+  "memory": {
+    "elf": "target\\thumbv7em-none-eabihf\\release\\stm32f4-usb-mic",
+    "entry": "0x08000189",
+    "flash_image_span_bytes": 89680,
+    "allocated_sram_bytes": 29168,
+    "sram_capacity_bytes": 131072,
+    "ccm_allocations": 0,
+    "stack_high_water": "not measured",
+    "sections": [
+      {
+        "section": ".vector_table",
+        "address": "0x08000000",
+        "bytes": 392,
+        "region": "FLASH"
+      },
+      {
+        "section": ".text",
+        "address": "0x08000188",
+        "bytes": 70216,
+        "region": "FLASH"
+      },
+      {
+        "section": ".rodata",
+        "address": "0x080113d0",
+        "bytes": 18684,
+        "region": "FLASH"
+      },
+      {
+        "section": ".data",
+        "address": "0x20000000",
+        "bytes": 384,
+        "region": "SRAM1/2"
+      },
+      {
+        "section": ".bss",
+        "address": "0x20000180",
+        "bytes": 27760,
+        "region": "SRAM1/2"
+      },
+      {
+        "section": ".uninit",
+        "address": "0x20006df0",
+        "bytes": 1024,
+        "region": "SRAM1/2"
+      }
+    ]
+  },
+  "checks": {
+    "tools/check.ps1": "passed; 23 Rust tests, fmt, build, firmware and host Clippy",
+    "compatibility_clippy": "passed: no features, pdm-capture, raw live-mic"
+  },
+  "visual_feedback": {
+    "source": "User observed quiet/speech/clapping after firmware was flashed",
+    "response": "Brightness changes normally"
+  },
+  "level_telemetry": {
+    "observations": 208,
+    "maximum_rms_window_lsb": 24786,
+    "maximum_pwm_permille": 972,
+    "minimum_reported_pwm_permille": 1,
+    "last_updates": 10402
+  },
+  "rtt": {
+    "log": "captures\\level-led-rtt.txt",
+    "max_observed_cumulative_values": {
+      "packets": 207629,
+      "usb_errors": 0,
+      "disabled": 0,
+      "discarded_samples": 0,
+      "ring_overruns": 0,
+      "dma_errors": 0,
+      "overflow_events": 0,
+      "lost_samples": 0,
+      "underruns": 0,
+      "missing_samples": 0,
+      "priming_packets": 11,
+      "reset_discarded": 0,
+      "clipped": 0,
+      "decode_max_us": 363,
+      "prepare_max_us": 91
+    },
+    "observed_error_counters_zero": true,
+    "stream_starts": 1,
+    "usb_resets": 2,
+    "scope": "Only visible firmware counters. Normal alt=0 cancels one pending packet; discarded_samples includes this. No proof of absence of every on-wire loss."
+  },
+  "recordings": [
+    {
+      "capture": {
+        "device": {
+          "id": 0,
+          "name": "麦克风 (STM32F4 USB Microphone)",
+          "channels": 2
+        },
+        "bytes": 960000,
+        "samples": 480000,
+        "sample_rate": 16000,
+        "channels": 1,
+        "bits": 16,
+        "wall_seconds": 30.006147499998406,
+        "file": "captures\\level-led-30s.wav"
+      },
+      "analysis": {
+        "file": "captures\\level-led-30s.wav",
+        "samples": 480000,
+        "duration_seconds": 30.0,
+        "clipped_samples": 18,
+        "zero_ms_after_first_200ms": 0,
+        "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+      },
+      "debugger_attached": true,
+      "wav_sha256": "65dd9029f0e6088a1fb78389bbc34ea291c92bd07c605b9d383a860de9e546df"
+    },
+    {
+      "capture": {
+        "device": {
+          "id": 0,
+          "name": "麦克风 (STM32F4 USB Microphone)",
+          "channels": 2
+        },
+        "bytes": 320000,
+        "samples": 160000,
+        "sample_rate": 16000,
+        "channels": 1,
+        "bits": 16,
+        "wall_seconds": 10.005297800000335,
+        "file": "captures\\level-led-standalone-10s.wav"
+      },
+      "analysis": {
+        "file": "captures\\level-led-standalone-10s.wav",
+        "samples": 160000,
+        "duration_seconds": 10.0,
+        "clipped_samples": 0,
+        "zero_ms_after_first_200ms": 0,
+        "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+      },
+      "debugger_attached": false,
+      "wav_sha256": "0b4ae3496b0e8201516b6c47a426c6ec87f0546b7ce40b9f9df85d5d1b879e46"
+    }
+  ],
+  "post_debugger_reset_catch_readback": "DEMCR=0x01000400, VC_CORERESET clear",
+  "limitations": [
+    "Relative level display, not calibrated dB SPL. PWM carrier not measured by oscilloscope.",
+    "The 30-second speech/clap observation has 18 full-scale WAV samples while the firmware gain-clipping counter is zero; the location of amplitude saturation was not established. The subsequent standalone 10-second capture has none.",
+    "Standalone capture has WAV completion/metrics without live RTT counter reads. Zero counters cannot prove absence of every USB packet loss.",
+    "Stack high-water not measured."
+  ],
+  "local_evidence": "captures/level-led*; original WAV/RTT/BIN not committed.",
+  "final_state": "Firmware left running, debugger closed; no reset or gain changes after visual confirmation."
+}

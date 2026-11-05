@@ -2,6 +2,8 @@
 #![no_main]
 
 mod board;
+#[cfg(feature = "pdm-capture")]
+mod level_led;
 #[cfg(feature = "noise-suppression")]
 mod noise;
 #[cfg(feature = "pdm-capture")]
@@ -156,6 +158,8 @@ async fn diagnostics_task(mut led: Output<'static>, vbus: Input<'static>) {
         );
         #[cfg(feature = "pdm-capture")]
         pdm::log_stats();
+        #[cfg(feature = "pdm-capture")]
+        level_led::log_stats();
         #[cfg(feature = "live-mic")]
         pipe::log_stats();
         #[cfg(feature = "noise-suppression")]
@@ -180,6 +184,19 @@ async fn main(spawner: Spawner) {
         let microphone = pdm::new(p.SPI2, p.PC3, p.PB12, p.PB10, p.DMA1_CH3, Irqs);
         spawner.spawn(pdm::capture_task(microphone).unwrap());
         spawner.spawn(pdm::snapshot_task().unwrap());
+        let pwm = embassy_stm32::timer::simple_pwm::SimplePwm::new(
+            p.TIM4,
+            None,
+            None,
+            None,
+            Some(embassy_stm32::timer::simple_pwm::PwmPin::new(
+                p.PD15,
+                embassy_stm32::gpio::OutputType::PushPull,
+            )),
+            embassy_stm32::time::Hertz(2000),
+            Default::default(),
+        );
+        spawner.spawn(level_led::task(pwm).unwrap());
     }
 
     // MB997 B-02 sheet 5: U6 STMPS2141 has active-low EN on PC0.
