@@ -54,6 +54,11 @@ cargo run --locked --release
 绿色 PD12 LED 每秒翻转。开始录音后应出现 `usb interface=1 alt=1`，累计 `packets` 每秒大约增加 1000。
 停止录音可进入 alt=0 或 suspend；重新打开录音后应继续发送。
 
+固件启用 `defmt-rtt/disable-blocking-mode`，避免调试工具把 RTT 改成阻塞模式后，日志缓冲区满时等待读取者并长时间屏蔽 USB 中断。
+runner 的 `--rtt-channel-mode no-block-skip` 仍保留；独立运行的音频不能依赖调试器持续读取日志。无读取者时日志可能被覆盖，RTT 日志不保证完整。
+2026-11-05 此修改已烧录并完成独立 10 秒录音，以及强制 RTT mode=2、无日志读取者的 60 秒录音；两次均完成且启动 200 ms 后全零毫秒数为 0。
+60 秒回归的 Windows 状态轮询未观察到设备变化；原先报告的间歇性设备消失仍待捕获。映像校验和、测试条件、结果及局限见 [非阻塞日志回归记录](../artifacts/usb-nonblocking-validation.json)。本次新映像的录音覆盖时长为 10 秒和 60 秒，阶段四的 600 秒记录对应历史映像。
+
 ## 枚举和描述符验收
 
 [Microsoft 的 UAC1 驱动说明](https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/usb-audio-class-system-driver--usbaudio-sys-)介绍了系统 `Usbaudio.sys` 驱动。
@@ -145,6 +150,22 @@ python tools/summarize_rtt.py artifacts/retest-rtt.txt --json artifacts/retest-r
 三次顺序重开不等于 20 次启停；复位不等于断电启动或 CN5 拔插。20 次启停/拔插、睡眠恢复、不同端口、Windows 11 和 8 小时录音尚未系统完成，应逐项记录。
 
 ## 出问题时的观察顺序与回传资料
+
+### 间歇性设备消失
+
+先在不连接调试器的情况下运行 Windows 枚举监测，再正常使用麦克风：
+
+```powershell
+powershell -NoProfile -File tools/watch_usb.ps1 -Seconds 1800
+```
+
+脚本不录音、不复位、不修改电源设置，在 `captures/usb-watch-*.jsonl` 保存带本地时区的初始状态及变化。
+同时跟踪麦克风 USB 父设备、音频接口/端点、ST-LINK 和已发现的上游 USB Hub。
+默认在每次查询后等待 1 秒；很短的断开重连可能被漏过。`complete` 只代表监测结束，不代表设备无故障；查询失败会记录 `error` 并退出，不伪报拔出。
+
+如果只有音频端点消失而 USB 父设备仍在，继续查 Windows 音频接口；如果 USB 父设备也消失，继续查 USB 链路、Hub、电源及 MCU 状态。
+这些状态本身不能确定根因。掉线时记录绿色心跳灯是否仍每秒翻转，并尽可能在插拔/复位前保存状态；后续附加调试器也可能扰动实时采集。
+若 CN5 经过外置 Hub，可在 CN1 供电保持不变时，单独将 CN5 改接主机直连端口作对照；再单独换数据线，避免一次改多个变量。
 
 | 现象 | 具体观察 |
 | --- | --- |
