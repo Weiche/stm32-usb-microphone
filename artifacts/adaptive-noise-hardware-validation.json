@@ -1,0 +1,206 @@
+{
+  "recorded_at": "2026-11-06T21:19:51.523346+09:00",
+  "board": "STM32F407VG / MB997B",
+  "source_commit": "2a967d07a7e54662dd954b160c739771434fdfda",
+  "build_command": "cargo build --locked --release --features adaptive-noise",
+  "firmware_bin_sha256": "6905cc96d364c63ab1e93b2238b979e4da7291d878fa33503586ceb2c0725657",
+  "firmware_elf_sha256": "fa47e3eb716a77dccf399cca3e9375a42d344355d5fc7bedcf25288a0b652f4c",
+  "flash": {
+    "tool": "probe-rs 0.32.0",
+    "chip": "STM32F407VGTx",
+    "requested_speed_khz": 1000,
+    "negotiated_speed_khz": 950,
+    "verify_enabled": true,
+    "connect_under_reset": true,
+    "no_catch_reset": true,
+    "rtt_channel_mode": "no-block-skip",
+    "boot_marker_observed": "noise: experimental guarded background tracking enabled",
+    "usb_configured_observed": true,
+    "calibration_frames": 500
+  },
+  "memory": {
+    "elf": "captures\\adaptive-live-20261106\\firmware.elf",
+    "entry": "0x08000189",
+    "flash_image_span_bytes": 92568,
+    "allocated_sram_bytes": 29768,
+    "sram_capacity_bytes": 131072,
+    "ccm_allocations": 0,
+    "stack_high_water": "not measured",
+    "sections": [
+      {
+        "section": ".vector_table",
+        "address": "0x08000000",
+        "bytes": 392,
+        "region": "FLASH"
+      },
+      {
+        "section": ".text",
+        "address": "0x08000188",
+        "bytes": 72592,
+        "region": "FLASH"
+      },
+      {
+        "section": ".rodata",
+        "address": "0x08011d18",
+        "bytes": 19200,
+        "region": "FLASH"
+      },
+      {
+        "section": ".data",
+        "address": "0x20000000",
+        "bytes": 384,
+        "region": "SRAM1/2"
+      },
+      {
+        "section": ".bss",
+        "address": "0x20000180",
+        "bytes": 28360,
+        "region": "SRAM1/2"
+      },
+      {
+        "section": ".uninit",
+        "address": "0x20007048",
+        "bytes": 1024,
+        "region": "SRAM1/2"
+      }
+    ]
+  },
+  "rtt": {
+    "log": "captures\\adaptive-live-20261106\\rtt.txt",
+    "max_observed_cumulative_values": {
+      "packets": 49180,
+      "usb_errors": 0,
+      "disabled": 9,
+      "discarded_samples": 144,
+      "ring_overruns": 0,
+      "dma_errors": 0,
+      "overflow_events": 0,
+      "lost_samples": 0,
+      "underruns": 0,
+      "missing_samples": 0,
+      "priming_packets": 97,
+      "reset_discarded": 2878,
+      "clipped": 0,
+      "decode_max_us": 367,
+      "prepare_max_us": 89
+    },
+    "observed_error_counters_zero": true,
+    "stream_starts": 10,
+    "usb_resets": 2,
+    "scope": "Only visible firmware counters. Normal alt=0 cancels one pending packet; discarded_samples includes this. No proof of absence of every on-wire loss."
+  },
+  "tracking": {
+    "tracking_observations": 98,
+    "speech_guard_true_observations": 6,
+    "updating_true_observations": 70,
+    "max_updates": 9003,
+    "minimum_reported_power_permille": 500,
+    "last_tracking": {
+      "updates": 9003,
+      "power_permille": 501,
+      "speech_guard": false,
+      "updating": true
+    },
+    "interpretation": "One-second observations, not per-frame VAD accuracy. Acoustic events and the requested speech protocol were not independently verified.",
+    "instrumented_work": {
+      "steady_windows": 47,
+      "median_accounted_permille": 517,
+      "max_accounted_permille": 520,
+      "scope": "DSP + audio packet work, not total CPU usage or WCET"
+    }
+  },
+  "recordings": [
+    {
+      "debugger_attached": true,
+      "capture": {
+        "device": {
+          "id": 0,
+          "name": "麦克风 (STM32F4 USB Microphone)",
+          "channels": 2
+        },
+        "bytes": 960000,
+        "samples": 480000,
+        "sample_rate": 16000,
+        "channels": 1,
+        "bits": 16,
+        "wall_seconds": 30.035991600000216,
+        "file": "captures\\adaptive-live-20261106\\microphone-30s.wav"
+      },
+      "analysis": {
+        "file": "captures\\adaptive-live-20261106\\microphone-30s.wav",
+        "samples": 480000,
+        "duration_seconds": 30.0,
+        "clipped_samples": 0,
+        "zero_ms_after_first_200ms": 0,
+        "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+      },
+      "wav_sha256": "a1b0254989348389a816289f8042ac0952f8697d5a354f70b81a246552e49117"
+    },
+    {
+      "debugger_attached": false,
+      "capture": {
+        "device": {
+          "id": 0,
+          "name": "麦克风 (STM32F4 USB Microphone)",
+          "channels": 2
+        },
+        "bytes": 320000,
+        "samples": 160000,
+        "sample_rate": 16000,
+        "channels": 1,
+        "bits": 16,
+        "wall_seconds": 10.008454600000277,
+        "file": "captures\\adaptive-live-20261106\\standalone-10s.wav"
+      },
+      "analysis": {
+        "file": "captures\\adaptive-live-20261106\\standalone-10s.wav",
+        "samples": 160000,
+        "duration_seconds": 10.0,
+        "clipped_samples": 0,
+        "zero_ms_after_first_200ms": 0,
+        "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+      },
+      "wav_sha256": "39108455325ee3853644aa66a2234e89282b98e9dfbb31721bd26779eeae0a94"
+    }
+  ],
+  "usb_watch": {
+    "state_changes_observed": 0,
+    "completion": {
+      "time": "2026-11-06T21:17:18.9811260+09:00",
+      "event": "complete",
+      "polls": 28,
+      "elapsed_seconds": 45.0070845
+    },
+    "scope": "Windows present-device polling; brief transitions may be missed."
+  },
+  "post_detach_registers": [
+    {
+      "name": "debug",
+      "address": "0xe000edf0",
+      "output": "e000edf0: 01010001 00000000 080011da 01000400",
+      "returncode": 0
+    },
+    {
+      "name": "fault",
+      "address": "0xe000ed28",
+      "output": "e000ed28: 00000000 00000000",
+      "returncode": 0
+    }
+  ],
+  "final_state": "Experimental firmware left running; debugger closed, USB enumerated and standalone capture completed. No reset or gain change after validation.",
+  "recovery_image": {
+    "local_file": "captures/level-led.bin",
+    "sha256": "aa19b78bd4951441d6f8a5a2531518c0f0552488c8e9ee455fb55c318b6ff23e",
+    "scope": "Previous fixed-profile + blue LED firmware; rebuild without adaptive-noise for normal Cargo recovery."
+  },
+  "local_evidence": "captures\\adaptive-live-20261106",
+  "limitations": [
+    "Short first hardware trial, not long-term stability or repeated PC reboot validation.",
+    "No controlled fan-speed comparison or independent verification that the user followed the requested speech protocol.",
+    "Energy guard observations are not speech recognition accuracy; weak-speech misclassification remains a known offline limitation.",
+    "No subjective sound-quality acceptance was collected.",
+    "Standalone capture had no live RTT reader or counter observations.",
+    "Instrumented work is not total CPU usage or strict WCET; stack high-water remains unmeasured.",
+    "Windows or the user opened/closed streams during logging. Disabled/discarded_samples include normal stop boundaries."
+  ]
+}

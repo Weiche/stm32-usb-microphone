@@ -3,7 +3,7 @@
 Rust + Embassy，STM32F407VG / MB997B，板载 MP45DT02，无外接采集模块。
 默认固件将真实麦克风送到 UAC1：16 kHz、16-bit PCM、单声道；Windows 原生 usbaudio 驱动。
 默认启用 12 dB 上限的 Wiener 降噪。启动后先保持安静约 5 秒，红灯熄灭、橙灯亮后完成校准；使用与验证范围见 [板上降噪](docs/live-denoise.md)。
-可选 `--features adaptive-noise` 尝试安静时自动跟踪背景噪声；目前只完成离线验证，使用及局限见 [自动噪声跟踪实验](docs/adaptive-noise.md)。
+可选 `--features adaptive-noise` 尝试安静时自动跟踪背景噪声；已完成离线及短时实板验证，音质仍待试听，使用及局限见 [自动噪声跟踪实验](docs/adaptive-noise.md)。
 蓝色 PD15 LED 按当前声音强弱调节亮度，安静时较暗、说话时变亮；不要求 Windows 正在录音。四灯用途及规则见 [声音强度指示](docs/level-led.md)。
 
 阶段一的 USB 正弦波、阶段二的 I²S2 DMA、阶段三的 PDM 解码均已在本机实体板验证并分别提交。

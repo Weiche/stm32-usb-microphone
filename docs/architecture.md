@@ -11,7 +11,7 @@
 | `src/pdm.rs` | I²S2/DMA、原始位流和 PCM 快照、采集诊断 |
 | `src/decoder.rs` / `src/fir_coeffs.rs` | CIC5、191 tap FIR、去直流与 i16 输出 |
 | `src/denoiser.rs` / `src/denoiser_tables.rs` | 无堆分配的 256 点 FFT、Wiener 降噪、现场噪声谱校准和固定延迟 |
-| `src/noise_tracker.rs` | 可选 `adaptive-noise` 的初始谱参考、能量保护与有界背景谱更新；仅完成离线验证 |
+| `src/noise_tracker.rs` | 可选 `adaptive-noise` 的初始谱参考、能量保护与有界背景谱更新；已完成离线及短时实板验证 |
 | `src/noise.rs` / `src/perf.rs` | 降噪按钮/LED、状态与 DWT 处理工作量统计 |
 | `src/level_meter.rs` / `src/level_led.rs` | 20 ms RMS、明暗映射与蓝色 PD15 / TIM4_CH4 硬件 PWM |
 | `src/pipe.rs` | 实时输入、USB 包准备、预填、静音、按钮和运行统计 |
