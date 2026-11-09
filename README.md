@@ -80,6 +80,7 @@ PDM → CIC5 /16 → 191 tap FIR /4 → 20 Hz DC blocker → Wiener 降噪 → 1
 不在 await 期间持有锁，FIR 计算保持中断开启。所有 MCU 缓冲区静态分配，无动态堆；链接 RAM 仅 SRAM1/2，排除 CCM。
 
 RTT 记录 USB 状态/包数/端点错误、DMA 硬件错误/环形覆盖、PCM 水位/溢出/欠载/丢样、启动补零、重连清空、增益削顶与处理耗时。
+DMA 覆盖或 PCM 队列间断会通知输出端，重置重采样历史并重新预填，期间输出静音。2026-11-10 已完成三次实板故障注入恢复、120 秒录音、20 次重开及独立录音；恢复存在短暂静音及瞬态，结果见 [音频间断验收](docs/audio-discontinuity.md)。
 离线 ELF 检查由 `tools/inspect_elf.py` 完成；栈高水位和严格 WCET 未测量。
 
 ## 证据与局限

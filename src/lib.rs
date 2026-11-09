@@ -1,5 +1,6 @@
 #![no_std]
 
+pub mod audio_output;
 pub mod audio_queue;
 pub mod decoder;
 pub mod denoiser;

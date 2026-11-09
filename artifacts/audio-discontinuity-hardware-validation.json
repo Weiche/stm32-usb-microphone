@@ -1,0 +1,293 @@
+{
+  "recorded_at": "2026-11-10T07:11:03.169499+09:00",
+  "source_base_commit": "2cb6f560d75daafb18b5b0c660ab6922369ab0cd",
+  "source_has_uncommitted_changes": true,
+  "source_sha256": {
+    "Cargo.toml": "ce964b15e5f95272d6f372936e17359635536df872b23ce1025148c2aeeb034e",
+    "src/audio_output.rs": "03ba97548c6ab47cceb9382f464978263e13917f80170cb35c93f243e1b0d190",
+    "src/audio_queue.rs": "94190b23783b97e9a0c4aa7d6b6f3c6761fc10cb92befe925896ca684398a1a4",
+    "src/board.rs": "2ed85a1d9db4dfce35031036ba04529e535dc889b8b09ccdff4479209292c8c6",
+    "src/decoder.rs": "9cda8b0ce2f904588f8bcc5dc455aab4de6e687ed21036531027bdddc91d2b83",
+    "src/denoiser.rs": "30b4e2f34b933c75ece660a93f5069a37dad3372d8412163e3ad2f3a30ed4142",
+    "src/denoiser_tables.rs": "b3fd8fb76c98fd8030882a0ed8b97fa2ffd585e7e88740c0b91cece715242245",
+    "src/fir_coeffs.rs": "572af3501b9346e6c87f6fa9cdd3f4b874d6d1744526141e93d9a0efd0e36042",
+    "src/level_led.rs": "82929a7cca78185251cb0c0fe8ec617be2ba0a5f639884f07355c7cae5b8de6e",
+    "src/level_meter.rs": "000f4dd54f3dd672fde04cd704ec8992dfa818b654c4b6427479ba72a0ae7727",
+    "src/lib.rs": "8eba7ec3f445709afbab5c6faac900a2a7cdf600c9a85a1be35214648cd23dba",
+    "src/main.rs": "3bb11c65e20707c8ee14ff1c311d29dc203d3baf92a8579be9f27e96d8b4bd0a",
+    "src/noise.rs": "f70ff1f6dbff6357d5d362fd2a8c4dcb29e0bc9cbbab2dfedaca2477b83c05fa",
+    "src/noise_tracker.rs": "74387caae6409f83f02fedd06837aed5e0029818df7c4679fe394be1b0aa2f1a",
+    "src/pdm.rs": "6f248c4eb45bee6d2f2ce4896fc7da78d70362ad7fdf0aa266393fa026be86ac",
+    "src/perf.rs": "4775a014079aaa56084e0e694e7fb25f68fe7eef95b89d12215eecfbb87ce340",
+    "src/pipe.rs": "3f6f5b5023b434a05357ff99d2931e95f1ddfef421ea0bbfb6a93c6c1b46c9b0",
+    "src/resampler.rs": "0f3e1fe7fc492027716d778d5e15f5aca20f0a0b2e440f46069ffc2f8498a4ab",
+    "src/resampler_coeffs.rs": "0525e7cfa80d6b1ac9d06b204e45f41d2faf4dd9b41a5dc68ec7bb8e1a49f820",
+    "src/stats.rs": "598c74f86206cf4a7514fdae99ba98f26a18a54004642188859168b8a453400c"
+  },
+  "board": "STM32F407VG / MB997B; DBGMCU_IDCODE=0x10016413; flash_size=1024 KiB",
+  "probe": "probe-rs 0.32.0, STLink V2; requested 1000 kHz, negotiated 950 kHz",
+  "backup": {
+    "file": "captures\\discontinuity-live-20261110-0703\\before-flash-full.bin",
+    "bytes": 1048576,
+    "sha256": "fd2867a2cb4093d9c7bfdb42da4ca153ab4e0631cad83d2c850b020183831c9b",
+    "previous_adaptive_image_prefix_matches": true
+  },
+  "diagnostic_image": {
+    "features": [
+      "adaptive-noise",
+      "audio-gap-test"
+    ],
+    "bin_sha256": "6063f02d7a25e24617f773a009c2e9b37845e31d98af07a43e7a30543c263ce0",
+    "elf_sha256": "3d4a9955073fef698705f2bec8a1c3b444690818b43732096f5b8282d3367560",
+    "rtt_maxima": {
+      "packets": 39732,
+      "usb_errors": 0,
+      "disabled": 0,
+      "discarded_samples": 0,
+      "ring_overruns": 3,
+      "dma_errors": 0,
+      "overflow_events": 0,
+      "lost_samples": 0,
+      "underruns": 0,
+      "missing_samples": 0,
+      "priming_packets": 69,
+      "reset_discarded": 108,
+      "clipped": 0,
+      "generation": 11,
+      "interrupted_packets": 0
+    },
+    "recoveries": [
+      {
+        "approximate_injection_second": 8.0,
+        "near_silence_start_second": 8.013,
+        "near_silence_duration_ms": 28,
+        "before_rms_lsb": 566.1222448321122,
+        "recovered_rms_lsb": 567.1186962400376,
+        "recovery_first_150ms_peak_lsb": 5858.0
+      },
+      {
+        "approximate_injection_second": 16.0,
+        "near_silence_start_second": 16.011,
+        "near_silence_duration_ms": 29,
+        "before_rms_lsb": 556.0541375677822,
+        "recovered_rms_lsb": 556.0477356981143,
+        "recovery_first_150ms_peak_lsb": 9200.0
+      },
+      {
+        "approximate_injection_second": 24.0,
+        "near_silence_start_second": 24.011,
+        "near_silence_duration_ms": 29,
+        "before_rms_lsb": 559.6697268255627,
+        "recovered_rms_lsb": 558.6239224368662,
+        "recovery_first_150ms_peak_lsb": 4840.0
+      }
+    ]
+  },
+  "normal_image": {
+    "features": [
+      "adaptive-noise"
+    ],
+    "audio_gap_test": false,
+    "bin_sha256": "bea28888b97f6794ef39ca475d46bfa3b7c3eb742f36323c1c12364257994bc3",
+    "elf_sha256": "f5af37ad960495164d081c0b5b9a972a5807e1d4c8efbb41b569cd77696082f8",
+    "memory": {
+      "elf": "captures\\discontinuity-live-20261110-0703\\production.elf",
+      "entry": "0x08000189",
+      "flash_image_span_bytes": 93424,
+      "allocated_sram_bytes": 29792,
+      "sram_capacity_bytes": 131072,
+      "ccm_allocations": 0,
+      "stack_high_water": "not measured",
+      "sections": [
+        {
+          "section": ".vector_table",
+          "address": "0x08000000",
+          "bytes": 392,
+          "region": "FLASH"
+        },
+        {
+          "section": ".text",
+          "address": "0x08000188",
+          "bytes": 73416,
+          "region": "FLASH"
+        },
+        {
+          "section": ".rodata",
+          "address": "0x08012050",
+          "bytes": 19232,
+          "region": "FLASH"
+        },
+        {
+          "section": ".data",
+          "address": "0x20000000",
+          "bytes": 384,
+          "region": "SRAM1/2"
+        },
+        {
+          "section": ".bss",
+          "address": "0x20000180",
+          "bytes": 28384,
+          "region": "SRAM1/2"
+        },
+        {
+          "section": ".uninit",
+          "address": "0x20007060",
+          "bytes": 1024,
+          "region": "SRAM1/2"
+        }
+      ]
+    },
+    "rtt_maxima": {
+      "packets": 139507,
+      "usb_errors": 0,
+      "disabled": 20,
+      "discarded_samples": 320,
+      "ring_overruns": 0,
+      "dma_errors": 0,
+      "overflow_events": 0,
+      "lost_samples": 0,
+      "underruns": 0,
+      "missing_samples": 0,
+      "priming_packets": 213,
+      "reset_discarded": 5170,
+      "clipped": 0,
+      "generation": 68,
+      "interrupted_packets": 0
+    }
+  },
+  "flash_verify_enabled_for_both_images": true,
+  "speaker": {
+    "output": "Default Windows playback output",
+    "digital_peak_dbfs": -26.23,
+    "normal_tones": [
+      {
+        "start_second": 10,
+        "expected_hz": 1000,
+        "dominant_hz": 999.0,
+        "power_fraction_within_10hz": 0.9971251395624104,
+        "rms_lsb": 571.7555436552271
+      },
+      {
+        "start_second": 32,
+        "expected_hz": 2000,
+        "dominant_hz": 2000.0,
+        "power_fraction_within_10hz": 0.9992284203672975,
+        "rms_lsb": 830.3369702110003
+      },
+      {
+        "start_second": 57,
+        "expected_hz": 1000,
+        "dominant_hz": 1000.0,
+        "power_fraction_within_10hz": 0.9976336231114559,
+        "rms_lsb": 559.9708626554788
+      },
+      {
+        "start_second": 87,
+        "expected_hz": 1500,
+        "dominant_hz": 1500.0,
+        "power_fraction_within_10hz": 0.9992280738451464,
+        "rms_lsb": 912.6712079793235
+      },
+      {
+        "start_second": 110,
+        "expected_hz": 1000,
+        "dominant_hz": 1000.0,
+        "power_fraction_within_10hz": 0.9982075372873777,
+        "rms_lsb": 563.5741577650539
+      }
+    ],
+    "standalone_tone": {
+      "start_second": 8,
+      "expected_hz": 1000,
+      "dominant_hz": 999.0,
+      "power_fraction_within_10hz": 0.9977084569257111,
+      "rms_lsb": 561.700031885222
+    }
+  },
+  "recordings": {
+    "diagnostic": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\discontinuity-live-20261110-0703\\injected-40s.wav",
+      "samples": 640000,
+      "duration_seconds": 40.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 1,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "wav_sha256": "9eb363b92835b741458bff21a867cd2765bd2bf7b691c0c656e220461e3d9414"
+    },
+    "normal": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\discontinuity-live-20261110-0703\\production-120s.wav",
+      "samples": 1920000,
+      "duration_seconds": 120.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "wav_sha256": "c2cf0f2694f968969304623751287a9cb118f9e2e76a5c7392b0bfe07d9e9127"
+    },
+    "standalone": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\discontinuity-live-20261110-0703\\standalone-15s.wav",
+      "samples": 240000,
+      "duration_seconds": 15.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "wav_sha256": "b135e03be0eaa33069386d6655992fc13feb4408f28a06fb4f6b82b31fedf941"
+    }
+  },
+  "final_confirmation_after_probe_open_error": {
+    "file": "captures\\discontinuity-live-20261110-0703\\final-confirmation.wav",
+    "samples": 48000,
+    "duration_seconds": 3.0,
+    "clipped_samples": 0,
+    "zero_ms_after_first_200ms": 0,
+    "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+    "wav_sha256": "d57e43265328cafaefa79d20dbd92837ecc8a5a762ef99582ebd9f42e84327eb"
+  },
+  "reopens": {
+    "count": 20,
+    "seconds_each": 1,
+    "all_completed": true
+  },
+  "checks": {
+    "exactly_three_injections_and_dma_overruns": true,
+    "injection_no_other_errors": true,
+    "normal_errors_zero": true,
+    "normal_firmware_has_no_injection_marker": true,
+    "full_recording_lengths": true,
+    "no_recording_clipping": true,
+    "twenty_reopens_completed": true,
+    "tones_received_acoustically": true,
+    "each_gap_resumed_signal": true,
+    "normal_phase_no_observed_usb_changes": true,
+    "audio_still_operates_after_probe_open_error": true
+  },
+  "passed": true,
+  "pass_scope": "Audio capture, real DMA-overrun recovery, stream reopening and observed USB enumeration. Post-detach register inspection is unavailable.",
+  "usb_watch": {
+    "completion": {
+      "time": "2026-11-10T07:09:51.8209362+09:00",
+      "event": "complete",
+      "polls": 256,
+      "elapsed_seconds": 360.002558
+    },
+    "state_changes_after_normal_calibration": 0,
+    "scope": "Present-device polling; flash/reset changes precede normal calibration. Brief transitions may be missed."
+  },
+  "post_detach_register_inspection": {
+    "status": "unavailable",
+    "attempts": 2,
+    "error": "ST-LINK open failed: USB error; reset not supported by WinUSB",
+    "automation_sequence": "All audio recordings completed; helper exited nonzero at the additional register check.",
+    "scope": "No CFSR/HFSR/DEMCR conclusion for this run. No additional reset or flash was performed."
+  },
+  "raw_evidence_directory": "captures/discontinuity-live-20261110-0703",
+  "limitations": [
+    "Deliberate capture pauses exercise the real DMA-overrun path; no exact count of lost PDM bits is known.",
+    "Windows processing adds dither, so exact-zero milliseconds do not measure complete recovery gaps.",
+    "Recovery has a transient above steady tone amplitude. No claim of inaudible or click-free recovery.",
+    "Speaker/microphone acoustic coupling is uncontrolled; this is not calibrated frequency response or speech quality.",
+    "No physical unplug, power-cycle, RESET-button, suspend/resume or eight-hour endurance test in this run.",
+    "Standalone capture has no simultaneous RTT counter observation; finite counters do not prove every USB packet arrived.",
+    "No strict WCET, complete CPU utilization, stack high-water, or end-to-end latency measurement."
+  ],
+  "final_state": "Normal adaptive-noise firmware running, diagnostic injection disabled; debugger closed."
+}

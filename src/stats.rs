@@ -30,6 +30,8 @@ impl Handler for UsbEvents {
         CONFIGURED.store(configured, Relaxed);
         if !configured {
             STREAMING.store(false, Relaxed);
+            #[cfg(feature = "live-mic")]
+            crate::pipe::clear();
         }
         defmt::info!("usb configured={}", configured);
     }

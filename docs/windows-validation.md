@@ -148,7 +148,7 @@ python tools/summarize_rtt.py artifacts/retest-rtt.txt --json artifacts/retest-r
 
 稳态检查 `usb_errors/ring_overruns/dma_errors/overflow_events/lost_samples/underruns/missing_samples` 不增长。`disabled/discarded_samples` 可因正常关流增加；预填补零、空闲丢弃和重置清空单独统计。完整含义见 [RTT 字段表](architecture.md#rtt-字段与边界)。计数器复位、回绕或 RTT 丢日志都可能影响判断。
 
-三次顺序重开不等于 20 次启停；复位不等于断电启动或 CN5 拔插。20 次启停/拔插、睡眠恢复、不同端口、Windows 11 和 8 小时录音尚未系统完成，应逐项记录。
+三次顺序重开不等于 20 次启停；复位不等于断电启动或 CN5 拔插。2026-11-10 已在加入间断通知的自动降噪版上完成 20 次录音启停，见 [音频间断验收](audio-discontinuity.md)；20 次物理拔插、睡眠恢复、不同端口、Windows 11 和 8 小时录音仍待系统完成，应逐项记录。
 
 ## 出问题时的观察顺序与回传资料
 

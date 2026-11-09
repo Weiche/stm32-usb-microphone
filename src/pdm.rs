@@ -113,8 +113,26 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
     };
     #[cfg(feature = "noise-suppression")]
     let mut processed = [0.0f32; BLOCK_WORDS / 4];
+    #[cfg(feature = "audio-gap-test")]
+    let mut injected_gaps = 0_u32;
     driver.start();
     loop {
+        #[cfg(feature = "audio-gap-test")]
+        if injected_gaps < 3
+            && crate::stats::STREAMING.load(Relaxed)
+            && crate::stats::PACKETS.load(Relaxed) >= (injected_gaps + 1) * 8000
+        {
+            injected_gaps += 1;
+            defmt::warn!(
+                "audio-gap-test inject={} pause_ms=10 packets={} ring_overruns_before={}",
+                injected_gaps,
+                crate::stats::PACKETS.load(Relaxed),
+                OVERRUNS.load(Relaxed)
+            );
+            // Leave DMA and the USB audio executor running. Ten milliseconds
+            // exceeds the 8 ms DMA ring and exercises the real HAL overrun path.
+            embassy_time::Timer::after_millis(10).await;
+        }
         match driver.read(&mut block).await {
             Ok(()) => {
                 let work = crate::perf::begin();
@@ -180,6 +198,8 @@ pub async fn capture_task(mut driver: i2s::I2S<'static, u16>) {
             }
             Err(i2s::Error::Overrun) => {
                 OVERRUNS.fetch_add(1, Relaxed);
+                #[cfg(feature = "live-mic")]
+                crate::pipe::clear();
                 // The exact number overwritten is unknown; never invent a dropped-sample total.
                 if copied > 0 && copied < SNAPSHOT_WORDS {
                     snapshot_valid = false;

@@ -10,6 +10,8 @@ pdm-capture = []
 live-mic = ["pdm-capture"]
 noise-suppression = ["live-mic"]
 adaptive-noise = ["noise-suppression"]
+# Hardware validation only: three 10 ms capture pauses after 8/16/24k USB packets.
+audio-gap-test = ["live-mic"]
 
 [lib]
 path = "src/lib.rs"

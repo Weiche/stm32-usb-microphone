@@ -98,19 +98,11 @@ async fn audio_task(mut stream: Stream<'static, UsbDriver>, monitor: ControlMoni
     let mut bytes = [0u8; 32];
     loop {
         stream.wait_connection().await;
-        let mut priming = true;
-        let mut rate = stm32f4_usb_mic::audio_queue::PacketRate::new();
-        let mut resampler = stm32f4_usb_mic::resampler::Resampler::new();
+        let mut state = stm32f4_usb_mic::audio_output::PacketState::new();
         loop {
             let started = embassy_time::Instant::now();
             let work = perf::begin();
-            pipe::packet(
-                &mut rate,
-                &mut resampler,
-                &mut priming,
-                monitor.muted(),
-                &mut bytes,
-            );
+            pipe::packet(&mut state, monitor.muted(), &mut bytes);
             pipe::PREPARE_MAX_US.fetch_max(started.elapsed().as_micros() as u32, Relaxed);
             perf::end_audio(work);
             match stream.write_packet(&bytes).await {
@@ -177,6 +169,8 @@ async fn main(spawner: Spawner) {
         cfg!(feature = "live-mic")
     );
     let p = embassy_stm32::init(board::config());
+    #[cfg(feature = "audio-gap-test")]
+    defmt::warn!("audio-gap-test: diagnostic firmware, three deliberate capture pauses enabled");
     board::enable_flash_acceleration();
     defmt::info!("clocks ready: SYSCLK=168MHz USB=48MHz HSE=8MHz crystal");
     #[cfg(feature = "pdm-capture")]

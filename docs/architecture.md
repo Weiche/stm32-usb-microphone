@@ -15,6 +15,7 @@
 | `src/noise.rs` / `src/perf.rs` | 降噪按钮/LED、状态与 DWT 处理工作量统计 |
 | `src/level_meter.rs` / `src/level_led.rs` | 20 ms RMS、明暗映射与蓝色 PD15 / TIM4_CH4 硬件 PWM |
 | `src/pipe.rs` | 实时输入、USB 包准备、预填、静音、按钮和运行统计 |
+| `src/audio_output.rs` | 队列间断序号、输出状态重置与重新预填；与主机恢复测试共用 |
 | `src/audio_queue.rs` | 有界 PCM 队列、队列水位控制与饱和增益 |
 | `src/resampler.rs` / `src/resampler_coeffs.rs` | 分数延迟重采样 |
 | `src/stats.rs` | USB 状态回调与发送统计 |
@@ -42,6 +43,10 @@ USB 每毫秒准备 16 samples /32 bytes，上游端点容量为 34 bytes。水�
 声音指示在采集侧取降噪 / 旁路后的信号，并计入当前 Q8 数字增益，使用独立蓝灯；未开启 USB 录音时也更新，不受 Windows 主通道静音影响。它不是标定声压级测量。
 
 默认增益 4×，PA0 USER 短按切换 4× → 16× → 1×；降噪版新增长按旁路 / 重新校准，见 [降噪说明](live-denoise.md)。静音仍消费数据；关闭流、reset、断开或 suspend 清空队列，避免重新打开时播放旧音频。USB 音量控制未实现。
+
+2026-11-10 增加统一音频间断通知：清空 PCM 队列时在同一短临界区递增 `generation`，包括空队列（重采样器仍可能保留历史）。DMA 覆盖在原有解码器 / 降噪历史重置前通知输出端；PCM 队列覆盖旧数据时也递增序号，并保留最新数据。输出端在包边界观察序号，重置水位控制、重采样相位和 FIR 历史，达到 256 samples 预填后恢复，等待期间发送 32-byte 零包。USB 流生命周期沿用同一通知路径；空闲采集不会每毫秒重复递增序号。
+
+读取队列采样时校验所属序号；若包准备过程中序号变化，清零整个待发包并重置输出，且不消费新序号的数据。已经交给 USB 驱动的包不能追溯撤回；此机制不能补回已丢失的输入或保证切换绝无可闻瞬态。新增 8 个主机测试覆盖预填、旧历史清除、包内间断、空队列、溢出、序号回绕、新音频恢复和原有连续通路行为；2026-11-10 的三次真实 DMA 覆盖恢复及录音结果见 [音频间断验收](audio-discontinuity.md)，尚无主观无爆音验收。噪声谱保留策略、增益、采样率和包大小保持原设置，DMA 致命硬件故障的自动恢复另待实现。
 
 ## 调度与内存
 
@@ -71,6 +76,7 @@ RCC 初始化后开启 STM32F407 Flash 侧指令缓存、数据缓存和预取�
 | `underruns / missing_samples` | 输出欠载事件 / 缺失输出采样数；欠载补零后重新预填 |
 | `priming_packets` | 启动/重新预填期间主动发送的零包 |
 | `idle_discarded / reset_discarded` | 未录音时主动丢弃 / 关闭或重置时清空的 PCM 数 |
+| `generation / interrupted_packets` | PCM 队列间断序号 / 因包准备过程中序号变化而整包清零的次数；正常 USB 启停也改变序号，不能直接作为故障数 |
 | `rate_q16 / gain_q8 / clipped` | 重采样输入步长 / 增益 / 增益削顶数 |
 | `decode_max_us / prepare_max_us` | 观察到的最长 DSP 块 / 包准备耗时，不能当作严格 WCET |
 | `noise enabled/ready/calibration_frames` | 降噪使能 / 噪声谱是否就绪 / 已校准帧数，完成为 500 |

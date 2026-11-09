@@ -17,7 +17,8 @@ for line in text.splitlines():
         rows.append(values)
 keys = ['packets', 'usb_errors', 'disabled', 'discarded_samples', 'ring_overruns',
         'dma_errors', 'overflow_events', 'lost_samples', 'underruns', 'missing_samples',
-        'priming_packets', 'reset_discarded', 'clipped', 'decode_max_us', 'prepare_max_us']
+        'priming_packets', 'reset_discarded', 'clipped', 'decode_max_us', 'prepare_max_us',
+        'generation', 'interrupted_packets']
 maxima = {key: max(row[key] for row in rows if key in row) for key in keys
           if any(key in row for row in rows)}
 required = ['usb_errors', 'ring_overruns', 'dma_errors', 'overflow_events',
