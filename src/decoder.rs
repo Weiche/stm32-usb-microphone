@@ -5,6 +5,9 @@ use crate::fir_coeffs::FIR;
 pub const DECIMATION: usize = 64;
 const CIC_GAIN: f32 = 1_048_576.0; // 16^5; reject folded PDM quantization noise.
 const HP_POLE: f32 = 0.992_176_8; // exp(-2*pi*20/16000), 20 Hz DC blocker
+// Five CIC output words plus a complete FIR window, aligned to PCM decimation.
+const RECOVERY_WARMUP_WORDS: u16 = ((FIR.len() + 5).div_ceil(4) * 4) as u16;
+const RECOVERY_FADE_SAMPLES: u16 = 64; // 4 ms at 16 kHz, after filter warmup.
 
 pub struct Decoder {
     integrators: [i32; 5],
@@ -15,6 +18,8 @@ pub struct Decoder {
     phase: u8,
     previous_input: f32,
     previous_output: f32,
+    recovery_warmup_words: u16,
+    recovery_fade_remaining: u16,
 }
 
 impl Default for Decoder {
@@ -33,12 +38,19 @@ impl Decoder {
             phase: 0,
             previous_input: 0.0,
             previous_output: 0.0,
+            recovery_warmup_words: 0,
+            recovery_fade_remaining: 0,
         }
     }
 
-    /// Reset after a known acquisition gap; never carry stale filter state across a gap.
+    /// Clear capture history after a gap, retaining only the slow DC estimate.
+    /// A fresh zero DC state would turn the microphone's bias into a large pulse.
     pub fn reset(&mut self) {
+        let dc = self.previous_input - HP_POLE * self.previous_output;
         *self = Self::new();
+        self.previous_input = dc;
+        self.recovery_warmup_words = RECOVERY_WARMUP_WORDS;
+        self.recovery_fade_remaining = RECOVERY_FADE_SAMPLES;
     }
 
     /// One u16 is 16 consecutive PDM clocks. Exactly one PCM sample per four words.
@@ -64,11 +76,16 @@ impl Decoder {
         if self.cursor == FIR.len() {
             self.cursor = 0;
         }
+        self.recovery_warmup_words = self.recovery_warmup_words.saturating_sub(1);
         self.phase += 1;
         if self.phase != 4 {
             return None;
         }
         self.phase = 0;
+        if self.recovery_warmup_words > 0 {
+            // Keep producing one PCM sample per four words while FIR history fills.
+            return Some(0);
+        }
         let mut filtered = 0.0;
         // FIR coefficients are symmetric, so oldest-to-newest accumulation is equivalent.
         for (&coefficient, &sample) in FIR
@@ -80,7 +97,15 @@ impl Decoder {
         let highpass = filtered - self.previous_input + HP_POLE * self.previous_output;
         self.previous_input = filtered;
         self.previous_output = highpass;
-        Some((highpass * 32768.0).clamp(-32768.0, 32767.0) as i16)
+        let gain = if self.recovery_fade_remaining > 0 {
+            let gain =
+                1.0 - f32::from(self.recovery_fade_remaining) / f32::from(RECOVERY_FADE_SAMPLES);
+            self.recovery_fade_remaining -= 1;
+            gain
+        } else {
+            1.0
+        };
+        Some((highpass * gain * 32768.0).clamp(-32768.0, 32767.0) as i16)
     }
 }
 
@@ -212,16 +237,91 @@ mod tests {
     }
 
     #[test]
-    fn reset_after_gap_matches_a_fresh_decoder() {
+    fn reset_after_gap_retains_only_dc_anchor_and_restarts_warmup() {
         let mut decoder = Decoder::new();
         for _ in 0..1000 {
             decoder.process_word(0xffff);
         }
+        let dc = decoder.previous_input - HP_POLE * decoder.previous_output;
         decoder.reset();
-        let mut fresh = Decoder::new();
-        for i in 0..4096 {
-            let word = (i as u16).wrapping_mul(1171);
-            assert_eq!(decoder.process_word(word), fresh.process_word(word));
+        assert_eq!(decoder.previous_input, dc);
+        assert_eq!(decoder.previous_output, 0.0);
+        assert_eq!(decoder.integrators, [0; 5]);
+        assert_eq!(decoder.comb_delays, [0; 5]);
+        assert!(decoder.history.iter().all(|&x| x == 0.0));
+        assert_eq!(decoder.phase, 0);
+        assert_eq!(decoder.recovery_warmup_words, RECOVERY_WARMUP_WORDS);
+        for _ in 0..32 {
+            decoder.process_word(0xe739);
+        }
+        decoder.reset();
+        assert_eq!(decoder.previous_input, dc);
+        assert_eq!(decoder.recovery_warmup_words, RECOVERY_WARMUP_WORDS);
+    }
+
+    #[test]
+    fn dc_biased_tone_survives_gaps_without_a_large_reset_pulse() {
+        for dc in [-0.03, -0.01, 0.01, 0.03] {
+            let mut recovered = Decoder::new();
+            let mut legacy = Decoder::new();
+            let mut quantizer = 0.0;
+            let mut rng = 0x1234_5678_u32;
+            let mut word = 0_u16;
+            let mut actual = Vec::new();
+            let mut before = Vec::new();
+            for n in 0..307_200 {
+                if n == 153_600 {
+                    recovered.reset();
+                    legacy = Decoder::new();
+                }
+                let desired = dc + 0.0025 * (2.0 * PI * 1000.0 * n as f64 / 1_024_000.0).sin();
+                quantizer += desired;
+                rng ^= rng << 13;
+                rng ^= rng >> 17;
+                rng ^= rng << 5;
+                let dither = (f64::from(rng) / f64::from(u32::MAX) - 0.5) * 0.5;
+                let bit = quantizer + dither >= 0.0;
+                quantizer -= if bit { 1.0 } else { -1.0 };
+                word = (word << 1) | u16::from(bit);
+                if n % 16 == 15 {
+                    let sample = recovered.process_word(word);
+                    let old = legacy.process_word(word);
+                    assert_eq!(sample.is_some(), old.is_some());
+                    if n >= 153_600
+                        && let Some(value) = sample
+                    {
+                        actual.push(value);
+                        before.push(old.unwrap());
+                    }
+                }
+            }
+            let peak = actual.iter().map(|&x| i32::from(x).abs()).max().unwrap();
+            let old_peak = before.iter().map(|&x| i32::from(x).abs()).max().unwrap();
+            let steady_peak = actual[800..]
+                .iter()
+                .map(|&x| i32::from(x).abs())
+                .max()
+                .unwrap();
+            // Quantizer dither is part of this source; compare with its measured
+            // steady peak instead of assuming a noiseless 82-LSB sinusoid.
+            std::println!("dc={dc} peak={peak} old_peak={old_peak} steady_peak={steady_peak}");
+            assert!(
+                peak <= steady_peak + 16,
+                "dc={dc} peak={peak} steady={steady_peak}"
+            );
+            assert!(
+                old_peak > steady_peak + 50,
+                "dc={dc} old={old_peak} steady={steady_peak}"
+            );
+            assert!(actual[..48].iter().all(|&x| x == 0));
+            let (amplitude, mean, snr) = sinusoid_metrics(&actual[800..], 1000.0);
+            let (old_amplitude, _, old_snr) = sinusoid_metrics(&before[800..], 1000.0);
+            assert!((amplitude / 81.92 - 1.0).abs() < 0.05, "amp={amplitude}");
+            assert!((amplitude - old_amplitude).abs() < 0.2);
+            assert!(
+                mean.abs() < 2.0 && snr >= old_snr - 0.1,
+                "mean={mean} snr={snr} old_snr={old_snr}"
+            );
         }
     }
 }

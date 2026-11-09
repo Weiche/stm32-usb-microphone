@@ -108,7 +108,8 @@ def validate(output_dir, room_wav=None):
             if name != "weak-harmonics":
                 checks[f"{name}_not_learned"] = result["known_signal_update_hops"] == 0
             else:
-                result["scope"] = "Deliberate low-SNR limitation probe; updates during this synthetic signal are NOT asserted to be safe."
+                checks["weak_harmonics_learning_limited"] = result["known_signal_update_hops"] < 0.05 * len(active)
+                result["scope"] = "Low-SNR synthetic limitation probe. Limited learning is required; this is not real speech VAD accuracy."
             if name == "harmonics":
                 selection = slice(6 * RATE, 24 * RATE)
                 fixed_error = rms(fixed[selection] - voice[selection])
@@ -132,9 +133,11 @@ def validate(output_dir, room_wav=None):
         checks[f"{name}_no_output_saturation"] = result["full_scale_output_samples"] == 0
         results[name] = result
     report = {
-        "algorithm": "Experimental anchored energy guard, 504ms quiet hold, slow bounded PSD tracking; exact firmware Rust DSP on host",
+        "algorithm": "Anchored energy and slow normalized spectral guard, 504ms quiet hold, bounded PSD tracking; exact firmware Rust DSP on host",
         "parameters": {"hop_samples": HOP, "update_alpha": 0.0016,
-                       "per_bin_power_bounds_vs_calibration": [0.25, 4.0]},
+                       "per_bin_power_bounds_vs_calibration": [0.25, 4.0],
+                       "weak_spectral_alpha": 0.02, "weak_spectral_excess_ratio": 1.5,
+                       "weak_spectral_votes": 8, "weak_band_hz": [125, 4000]},
         "source_sha256": {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
                           for path in ("src/noise_tracker.rs", "src/denoiser.rs", "examples/denoise_pcm.rs",
                                        "tools/validate_adaptive_noise.py")},

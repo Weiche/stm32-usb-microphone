@@ -1,6 +1,6 @@
 # Windows 烧录、录音与验收
 
-适用于当前默认 `live-mic` + `noise-suppression` 固件。启动后安静约 5 秒完成噪声校准；现场校准、原声切换和新映像验证见 [板上降噪](live-denoise.md)。接线与模式速查见 [README](../README.md)，计数字段见 [架构说明](architecture.md)。
+适用于当前默认 `live-mic` + `noise-suppression` 固件。启动后保持安静直到校准完成；通常至少约 5 秒，活动会延长等待，详见 [校准保护](calibration-guard.md)。现场校准、原声切换和新映像验证见 [板上降噪](live-denoise.md)。接线与模式速查见 [README](../README.md)，计数字段见 [架构说明](architecture.md)。
 截至 2026-11-05，已保存 Windows 10 Enterprise 19045 上 600 秒连续实体麦克风录音、三次顺序重开和复位后无调试器的 10 秒录音记录，见 [阶段四报告](stage4-live.md)。Windows 11 尚未实测；下列操作是复验指南，不表示本次文档更新重新进行了硬件测试。
 
 ## ST-LINK 固件升级（本板已完成）

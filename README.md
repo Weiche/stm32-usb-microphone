@@ -2,7 +2,7 @@
 
 Rust + Embassy，STM32F407VG / MB997B，板载 MP45DT02，无外接采集模块。
 默认固件将真实麦克风送到 UAC1：16 kHz、16-bit PCM、单声道；Windows 原生 usbaudio 驱动。
-默认启用 12 dB 上限的 Wiener 降噪。启动后先保持安静约 5 秒，红灯熄灭、橙灯亮后完成校准；使用与验证范围见 [板上降噪](docs/live-denoise.md)。
+默认启用 12 dB 上限的 Wiener 降噪。启动后保持安静至少约 5 秒，活动可能延长校准；红灯闪烁表示等待安静，红灯熄灭、橙灯亮后完成。新校准与轻声学习保护的离线结果及实板边界见 [校准保护](docs/calibration-guard.md)。
 可选 `--features adaptive-noise` 尝试安静时自动跟踪背景噪声；已完成离线及短时实板验证，音质仍待试听，使用及局限见 [自动噪声跟踪实验](docs/adaptive-noise.md)。
 蓝色 PD15 LED 按当前声音强弱调节亮度，安静时较暗、说话时变亮；不要求 Windows 正在录音。四灯用途及规则见 [声音强度指示](docs/level-led.md)。
 
@@ -45,7 +45,7 @@ Cargo runner 使用 `STM32F407VGTx --speed 1000 --connect-under-reset --verify -
 烧录对应模式时，将表中的 `cargo build` 换成 `cargo run`，保留全部 feature 参数。
 `--features pdm-capture` 单独使用仍保留默认 `live-mic`；独立诊断必须同时指定 `--no-default-features`。
 
-PA0 USER 短按后松开，增益切换 4× → 16× → 1× → 4×；按住 1～3 秒后松开，切换降噪 / 原声；按住至少 3 秒后松开，重新校准，随后安静约 5 秒。
+PA0 USER 短按后松开，增益切换 4× → 16× → 1× → 4×；按住 1～3 秒后松开，切换降噪 / 原声；按住至少 3 秒后松开，重新校准，随后保持安静直到红灯熄灭。
 重启恢复 4×、降噪开启并重新校准，不写 Flash。新长按控制已实现，实体按钮操作仍待验证。
 支持 USB 主通道静音；不宣称支持尚未实现的 USB 音量控制。
 
@@ -81,6 +81,7 @@ PDM → CIC5 /16 → 191 tap FIR /4 → 20 Hz DC blocker → Wiener 降噪 → 1
 
 RTT 记录 USB 状态/包数/端点错误、DMA 硬件错误/环形覆盖、PCM 水位/溢出/欠载/丢样、启动补零、重连清空、增益削顶与处理耗时。
 DMA 覆盖或 PCM 队列间断会通知输出端，重置重采样历史并重新预填，期间输出静音。2026-11-10 已完成三次实板故障注入恢复、120 秒录音、20 次重开及独立录音；恢复存在短暂静音及瞬态，结果见 [音频间断验收](docs/audio-discontinuity.md)。
+后续已通过保留直流估计、滤波器预热与短淡入降低恢复峰值，并用低音量中文合成人声复验，见 [恢复瞬态优化](docs/recovery-transient.md)。
 离线 ELF 检查由 `tools/inspect_elf.py` 完成；栈高水位和严格 WCET 未测量。
 
 ## 证据与局限

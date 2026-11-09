@@ -1,0 +1,326 @@
+{
+  "recorded_at": "2026-11-10T08:00:41.921604+09:00",
+  "source_base_commit": "c135c13e1df2f0d673522c0af1f45feb88099890",
+  "source_has_uncommitted_changes": true,
+  "previous_recovery_fix_preserved": true,
+  "source_sha256": {
+    "src/calibration.rs": "0a4d70c27fcd84246e06a47c0e0fdde706d159dccbc2971ff32f1e52361e6ac5",
+    "src/denoiser.rs": "fe42a9265d565efd53cd5a9e54e4cd0b84cbe055d6cd7cad577a2d9f070e5704",
+    "src/noise_tracker.rs": "65ee7f9be6f378e32e290491c5f24466912ce30ea1303ae0aee1dd9a91650c25",
+    "src/noise.rs": "67265a43b57880d37327c34ca4ed41616fa57e399bb8bad2f130d9f51d4690e9",
+    "src/main.rs": "1bac5292b27dcd75cb3f5a7e7c18ebf1f9086dc99374e22b224d36e4a8e224b6",
+    "examples/denoise_pcm.rs": "2c8e1350ca22933b2b64ad666265cf8058af16938f82f13380695fa4c7d3771f",
+    "tools/validate_calibration_guard.py": "9ab9af436eb990d06a3eb752037383f3b3476e3d9600e446d6dcdc75ea4ff320",
+    "tools/validate_adaptive_noise.py": "d029dc5cf057fa187062c8fc061dfdaa0835bef72513a59876e8a8aa7587620b"
+  },
+  "startup_comparison": {
+    "results": {
+      "quiet": {
+        "before": {
+          "ready_second": 4.504,
+          "accepted_frames": 500,
+          "rejected_frames": null,
+          "clipped_samples": 0,
+          "profile_total_power": 0.14841464161872864
+        },
+        "after": {
+          "ready_second": 4.504,
+          "accepted_frames": 500,
+          "rejected_frames": 0,
+          "clipped_samples": 0,
+          "profile_total_power": 0.14841464161872864
+        },
+        "input_sha256": "74b57bcb9d8a9afe8ecb7cd9226865bdc96d8c4d667c5ab613b1a23d76fd9d87"
+      },
+      "speech-at-start": {
+        "before": {
+          "ready_second": 4.504,
+          "accepted_frames": 500,
+          "rejected_frames": null,
+          "clipped_samples": 0,
+          "profile_total_power": 11.884370803833008
+        },
+        "after": {
+          "ready_second": 10.624,
+          "accepted_frames": 500,
+          "rejected_frames": 393,
+          "clipped_samples": 0,
+          "profile_total_power": 0.14865723252296448
+        },
+        "input_sha256": "32efda6039c89df22f4609aca62893056085ab521ef6348635173ea0b1eb83af",
+        "profile_power_after_vs_before": 0.012508632974916837
+      },
+      "speech-after-quiet": {
+        "before": {
+          "ready_second": 4.504,
+          "accepted_frames": 500,
+          "rejected_frames": null,
+          "clipped_samples": 0,
+          "profile_total_power": 14.867863655090332
+        },
+        "after": {
+          "ready_second": 8.256,
+          "accepted_frames": 500,
+          "rejected_frames": 263,
+          "clipped_samples": 0,
+          "profile_total_power": 0.14883220195770264
+        },
+        "input_sha256": "0c805681a052d1343a5e867f1e8135ca94926bc8d49b718ff30e428509a66696",
+        "profile_power_after_vs_before": 0.010010328680055304
+      },
+      "continuous-speech": {
+        "before": {
+          "ready_second": 4.504,
+          "accepted_frames": 500,
+          "rejected_frames": null,
+          "clipped_samples": 0,
+          "profile_total_power": 11.884370803833008
+        },
+        "after": {
+          "ready_second": null,
+          "accepted_frames": 160,
+          "rejected_frames": 1021,
+          "clipped_samples": 0
+        },
+        "input_sha256": "87270108a70a96be9732133a369ef742f5d37f634a900125d83dbdb6d07d1145"
+      },
+      "recorded-room-quiet": {
+        "before": {
+          "ready_second": 4.504,
+          "accepted_frames": 500,
+          "rejected_frames": null,
+          "clipped_samples": 0,
+          "profile_total_power": 0.009091654792428017
+        },
+        "after": {
+          "ready_second": 5.144,
+          "accepted_frames": 500,
+          "rejected_frames": 17,
+          "clipped_samples": 0,
+          "profile_total_power": 0.00909165944904089
+        },
+        "input_sha256": "646995ea3a94e164fc1bde1285fe6973d7a5b3de7a2a26e7933694da80143452"
+      },
+      "weak-speech": {
+        "before": {
+          "ready_second": 0.008,
+          "accepted_frames": 0,
+          "rejected_frames": null,
+          "clipped_samples": 0,
+          "profile_total_power": 0.15017741918563843,
+          "activity_region_update_hops": 400,
+          "activity_region_guard_fraction": 0.2325189553496209,
+          "known_signal_rms_error": 0.0010181290469494075
+        },
+        "after": {
+          "ready_second": 0.008,
+          "accepted_frames": 0,
+          "rejected_frames": 0,
+          "clipped_samples": 0,
+          "profile_total_power": 0.14885085821151733,
+          "activity_region_update_hops": 173,
+          "activity_region_guard_fraction": 0.5602358887952822,
+          "known_signal_rms_error": 0.0010113992792028556
+        }
+      }
+    },
+    "checks": {
+      "quiet_no_clipping": true,
+      "quiet_completes": true,
+      "speech-at-start_no_clipping": true,
+      "speech-at-start_waits_for_quiet": true,
+      "speech-at-start_less_contamination": true,
+      "speech-after-quiet_no_clipping": true,
+      "speech-after-quiet_waits_for_quiet": true,
+      "speech-after-quiet_less_contamination": true,
+      "continuous-speech_no_clipping": true,
+      "recorded-room-quiet_no_clipping": true,
+      "recorded-room-quiet_completes": true,
+      "continuous_speech_stays_unready": true,
+      "speech-at-start_profile_matches_background": true,
+      "speech-after-quiet_profile_matches_background": true,
+      "weak_speech_less_learning": true,
+      "weak_speech_error_not_worse": true,
+      "weak_speech_no_clipping": true,
+      "fixed_profile_output_unchanged": true
+    },
+    "passed": true,
+    "before_executable_sha256": "eb95b258457cb3c5015696ba6e20db5a3a9d64361d924ee7ec754cdc02fc5175",
+    "after_executable_sha256": "1019b774001f49721419b64c6b04baa75cd534f5df5ae076741d891dc194242d",
+    "speech_source_sha256": "8997a227e44f6d1bb04e64924cff837bba92cc28f74386398aeaa6fb02bc1033",
+    "limitations": [
+      "No playback or on-board test in this tool.",
+      "Synthetic speech/harmonics do not establish human quiet-speech intelligibility.",
+      "Conservative spectral guards can reject tonal noise and cannot identify every low-SNR consonant."
+    ]
+  },
+  "tracking_comparison": {
+    "algorithm": "Experimental anchored energy guard, 504ms quiet hold, slow bounded PSD tracking; exact firmware Rust DSP on host",
+    "parameters": {
+      "hop_samples": 128,
+      "update_alpha": 0.0016,
+      "per_bin_power_bounds_vs_calibration": [
+        0.25,
+        4.0
+      ]
+    },
+    "source_sha256": {
+      "src/noise_tracker.rs": "65ee7f9be6f378e32e290491c5f24466912ce30ea1303ae0aee1dd9a91650c25",
+      "src/denoiser.rs": "fe42a9265d565efd53cd5a9e54e4cd0b84cbe055d6cd7cad577a2d9f070e5704",
+      "examples/denoise_pcm.rs": "2c8e1350ca22933b2b64ad666265cf8058af16938f82f13380695fa4c7d3771f",
+      "tools/validate_adaptive_noise.py": "525a70a6690c163d384ba5ce62ebdd72152970e878b7e6d034cb07133c172da9"
+    },
+    "host_executable_sha256": "1019b774001f49721419b64c6b04baa75cd534f5df5ae076741d891dc194242d",
+    "git_base": "c135c13e1df2f0d673522c0af1f45feb88099890",
+    "checks": {
+      "moderate_rise_followed": true,
+      "rise_residual_reduced": true,
+      "noise-rise_no_output_saturation": true,
+      "moderate_fall_followed": true,
+      "noise-fall_no_output_saturation": true,
+      "harmonics_not_learned": true,
+      "harmonic_reconstruction_not_degraded": true,
+      "harmonics_no_output_saturation": true,
+      "weak_harmonics_learning_limited": true,
+      "weak-harmonics_no_output_saturation": true,
+      "silent-calibration_not_learned": true,
+      "silent-calibration_no_output_saturation": true
+    },
+    "passed": true,
+    "results": {
+      "noise-rise": {
+        "samples": 640000,
+        "input_pcm_sha256": "5a45cd2c4b1650fc30607c7051f00c90f398d0e2e5c909877e301b3987a906b6",
+        "final_power_ratio": 2.26,
+        "update_hops": 4600,
+        "guarded_hops_fraction": 0.017,
+        "full_scale_output_samples": 0,
+        "last_5s_extra_attenuation_vs_fixed_db": 2.1933734666702973,
+        "last_5s_input_to_output_attenuation_db": 11.942199548059858
+      },
+      "noise-fall": {
+        "samples": 640000,
+        "input_pcm_sha256": "4e79f7f9cb630ca29f22794546d5562b4d996bd546952f1908cacfbfa45dd185",
+        "final_power_ratio": 0.423,
+        "update_hops": 4628,
+        "guarded_hops_fraction": 0.0114,
+        "full_scale_output_samples": 0,
+        "last_5s_extra_attenuation_vs_fixed_db": -0.06130389376914901,
+        "last_5s_input_to_output_attenuation_db": 11.938561223268167
+      },
+      "harmonics": {
+        "samples": 480000,
+        "input_pcm_sha256": "fb58db3d357c1a0d3ea628c5650723a8e5472d76918b2def7f9f42a1560725ce",
+        "final_power_ratio": 1.006,
+        "update_hops": 804,
+        "guarded_hops_fraction": 0.7016,
+        "full_scale_output_samples": 0,
+        "known_signal_guard_fraction": 1.0,
+        "known_signal_update_hops": 0,
+        "known_signal_error_change_db": 0.015857288822216025
+      },
+      "weak-harmonics": {
+        "samples": 480000,
+        "input_pcm_sha256": "6f5e4d22694c604a5631610ad85a3f4af052e9b16503b35650430db3781c2371",
+        "final_power_ratio": 1.0,
+        "update_hops": 1046,
+        "guarded_hops_fraction": 0.672,
+        "full_scale_output_samples": 0,
+        "known_signal_guard_fraction": 0.9899477281865702,
+        "known_signal_update_hops": 25,
+        "scope": "Low-SNR synthetic limitation probe. Limited learning is required; this is not real speech VAD accuracy."
+      },
+      "silent-calibration": {
+        "samples": 480000,
+        "input_pcm_sha256": "de8d296a0708c89f630e4a290ab15255f43551d77f07db0d557425a5dc2de87d",
+        "final_power_ratio": 1.0,
+        "update_hops": 705,
+        "guarded_hops_fraction": 0.7784,
+        "full_scale_output_samples": 0,
+        "known_signal_guard_fraction": 1.0,
+        "known_signal_update_hops": 0
+      }
+    },
+    "limitations": [
+      "No on-board CPU, USB, timing, or stack verification of this new firmware.",
+      "Harmonics are synthetic, not a speech intelligibility benchmark.",
+      "Room segments follow the old recording protocol, contain pauses and have no clean-speech reference.",
+      "Energy guard can confuse weak speech and noise; strong or tonal background changes may freeze tracking.",
+      "Noise-change scenarios are deterministic synthetic signals, not a recorded fan-speed change.",
+      "The host uses a precomputed noise profile; startup calibration is tested separately in Rust.",
+      "Listening is required before enabling by default."
+    ]
+  },
+  "verification": {
+    "tools/check.ps1": "passed: firmware build, fmt, default/adaptive Clippy, 41 Rust tests and host example Clippy",
+    "fixed_profile_output": "same samples in the same-input comparison"
+  },
+  "candidate": {
+    "features": [
+      "adaptive-noise"
+    ],
+    "audio_gap_test": false,
+    "elf_sha256": "bdb636e706e7e173818979a0a70fc38cadc4306a074c3126d2cbc33498cf6407",
+    "bin_sha256": "996ca377e2fa4ee80760d28c85f603f3b3cee74b9128f9c0bc4371f288a01abc",
+    "memory": {
+      "elf": "captures\\calibration-guard-20261110\\candidate.elf",
+      "entry": "0x08000189",
+      "flash_image_span_bytes": 100480,
+      "allocated_sram_bytes": 31388,
+      "sram_capacity_bytes": 131072,
+      "ccm_allocations": 0,
+      "stack_high_water": "not measured",
+      "sections": [
+        {
+          "section": ".vector_table",
+          "address": "0x08000000",
+          "bytes": 392,
+          "region": "FLASH"
+        },
+        {
+          "section": ".text",
+          "address": "0x08000188",
+          "bytes": 80364,
+          "region": "FLASH"
+        },
+        {
+          "section": ".rodata",
+          "address": "0x08013b74",
+          "bytes": 19336,
+          "region": "FLASH"
+        },
+        {
+          "section": ".data",
+          "address": "0x20000000",
+          "bytes": 384,
+          "region": "SRAM1/2"
+        },
+        {
+          "section": ".bss",
+          "address": "0x20000180",
+          "bytes": 29980,
+          "region": "SRAM1/2"
+        },
+        {
+          "section": ".uninit",
+          "address": "0x2000769c",
+          "bytes": 1024,
+          "region": "SRAM1/2"
+        }
+      ]
+    },
+    "flashed": false
+  },
+  "hardware": {
+    "status": "not run",
+    "reason": "ST-LINK opening fails with USB error: reset not supported by WinUSB; waiting for CN1 replug",
+    "current_firmware": "Previous recovery-transient image; no flash issued in this run"
+  },
+  "raw_evidence_directory": "captures/calibration-guard-20261110",
+  "limitations": [
+    "Learning protection is a conservative heuristic, not a trained VAD or a speech intelligibility guarantee.",
+    "Low-SNR broadband consonants and stationary/tonal backgrounds can be confused.",
+    "No on-board timing, stability, LED visual acceptance or quiet-speech listening acceptance for this candidate yet.",
+    "The baseline executable and original audio remain local; report contains hashes and numerical results."
+  ]
+}

@@ -1,0 +1,356 @@
+{
+  "recorded_at": "2026-11-10T07:34:53.857249+09:00",
+  "source_base_commit": "c135c13e1df2f0d673522c0af1f45feb88099890",
+  "source_has_uncommitted_changes": true,
+  "source_sha256": {
+    "src/decoder.rs": "16d7c9c2858f491f219e517db175c58d52ae79d81e721718dff08d510e7a18f9",
+    "examples/decode_pdm.rs": "3aad403061fd283f96408d94e2beccd9c1c6a00257f2dd77ee621b07a86f7812"
+  },
+  "fix": {
+    "retained_dc_anchor": "previous_input - HP_POLE * previous_output",
+    "cic_fir_warmup_words": 196,
+    "warmup_ms": 3.0625,
+    "recovery_fade_samples": 64,
+    "fade_ms": 4
+  },
+  "offline_replay": {
+    "recorded_pdm_sha256": "c65f06478945c76918e7f0aef95ddc18fb573db0f9e7850b9eb453a281211f40",
+    "raw_pdm_dc_fraction": 0.011444091796875,
+    "reset_at_word": 16384,
+    "window_ms": 50,
+    "old_peak_lsb": 433.0,
+    "new_peak_lsb": 9.0,
+    "scope": "Identical recorded PDM period repeated; old fresh decoder vs warmed decoder reset at an aligned period boundary."
+  },
+  "baseline_report": "artifacts/audio-discontinuity-hardware-validation.json",
+  "recoveries": [
+    {
+      "injection": 1,
+      "near_silence_ms": 35,
+      "before_near_silence_ms": 28,
+      "recovery_peak_lsb": 1193.0,
+      "before_peak_lsb": 5858.0,
+      "steady_rms_lsb": 784.1490326900556,
+      "pre_gap_rms_lsb": 785.1891009296742,
+      "peak_to_steady_rms": 1.5213944674615798,
+      "before_peak_to_steady_rms": 10.329407298398348,
+      "normalized_peak_reduction_percent": 85.27123170273784
+    },
+    {
+      "injection": 2,
+      "near_silence_ms": 36,
+      "before_near_silence_ms": 29,
+      "recovery_peak_lsb": 1156.0,
+      "before_peak_lsb": 9200.0,
+      "steady_rms_lsb": 773.4527059111307,
+      "pre_gap_rms_lsb": 771.3439149667611,
+      "peak_to_steady_rms": 1.494596878600647,
+      "before_peak_to_steady_rms": 16.545342080117386,
+      "normalized_peak_reduction_percent": 90.96666075948522
+    },
+    {
+      "injection": 3,
+      "near_silence_ms": 36,
+      "before_near_silence_ms": 29,
+      "recovery_peak_lsb": 1146.0,
+      "before_peak_lsb": 4840.0,
+      "steady_rms_lsb": 761.1128771205688,
+      "pre_gap_rms_lsb": 755.6737944336497,
+      "peak_to_steady_rms": 1.505689936997953,
+      "before_peak_to_steady_rms": 8.66414739076449,
+      "normalized_peak_reduction_percent": 82.62160292191085
+    }
+  ],
+  "images": {
+    "diagnostic": {
+      "features": [
+        "adaptive-noise",
+        "audio-gap-test"
+      ],
+      "elf_sha256": "97aaaa63f08e7d65acbbc188065868537af2c6252daa2a33123339ec3322a583",
+      "bin_sha256": "80bd5350299f79668e984a1b7f5cc361b0d9202f7c83b99102e4b4cae1bcd9be",
+      "memory": {
+        "elf": "captures\\recovery-transient-20261110\\diagnostic.elf",
+        "entry": "0x08000189",
+        "flash_image_span_bytes": 93920,
+        "allocated_sram_bytes": 29800,
+        "sram_capacity_bytes": 131072,
+        "ccm_allocations": 0,
+        "stack_high_water": "not measured",
+        "sections": [
+          {
+            "section": ".vector_table",
+            "address": "0x08000000",
+            "bytes": 392,
+            "region": "FLASH"
+          },
+          {
+            "section": ".text",
+            "address": "0x08000188",
+            "bytes": 73908,
+            "region": "FLASH"
+          },
+          {
+            "section": ".rodata",
+            "address": "0x0801223c",
+            "bytes": 19232,
+            "region": "FLASH"
+          },
+          {
+            "section": ".data",
+            "address": "0x20000000",
+            "bytes": 384,
+            "region": "SRAM1/2"
+          },
+          {
+            "section": ".bss",
+            "address": "0x20000180",
+            "bytes": 28392,
+            "region": "SRAM1/2"
+          },
+          {
+            "section": ".uninit",
+            "address": "0x20007068",
+            "bytes": 1024,
+            "region": "SRAM1/2"
+          }
+        ]
+      }
+    },
+    "production": {
+      "features": [
+        "adaptive-noise"
+      ],
+      "elf_sha256": "1570289aab0b14d7c46d5bb7dbcb3e022e21a20276c0f924f18734c57aa03ff5",
+      "bin_sha256": "c0f019b98e5586443569924adfea330cb068bd3af6c6ecec2f2eb97be11dc918",
+      "memory": {
+        "elf": "captures\\recovery-transient-20261110\\production.elf",
+        "entry": "0x08000189",
+        "flash_image_span_bytes": 93456,
+        "allocated_sram_bytes": 29800,
+        "sram_capacity_bytes": 131072,
+        "ccm_allocations": 0,
+        "stack_high_water": "not measured",
+        "sections": [
+          {
+            "section": ".vector_table",
+            "address": "0x08000000",
+            "bytes": 392,
+            "region": "FLASH"
+          },
+          {
+            "section": ".text",
+            "address": "0x08000188",
+            "bytes": 73444,
+            "region": "FLASH"
+          },
+          {
+            "section": ".rodata",
+            "address": "0x0801206c",
+            "bytes": 19232,
+            "region": "FLASH"
+          },
+          {
+            "section": ".data",
+            "address": "0x20000000",
+            "bytes": 384,
+            "region": "SRAM1/2"
+          },
+          {
+            "section": ".bss",
+            "address": "0x20000180",
+            "bytes": 28392,
+            "region": "SRAM1/2"
+          },
+          {
+            "section": ".uninit",
+            "address": "0x20007068",
+            "bytes": 1024,
+            "region": "SRAM1/2"
+          }
+        ]
+      }
+    }
+  },
+  "backup": {
+    "bin_sha256": "bea28888b97f6794ef39ca475d46bfa3b7c3eb742f36323c1c12364257994bc3",
+    "matches_baseline_production": true
+  },
+  "flash_verify_enabled": true,
+  "diagnostic_rtt_maxima": {
+    "ring_overruns": 3,
+    "dma_errors": 0,
+    "usb_errors": 0,
+    "overflow_events": 0,
+    "lost_samples": 0,
+    "underruns": 0,
+    "missing_samples": 0,
+    "clipped": 0,
+    "generation": 13,
+    "priming_packets": 68
+  },
+  "normal_rtt_maxima": {
+    "ring_overruns": 0,
+    "dma_errors": 0,
+    "usb_errors": 0,
+    "overflow_events": 0,
+    "lost_samples": 0,
+    "underruns": 0,
+    "missing_samples": 0,
+    "clipped": 0,
+    "generation": 25,
+    "priming_packets": 70
+  },
+  "usb_watch": {
+    "completion": {
+      "time": "2026-11-10T07:31:35.2609306+09:00",
+      "event": "complete",
+      "polls": 153,
+      "elapsed_seconds": 220.0115197
+    },
+    "normal_phase_observed_changes": 0
+  },
+  "recordings": {
+    "injected-40s": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\injected-40s.wav",
+      "samples": 640000,
+      "duration_seconds": 40.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 2,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "sha256": "2d055eabfdf0277b2626ed09ab6586194d6730930f1878c579ceb378b17b192b"
+    },
+    "production-60s": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\production-60s.wav",
+      "samples": 960000,
+      "duration_seconds": 60.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "sha256": "d164e9181f38e7236b7307c264e2dd3e92f58bf70e586018d93766c5c739eda6"
+    },
+    "standalone-15s": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\standalone-15s.wav",
+      "samples": 240000,
+      "duration_seconds": 15.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "sha256": "28a60b79c9a10f5bf9591e64d34d968f9971d824f162ab18ed29324b4a580004"
+    },
+    "reopen-01": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\reopen-01.wav",
+      "samples": 16000,
+      "duration_seconds": 1.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "sha256": "e339eec89878dd7de774c76c720062f3ae31659ed27a7eacb851f700501fafac"
+    },
+    "reopen-02": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\reopen-02.wav",
+      "samples": 16000,
+      "duration_seconds": 1.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "sha256": "065180a8e0286824de0e8ea0b44f5fe11dc1337f3f79f12a0242e600f28bd4ec"
+    },
+    "reopen-03": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\reopen-03.wav",
+      "samples": 16000,
+      "duration_seconds": 1.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "sha256": "4adc10e1bca77d8db5e239863329918fb0e7031e53c5f6293548bd0ef70bdb71"
+    },
+    "reopen-04": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\reopen-04.wav",
+      "samples": 16000,
+      "duration_seconds": 1.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "sha256": "a3a679d2d1af42ac7b6ea643bec0b14bccfa052ea70e265d43f72cb00733ff10"
+    },
+    "reopen-05": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\reopen-05.wav",
+      "samples": 16000,
+      "duration_seconds": 1.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "sha256": "66023e1a4cf8930f264d401cbdd8318c6dd6bbe6c030e420a96270c4cc2f2356"
+    }
+  },
+  "checks": {
+    "identical_stimulus_bytes": true,
+    "three_real_dma_overruns": true,
+    "no_other_injection_errors": true,
+    "recovery_peak_near_steady_tone": true,
+    "normalized_peak_reduced_over_80_percent": true,
+    "steady_level_recovers": true,
+    "near_silence_increase_at_most_10ms": true,
+    "normal_errors_zero": true,
+    "normal_image_no_injection": true,
+    "no_clipped_recordings": true,
+    "normal_and_standalone_no_zero_ms_after_start": true,
+    "all_capture_lengths": true,
+    "normal_phase_no_usb_changes": true,
+    "speech_three_overruns_no_other_errors": true,
+    "speech_lengths_and_no_clipping": true
+  },
+  "passed": true,
+  "speech_test": {
+    "voice": "Microsoft Huihui Desktop - Chinese (Simplified)",
+    "stimulus_sha256": "fe52c9931e5ad4a142646248d13bd5be0d8f119469ee44c4537f526001bdedca",
+    "digital_peak_lsb": 1000,
+    "rtt_maxima": {
+      "ring_overruns": 3,
+      "dma_errors": 0,
+      "usb_errors": 0,
+      "overflow_events": 0,
+      "lost_samples": 0,
+      "underruns": 0,
+      "missing_samples": 0,
+      "clipped": 0,
+      "generation": 13,
+      "priming_packets": 69
+    },
+    "recordings": {
+      "speech-injected-35s": {
+        "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\speech-injected-35s.wav",
+        "samples": 560000,
+        "duration_seconds": 35.0,
+        "clipped_samples": 0,
+        "zero_ms_after_first_200ms": 2,
+        "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+      },
+      "speech-standalone-12s": {
+        "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\recovery-transient-20261110\\speech-standalone-12s.wav",
+        "samples": 192000,
+        "duration_seconds": 12.0,
+        "clipped_samples": 0,
+        "zero_ms_after_first_200ms": 0,
+        "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss."
+      }
+    },
+    "scope": "Low-level synthesized speech acoustic recording with actual overruns and independent normal capture. No ASR or subjective intelligibility score."
+  },
+  "host_checks": {
+    "tools/check.ps1": "passed; 36 Rust tests",
+    "python_offline_tests": "5 passed",
+    "additional_clippy": "passed: diagnostic firmware, raw live-mic, pdm-capture and decode_pdm example"
+  },
+  "raw_evidence_directory": "captures/recovery-transient-20261110",
+  "final_state": "New adaptive-noise firmware running with audio-gap-test disabled; debugger exited.",
+  "limitations": [
+    "Exact same playback WAV, but the acoustic scene and Windows endpoint gain were not independently controlled between runs. Primary comparison uses recovery peak / steady RMS within each run.",
+    "Observed near-silence is 1 ms RMS <2 LSB through Windows capture, not measured USB silence duration or end-to-end latency.",
+    "Retains only a slowly changing DC estimate across capture gaps; abrupt changes to microphone DC bias across long gaps were not tested.",
+    "No subjective click-free or speech-intelligibility acceptance. Does not reconstruct lost audio.",
+    "No eight-hour, physical unplug, power-cycle or sleep/resume validation of the new image. Finite logs do not prove every USB packet arrived.",
+    "CN1 replug recovered the earlier ST-LINK opening problem. Post-detach register reads were not attempted this time."
+  ]
+}

@@ -21,6 +21,8 @@ pub struct TrackingStatus {
 pub(crate) struct NoiseTracker {
     reference: [f32; BINS],
     smoothed_bands: [f32; BANDS],
+    smoothed_power: [f32; BINS],
+    weak_votes: u32,
     hold: u32,
     status: TrackingStatus,
 }
@@ -30,6 +32,8 @@ impl NoiseTracker {
         Self {
             reference: [1e-20; BINS],
             smoothed_bands: [0.0; BANDS],
+            smoothed_power: [1e-20; BINS],
+            weak_votes: 0,
             hold: QUIET_HOPS,
             status: TrackingStatus {
                 enabled: false,
@@ -60,6 +64,8 @@ impl NoiseTracker {
         self.hold = QUIET_HOPS;
         self.status.speech_detected = false;
         self.status.updating = false;
+        self.smoothed_power.copy_from_slice(&self.reference);
+        self.weak_votes = 0;
         for (band, smooth) in self.smoothed_bands.iter_mut().enumerate() {
             let start = FIRST_BIN + band * BAND_WIDTH;
             *smooth = self.reference[start..start + BAND_WIDTH].iter().sum();
@@ -91,6 +97,30 @@ impl NoiseTracker {
             speech |= *smooth > 5.0 * reference || current > 20.0 * reference;
         }
         speech |= smoothed_total > 3.0 * reference_total || instant_total > 8.0 * reference_total;
+        // ~400 ms smoothing resolves persistent narrow-band excess that is too
+        // weak for the coarse energy guard. Normalize common broadband changes
+        // so a moderate fan-level increase can still be learned.
+        if speech {
+            // Strong activity already has the fast guard and its hold. Keep it
+            // from lingering in the slow weak-signal observer on release.
+            self.smoothed_power.copy_from_slice(&self.reference);
+            self.weak_votes = 0;
+        } else {
+            for (smooth, &current) in self.smoothed_power.iter_mut().zip(power) {
+                *smooth += 0.02 * (current - *smooth);
+            }
+            let reference: f32 = self.reference[2..64].iter().sum();
+            let smooth: f32 = self.smoothed_power[2..64].iter().sum();
+            let scale = (smooth / reference.max(1e-20)).max(0.25);
+            let narrow_excess = (2..64)
+                .any(|bin| self.smoothed_power[bin] > 1.5 * scale * self.reference[bin].max(1e-20));
+            self.weak_votes = if narrow_excess {
+                (self.weak_votes + 1).min(8)
+            } else {
+                self.weak_votes.saturating_sub(1)
+            };
+        }
+        speech |= self.weak_votes >= 8;
         self.status.speech_detected = speech;
         self.status.updating = false;
         if speech {
@@ -189,6 +219,30 @@ mod tests {
             tracker.observe(&outside_voice_band, &mut noise);
         }
         assert_eq!(noise[100], 4.0);
+    }
+
+    #[test]
+    fn sustained_weak_low_frequency_excess_stops_learning() {
+        let (mut tracker, mut noise) = tracker();
+        for _ in 0..100 {
+            tracker.observe(&[1.0; BINS], &mut noise);
+        }
+        let mut weak = [1.0; BINS];
+        weak[3] = 2.0; // 187.5 Hz was outside the coarse guard.
+        for _ in 0..100 {
+            tracker.observe(&weak, &mut noise);
+        }
+        assert!(tracker.status().speech_detected);
+        let updates = tracker.status().updates;
+        for _ in 0..2500 {
+            tracker.observe(&weak, &mut noise);
+        }
+        assert_eq!(tracker.status().updates, updates);
+        assert!(noise[3] < 1.1);
+        for _ in 0..300 {
+            tracker.observe(&[1.0; BINS], &mut noise);
+        }
+        assert!(tracker.status().updates > updates);
     }
 
     #[test]
