@@ -2,6 +2,7 @@
 
 pub mod audio_output;
 pub mod audio_queue;
+mod calibration;
 pub mod decoder;
 pub mod denoiser;
 mod denoiser_tables;

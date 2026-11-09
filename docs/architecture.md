@@ -11,7 +11,8 @@
 | `src/pdm.rs` | I²S2/DMA、原始位流和 PCM 快照、采集诊断 |
 | `src/decoder.rs` / `src/fir_coeffs.rs` | CIC5、191 tap FIR、去直流与 i16 输出 |
 | `src/denoiser.rs` / `src/denoiser_tables.rs` | 无堆分配的 256 点 FFT、Wiener 降噪、现场噪声谱校准和固定延迟 |
-| `src/noise_tracker.rs` | 可选 `adaptive-noise` 的初始谱参考、能量保护与有界背景谱更新；已完成离线及短时实板验证 |
+| `src/noise_tracker.rs` | 可选 `adaptive-noise` 的初始谱参考、粗 / 慢频谱保护与有界背景谱更新；已完成短时人声实板复验 |
+| `src/calibration.rs` | 分段暂存校准谱、谱结构 / 能量检查、丢弃不可信片段和安静等待 |
 | `src/noise.rs` / `src/perf.rs` | 降噪按钮/LED、状态与 DWT 处理工作量统计 |
 | `src/level_meter.rs` / `src/level_led.rs` | 20 ms RMS、明暗映射与蓝色 PD15 / TIM4_CH4 硬件 PWM |
 | `src/pipe.rs` | 实时输入、USB 包准备、预填、静音、按钮和运行统计 |
@@ -53,7 +54,8 @@ USB 每毫秒准备 16 samples /32 bytes，上游端点容量为 34 bytes。水�
 音频发送使用 UART4 软件触发向量上的 InterruptExecutor（P6），可抢占主线程 DSP。OTG_FS=P2、DMA1_STREAM3=P3，数值越小优先级越高。UART4 外设未启用，其向量已被音频执行器占用。
 
 采集、USB 总线控制、快照、按钮和诊断运行在主线程执行器；每个有界 DSP 块后主动让出执行权。FIR 计算保持中断开启，不在 await 时持有临界区。
-降噪每 8 个 1 ms 解码块处理一次 FFT / IFFT，可被 USB 音频抢占。启动略过 504 ms 后校准 4 秒，校准期间保持延迟一致的旁路；DMA 覆盖时清空降噪时域历史，已完成的噪声谱保留。
+降噪每 8 个 1 ms 解码块处理一次 FFT / IFFT，可被 USB 音频抢占。启动略过 504 ms，累计 500 个获准帧后完成校准；每段先暂存，发现活动会丢弃候选并延长等待，期间保持延迟一致的旁路。当前校准与慢频谱保护的证据边界见 [校准保护](calibration-guard.md)。DMA 覆盖时清空降噪时域历史，已完成的噪声谱保留。
+解码器在 DMA 间断后保留慢变直流估计，清空捕获历史，预热 196 个 PDM 半字并对后续 64 个 PCM samples 淡入，避免直流状态清零产生恢复脉冲；实板及低音量人声测试见 [恢复瞬态优化](recovery-transient.md)。
 RCC 初始化后开启 STM32F407 Flash 侧指令缓存、数据缓存和预取，保留 HAL 设置的等待周期；启动日志记录 `ACR before=5 after=705`。它不是 SRAM 的数据缓存，不需要对 DMA SRAM 缓冲区做缓存维护。
 
 缓冲区静态分配，无动态堆；`memory.x` 仅声明 Flash 与 128 KiB SRAM1/2，排除 DMA 不可访问的 CCM。历史最终映像静态 SRAM 为 20688 bytes；这不包含已测得的栈峰值，栈高水位尚未测量。
@@ -80,6 +82,7 @@ RCC 初始化后开启 STM32F407 Flash 侧指令缓存、数据缓存和预取�
 | `rate_q16 / gain_q8 / clipped` | 重采样输入步长 / 增益 / 增益削顶数 |
 | `decode_max_us / prepare_max_us` | 观察到的最长 DSP 块 / 包准备耗时，不能当作严格 WCET |
 | `noise enabled/ready/calibration_frames` | 降噪使能 / 噪声谱是否就绪 / 已校准帧数，完成为 500 |
+| `rejected_frames/hold_frames/calibration_blocked` | 被丢弃的候选校准帧 / 剩余安静等待帧 / 当前是否等待安静 |
 | `noise hops/hop_max_us` | 128-sample hop 累计数 / 含抢占的最长观测耗时 |
 | `level rms_lsb/brightness_permille/pwm_permille` | 20 ms 窗 RMS / 平滑后的相对亮度 / 蓝灯 PWM 占空比，后两项为 0～1000 |
 | `level rms_high/pwm_high/updates` | 本诊断区间最高 RMS / 最高占空比 / 累计 20 ms 窗更新次数 |

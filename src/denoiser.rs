@@ -1,5 +1,7 @@
 //! Allocation-free, 12 dB calibrated Wiener suppression, 16 kHz mono.
 //! Both active and bypass paths have a fixed 256-sample pipeline delay.
+use crate::calibration::Calibration;
+pub use crate::calibration::CalibrationStatus;
 use crate::denoiser_tables::{TWIDDLE, WINDOW};
 use crate::noise_tracker::NoiseTracker;
 pub use crate::noise_tracker::TrackingStatus;
@@ -10,7 +12,6 @@ pub const BINS: usize = FFT_SIZE / 2 + 1;
 pub const BLOCK: usize = 16;
 pub const DELAY_SAMPLES: usize = FFT_SIZE;
 pub const CALIBRATION_FRAMES: u32 = 500; // 4 seconds, after 504 ms warmup.
-const WARMUP_FRAMES: u32 = 63;
 const FLOOR: f32 = 0.251_188_64; // 10^(-12/20), amplitude gain floor.
 
 #[derive(Clone, Copy)]
@@ -84,8 +85,7 @@ pub struct Denoiser {
     previous_posterior: [f32; BINS],
     target: [f32; BINS],
     position: usize,
-    warmup: u32,
-    calibration: u32,
+    calibration: Calibration,
     enabled: bool,
     ready: bool,
     tracker: NoiseTracker,
@@ -109,8 +109,7 @@ impl Denoiser {
             previous_posterior: [0.0; BINS],
             target: [1.0; BINS],
             position: 0,
-            warmup: WARMUP_FRAMES,
-            calibration: 0,
+            calibration: Calibration::new(),
             enabled: true,
             ready: false,
             tracker: NoiseTracker::new(),
@@ -125,7 +124,6 @@ impl Denoiser {
             *noise = value.max(1e-20);
         }
         state.ready = true;
-        state.warmup = 0;
         state.previous_gain.fill(FLOOR);
         state.tracker.initialize(&state.noise);
         state
@@ -135,7 +133,16 @@ impl Denoiser {
         self.ready
     }
     pub fn calibration_frames(&self) -> u32 {
-        self.calibration
+        self.calibration.status().accepted_frames
+    }
+
+    pub fn calibration_status(&self) -> CalibrationStatus {
+        self.calibration.status()
+    }
+
+    /// Inspect the calibrated pre-gain PSD in host validation tools.
+    pub fn noise_profile(&self) -> Option<&[f32; BINS]> {
+        self.ready.then_some(&self.noise)
     }
     pub fn set_enabled(&mut self, enabled: bool) {
         if self.enabled != enabled {
@@ -156,8 +163,7 @@ impl Denoiser {
     /// Relearn in a quiet room. Audio continues in delayed bypass during learning.
     pub fn recalibrate(&mut self) {
         self.noise.fill(0.0);
-        self.calibration = 0;
-        self.warmup = WARMUP_FRAMES;
+        self.calibration = Calibration::new();
         self.ready = false;
         self.previous_gain.fill(1.0);
         self.previous_posterior.fill(0.0);
@@ -223,30 +229,20 @@ impl Denoiser {
             };
         }
         fft::<false>(&mut self.work);
+        // Reuse the gain scratch array for pre-gain PSD during calibration/tracking.
+        for (power, sample) in self.target.iter_mut().zip(&self.work) {
+            *power = sample.re * sample.re + sample.im * sample.im;
+        }
         let learning = !self.ready;
-        if learning {
-            if self.warmup > 0 {
-                self.warmup -= 1;
-            } else {
-                for (noise, sample) in self.noise.iter_mut().zip(&self.work) {
-                    *noise += sample.re * sample.re + sample.im * sample.im;
-                }
-                self.calibration += 1;
-                if self.calibration == CALIBRATION_FRAMES {
-                    for noise in &mut self.noise {
-                        *noise = (*noise / CALIBRATION_FRAMES as f32).max(1e-20);
-                    }
-                    self.ready = true;
-                    self.tracker.initialize(&self.noise);
-                }
+        if learning && self.calibration.observe(&self.target, &mut self.noise) {
+            for noise in &mut self.noise {
+                *noise = (*noise / CALIBRATION_FRAMES as f32).max(1e-20);
             }
+            self.ready = true;
+            self.tracker.initialize(&self.noise);
         }
         if !learning && self.enabled {
             if self.tracker.status().enabled {
-                // Reuse the gain scratch array before it is overwritten below.
-                for (power, sample) in self.target.iter_mut().zip(&self.work) {
-                    *power = sample.re * sample.re + sample.im * sample.im;
-                }
                 self.tracker.observe(&self.target, &mut self.noise);
             }
             for bin in 0..BINS {
@@ -339,7 +335,7 @@ mod tests {
         let mut state = Denoiser::new();
         state.set_adaptive_enabled(true);
         let mut output = [0; BLOCK];
-        for _ in 0..(WARMUP_FRAMES + CALIBRATION_FRAMES) * (HOP / BLOCK) as u32 {
+        for _ in 0..(63 + CALIBRATION_FRAMES) * (HOP / BLOCK) as u32 {
             state.process(&[0; BLOCK], &mut output);
         }
         assert!(state.ready());

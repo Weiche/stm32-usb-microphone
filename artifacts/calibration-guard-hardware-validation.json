@@ -1,0 +1,251 @@
+{
+  "recorded_at": "2026-11-10T08:10:20.416275+09:00",
+  "source_base_commit": "c135c13e1df2f0d673522c0af1f45feb88099890",
+  "source_has_uncommitted_changes": true,
+  "source_sha256": {
+    "src/calibration.rs": "0a4d70c27fcd84246e06a47c0e0fdde706d159dccbc2971ff32f1e52361e6ac5",
+    "src/denoiser.rs": "fe42a9265d565efd53cd5a9e54e4cd0b84cbe055d6cd7cad577a2d9f070e5704",
+    "src/noise_tracker.rs": "65ee7f9be6f378e32e290491c5f24466912ce30ea1303ae0aee1dd9a91650c25",
+    "src/noise.rs": "67265a43b57880d37327c34ca4ed41616fa57e399bb8bad2f130d9f51d4690e9",
+    "src/main.rs": "1bac5292b27dcd75cb3f5a7e7c18ebf1f9086dc99374e22b224d36e4a8e224b6",
+    "examples/denoise_pcm.rs": "2c8e1350ca22933b2b64ad666265cf8058af16938f82f13380695fa4c7d3771f",
+    "tools/validate_calibration_guard.py": "9ab9af436eb990d06a3eb752037383f3b3476e3d9600e446d6dcdc75ea4ff320",
+    "tools/validate_adaptive_noise.py": "d029dc5cf057fa187062c8fc061dfdaa0835bef72513a59876e8a8aa7587620b"
+  },
+  "firmware": {
+    "features": [
+      "adaptive-noise"
+    ],
+    "audio_gap_test": false,
+    "elf_sha256": "bdb636e706e7e173818979a0a70fc38cadc4306a074c3126d2cbc33498cf6407",
+    "bin_sha256": "996ca377e2fa4ee80760d28c85f603f3b3cee74b9128f9c0bc4371f288a01abc",
+    "memory": {
+      "elf": "captures\\calibration-guard-20261110\\candidate.elf",
+      "entry": "0x08000189",
+      "flash_image_span_bytes": 100480,
+      "allocated_sram_bytes": 31388,
+      "sram_capacity_bytes": 131072,
+      "ccm_allocations": 0,
+      "stack_high_water": "not measured",
+      "sections": [
+        {
+          "section": ".vector_table",
+          "address": "0x08000000",
+          "bytes": 392,
+          "region": "FLASH"
+        },
+        {
+          "section": ".text",
+          "address": "0x08000188",
+          "bytes": 80364,
+          "region": "FLASH"
+        },
+        {
+          "section": ".rodata",
+          "address": "0x08013b74",
+          "bytes": 19336,
+          "region": "FLASH"
+        },
+        {
+          "section": ".data",
+          "address": "0x20000000",
+          "bytes": 384,
+          "region": "SRAM1/2"
+        },
+        {
+          "section": ".bss",
+          "address": "0x20000180",
+          "bytes": 29980,
+          "region": "SRAM1/2"
+        },
+        {
+          "section": ".uninit",
+          "address": "0x2000769c",
+          "bytes": 1024,
+          "region": "SRAM1/2"
+        }
+      ]
+    },
+    "flash_verify_enabled": true,
+    "boot_marker_observed": true
+  },
+  "backup": {
+    "file": "captures/calibration-guard-20261110/before-flash.bin",
+    "bytes": 93456,
+    "sha256": "c0f019b98e5586443569924adfea330cb068bd3af6c6ecec2f2eb97be11dc918",
+    "matches_previous_recovery_image": true
+  },
+  "startup": {
+    "playback_seconds": 6,
+    "digital_peak_lsb": 1000,
+    "ready_observed": {
+      "time": "2026-11-10T08:06:14.677279+09:00",
+      "event": "calibration_ready",
+      "seconds_since_observed_boot": 7.948838700000124,
+      "blocked_observed": true
+    },
+    "discarded_candidate_frames": 80,
+    "scope": "Host-observed boot timing; actual MCU time is approximated. Checks show a guard and delayed readiness, not a proven speech-free acoustic PSD."
+  },
+  "soft_voice": {
+    "digital_peak_lsb": 250,
+    "normal_peak_lsb": 1000,
+    "observations": [
+      {
+        "source_time_approx_seconds": 10.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      },
+      {
+        "source_time_approx_seconds": 11.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      },
+      {
+        "source_time_approx_seconds": 12.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      },
+      {
+        "source_time_approx_seconds": 13.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      },
+      {
+        "source_time_approx_seconds": 14.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      }
+    ],
+    "source_silent_interval_observations": [
+      {
+        "source_time_approx_seconds": 7.369,
+        "speech_guard": false,
+        "updating": false,
+        "updates": 522
+      },
+      {
+        "source_time_approx_seconds": 8.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      },
+      {
+        "source_time_approx_seconds": 9.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      },
+      {
+        "source_time_approx_seconds": 15.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      },
+      {
+        "source_time_approx_seconds": 16.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      },
+      {
+        "source_time_approx_seconds": 17.369,
+        "speech_guard": true,
+        "updating": false,
+        "updates": 534
+      }
+    ],
+    "scope": "One-second telemetry; guards were also seen during source-silent intervals. The room is uncontrolled, so this cannot measure VAD false positives or speech-detection accuracy."
+  },
+  "recordings": {
+    "startup-live-14s": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\calibration-guard-20261110\\startup-live-14s.wav",
+      "samples": 224000,
+      "duration_seconds": 14.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "wav_sha256": "bcef9ffd59e3889d357ea1aa829625297f7aa2fca75cded0717fa5e97ca41e05"
+    },
+    "normal-live-24s": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\calibration-guard-20261110\\normal-live-24s.wav",
+      "samples": 384000,
+      "duration_seconds": 24.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "wav_sha256": "917e56bc000fe76bf127ce46a12231974dd201dedadc8281d1982a8f1d000658"
+    },
+    "standalone-12s": {
+      "file": "D:\\PrivateProjects\\stm32-usb-microphone\\captures\\calibration-guard-20261110\\standalone-12s.wav",
+      "samples": 192000,
+      "duration_seconds": 12.0,
+      "clipped_samples": 0,
+      "zero_ms_after_first_200ms": 0,
+      "limits": "Room audio is uncontrolled. These metrics do not establish frequency response, calibrated gain, or absence of every USB packet loss.",
+      "wav_sha256": "f29b6ccc0fcfbc13d0921d114d9b94cec426e0179367ce4c10ed0e121336e84c"
+    }
+  },
+  "rtt_maxima": {
+    "packets": 38036,
+    "usb_errors": 0,
+    "ring_overruns": 0,
+    "dma_errors": 0,
+    "overflow_events": 0,
+    "lost_samples": 0,
+    "underruns": 0,
+    "missing_samples": 0,
+    "clipped": 0,
+    "disabled": 2,
+    "discarded_samples": 32,
+    "calibration_frames": 500,
+    "rejected_frames": 80,
+    "hop_max_us": 1367,
+    "prepare_max_us": 92,
+    "decode_max_us": 365
+  },
+  "instrumented_work": {
+    "selected_windows": 31,
+    "median_permille": 517,
+    "max_permille": 523,
+    "scope": "DSP plus packet preparation, not total CPU or WCET"
+  },
+  "usb_watch": {
+    "completion": {
+      "time": "2026-11-10T08:07:38.9837268+09:00",
+      "event": "complete",
+      "polls": 78,
+      "elapsed_seconds": 110.4004632
+    },
+    "changes_after_ready": 0,
+    "scope": "Present-device polling can miss brief transitions."
+  },
+  "checks": {
+    "candidate_matches_offline_review": true,
+    "startup_activity_guard_observed": true,
+    "calibration_ready_after_startup_playback": true,
+    "calibration_completed": true,
+    "observable_errors_zero": true,
+    "all_recordings_no_clipping": true,
+    "all_capture_lengths": true,
+    "standalone_no_zero_ms_after_startup": true,
+    "soft_interval_updates_held": true,
+    "no_usb_changes_after_ready": true,
+    "sequence_completed": true
+  },
+  "passed": true,
+  "raw_evidence_directory": "captures/calibration-guard-20261110",
+  "final_state": "Candidate adaptive-noise firmware running; no fault injection; debugger exited; playback stopped.",
+  "limitations": [
+    "No subjective intelligibility or LED visual acceptance; synthesized voice is not a human whisper corpus.",
+    "Quiet-source intervals can still trigger protection; the heuristic remains conservative.",
+    "No clean acoustic reference establishes that every speech component was excluded during calibration.",
+    "Standalone recording has no concurrent RTT counters. No complete USB losslessness, long endurance, strict WCET or stack high-water claim.",
+    "No post-detach register inspection; CN1 replug restored the earlier ST-LINK opening error."
+  ]
+}

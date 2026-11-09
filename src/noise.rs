@@ -8,6 +8,9 @@ static ENABLED: AtomicBool = AtomicBool::new(true);
 static RECALIBRATE: AtomicBool = AtomicBool::new(false);
 static READY: AtomicBool = AtomicBool::new(false);
 static CALIBRATION: AtomicU32 = AtomicU32::new(0);
+static REJECTED: AtomicU32 = AtomicU32::new(0);
+static HOLD: AtomicU32 = AtomicU32::new(0);
+static BLOCKED: AtomicBool = AtomicBool::new(false);
 static HOPS: AtomicU32 = AtomicU32::new(0);
 static MAX_US: AtomicU32 = AtomicU32::new(0);
 #[cfg(feature = "adaptive-noise")]
@@ -40,17 +43,24 @@ pub fn process(state: &mut Denoiser, input: &[i16; BLOCK], output: &mut [f32; BL
     }
     READY.store(state.ready(), Relaxed);
     CALIBRATION.store(state.calibration_frames(), Relaxed);
+    let calibration = state.calibration_status();
+    REJECTED.store(calibration.rejected_frames, Relaxed);
+    HOLD.store(calibration.hold_frames, Relaxed);
+    BLOCKED.store(calibration.blocked, Relaxed);
     crate::perf::end_noise(work);
 }
 
 pub fn log_stats() {
     defmt::info!(
-        "noise enabled={} ready={} calibration_frames={} hops={} hop_max_us={} cap_db=12 delay_samples=256",
+        "noise enabled={} ready={} calibration_frames={} hops={} hop_max_us={} cap_db=12 delay_samples=256 rejected_frames={} hold_frames={} calibration_blocked={}",
         ENABLED.load(Relaxed),
         READY.load(Relaxed),
         CALIBRATION.load(Relaxed),
         HOPS.load(Relaxed),
-        MAX_US.load(Relaxed)
+        MAX_US.load(Relaxed),
+        REJECTED.load(Relaxed),
+        HOLD.load(Relaxed),
+        BLOCKED.load(Relaxed)
     );
     #[cfg(feature = "adaptive-noise")]
     defmt::info!(
@@ -75,7 +85,10 @@ pub async fn controls_task(
         Timer::after_millis(20).await;
         let ready = READY.load(Relaxed);
         active_led.set_level((ready && ENABLED.load(Relaxed)).into());
-        learn_led.set_level((!ready).into());
+        let waiting_for_quiet = BLOCKED.load(Relaxed);
+        let red =
+            !ready && (!waiting_for_quiet || (Instant::now().as_millis() / 250).is_multiple_of(2));
+        learn_led.set_level(red.into());
         if button.is_high() {
             if pressed_at.is_none() {
                 pressed_at = Some(Instant::now());
@@ -85,7 +98,9 @@ pub async fn controls_task(
             if held >= 3000 {
                 READY.store(false, Relaxed);
                 RECALIBRATE.store(true, Relaxed);
-                defmt::info!("noise recalibration requested: keep quiet for 5 seconds");
+                defmt::info!(
+                    "noise recalibration requested: keep quiet for at least 5 seconds; activity extends learning"
+                );
             } else if held >= 1000 {
                 let enabled = !ENABLED.load(Relaxed);
                 ENABLED.store(enabled, Relaxed);
